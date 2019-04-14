@@ -1,0 +1,142 @@
+
+<BEGIN-SEGMENT RIVER> 
+<OBJECT RAFT (SDESC "raft") (KBD 82) (FLAGS DONT-TAKE) (EXBITS <+ ,ESHERBIT ,
+PRAXIXBIT>) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <CLEAR-EXBIT>
+<WPRINTD ,ACTOR> <COND (<ZERO? #ZLOCAL!-IZILCH STACK> <PRINTI
+", on the other hand,">)> <COND (<EQUAL? ,ACTOR ,PRAXIX> <PRINTI
+" felt the raft was sturdy enough for an uneventful trip, though it would
+probably not fare so well in heavy or rocky waters. Nonetheless, as
+our only way of crossing the river, it would have to serve.">) (T <PRINTI
+" was doubtful that we would live to see the far side of the river since, in
+his words, the raft \"probably would not survive a good minute in a
+bathtub.\"">)>)>)> 
+<DEFINE-ROUTINE ANONF-137> 
+<DEFINE-ROUTINE RIVER-N-ENTER> 
+<OBJECT FALLS (SDESC "falls") (KBD 70) (FLAGS DONT-TAKE) (ACTION <ACOND () (<
+EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-FSET ,ACTION-OBJECT ,DONT-EXAMINE> <
+WPRINTD ,ACTOR> <PRINTI " motioned "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+" to the edge of the falls. They were both beautiful and
+terrible; a raging, boiling fury
+the like of which we had not experienced before. At the bottom, the
+troubled river was crowned with a misty rainbow; from there, the
+water tumbled over jagged rocks as it flowed out of sight into a narrow,
+winding gorge.">)>)> 
+<DEFINE-ROUTINE ANONF-138> 
+<OBJECT RIVER (SDESC "river") (KBD 82) (FLAGS DONT-TAKE) (ACTION <ACOND () (<
+AND <EQUAL? ,ACTION ,EXAMINE-COMMAND> <NOT <FSET? ,RIVER ,EXAMINED>>> <
+UPDATE-FSET ,RIVER ,DONT-EXAMINE> <WPRINTD ,ACTOR> <PRINTI
+" ripped a small branch from a nearby tree and cast it into the river.
+Within moments, it had been carried out of sight. \"It is as I feared.
+The river flows with great speed."> <COND (<FSET? ,FALLS ,SEEN> <PRINTI
+" How shall we cross without being
+carried over the falls?\" He got no answer.">) (<EQUAL? ,ACTOR ,PRAXIX> <PRINTI
+" We shall not cross before we have
+been taken far downstream.\"">) (<EQUAL? ,ACTOR ,ESHER> <PRINTI
+" We will not survive the crossing!\"">)> <RTRUE>)>)> 
+<DEFINE-ROUTINE ANONF-139> 
+<GLOBAL SHORE-ROOMS <LTABLE RIVER-1 RIVER-2 RIVER-3 RIVER-3>> 
+<ROOM RIVER-1 (TRAVEL-COMMANDS BUILD-RAFT-COMMAND DOWNSTREAM-COMMAND
+UPSTREAM-COMMAND) (ENTER RIVER-N-ENTER) (FLAGS DONT-SCOUT) (TEMP 1) (ACTION <
+ACOND () (<EQUAL? ,ACTION ,CAST-COMMAND> <SHORE-CAST>) (<EQUAL? ,ACTION ,
+DOWNSTREAM-COMMAND> <SHORE-MOVE ,RIVER-2>) (<EQUAL? ,ACTION ,UPSTREAM-COMMAND>
+<REMOVE-TRAVEL-COMMAND> <RIVER-N-ENTER> <PRINTI
+"Exploring the shore upstream of our position, we quickly found it too rocky
+for use as any sort of raft launching site, and it was decided to go no
+further.">)>)> 
+<DEFINE-ROUTINE ANONF-140> 
+<ROOM RIVER-2 (TRAVEL-COMMANDS BUILD-RAFT-COMMAND DOWNSTREAM-COMMAND
+UPSTREAM-COMMAND) (ENTER RIVER-N-ENTER) (TEMP 2) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,CAST-COMMAND> <SHORE-CAST>) (<EQUAL? ,ACTION ,DOWNSTREAM-COMMAND> <
+SHORE-MOVE ,RIVER-3>) (<EQUAL? ,ACTION ,UPSTREAM-COMMAND> <SHORE-MOVE ,RIVER-1>
+) (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE
+,SCOUTED> <SHORE-SCOUT>)>)> 
+<DEFINE-ROUTINE ANONF-141> 
+<DEFINE-ROUTINE SHORE-SCOUT> 
+<ROOM RIVER-3 (TRAVEL-COMMANDS BUILD-RAFT-COMMAND DOWNSTREAM-COMMAND
+UPSTREAM-COMMAND) (ENTER RIVER-N-ENTER) (TEMP 3) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,CAST-COMMAND> <SHORE-CAST>) (<EQUAL? ,ACTION ,DOWNSTREAM-COMMAND> <
+SHORE-MOVE ,RIVER-FALLS>) (<EQUAL? ,ACTION ,UPSTREAM-COMMAND> <SHORE-MOVE ,
+RIVER-2>) (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <
+FSET ,HERE ,SCOUTED> <SHORE-SCOUT>)>)> 
+<DEFINE-ROUTINE ANONF-142> 
+<ROOM RIVER-FALLS (TRAVEL-COMMANDS UPSTREAM-COMMAND NUL-COMMAND NUL-COMMAND) (
+ENTER <EXECUTE () <RIVER-N-ENTER #ZLOCAL!-IZILCH FALSE-VALUE>>) (FLAGS
+DANGEROUS DONT-SCOUT) (GRAPHIC G-FALLS) (TEMP 5) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,UPSTREAM-COMMAND> <SHORE-MOVE ,RIVER-3>)>)> 
+<DEFINE-ROUTINE ANONF-143> 
+<DEFINE-ROUTINE ANONF-144> 
+<DEFINE-ROUTINE SHORE-CAST> 
+<GLOBAL LAST-SHORE-MOVE 0> 
+<DEFINE-ROUTINE SHORE-MOVE> 
+<ROOM IN-RIVER (TRAVEL-COMMANDS DOWNSTREAM-COMMAND UPSTREAM-COMMAND
+CROSS-COMMAND RETURN-COMMAND) (ENTER <EXECUTE () <COND (<EQUAL? #ZLOCAL!-IZILCH
+STACK 4> <MOVE ,FALLS ,HERE>)>>) (TEMP 0) (FLAGS DANGEROUS DONT-SCOUT) (ACTION
+<ACOND () (<FSET? ,HERE ,ENCHANTED> <FCLEAR ,HERE ,ENCHANTED> <COND (<AND <
+EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,WIND-SPELL>> <
+USE-ESSENCES ,WIND-SPELL> <COND (<GRTR? #ZLOCAL!-IZILCH STACK 13> <PRINTI
+"Using more air essence than he would have liked, Praxix cast a wind spell at
+the levitated raft, blowing it (and us) across to the far shore of the river,
+where we tumbled onto the ground."> <CROSSED-RIVER>) (T <PRINTI
+"It was far too risky to try blowing us across the entire expanse of river, but
+there was enough air essence in Praxix' pouch to propel us back to the near shore,
+where we landed in a twisted heap, destroying the raft entirely."> <FCLEAR ,
+RAFT ,SEEN> <MOVE-TO ,RIVER-2>)>) (T <PRINTI
+"It wasn't long before we found out. We watched, helplessly as our raft sank
+down into the churning waters and started drifting downstream. "> <SET ACTION ,
+UPSTREAM-COMMAND> <RIVER-MOVE 1>)>) (<EQUAL? ,ACTION ,CROSS-COMMAND> <
+RIVER-MOVE 6>) (<EQUAL? ,ACTION ,DOWNSTREAM-COMMAND> <RIVER-MOVE 1>) (<EQUAL? ,
+ACTION ,UPSTREAM-COMMAND> <RIVER-MOVE 1>) (<EQUAL? ,ACTION ,RETURN-COMMAND> <
+RIVER-MOVE -4>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,
+RAIN-SPELL>> <SAVE-SPELL> <REMOVE ,HYE-RIVER> <PRINTI
+"It wasn't particularly funny when Praxix cast his rain spell and the
+level of the river grew even higher."> <CRLF> <CRLF> <COND (<FSET? ,ESHER ,
+IN-PARTY> <PRINTI
+"\"Will somebody take that child's toys away from him?\" Esher snarled.">) (T <
+PRINTI "\"I think we've had enough magic for the present,\" Bergon said, trying
+his best to conceal his anger.">)>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <
+EQUAL? ,ACTION-OBJECT ,LEVITATE-SPELL> <FSET? ,HERE ,TRAPPED> <NOT <QSET? ,HERE
+,ENCHANTED>>> <PRINTI
+"Praxix hurriedly attempted to cast an elevation spell to forestall
+our encounter with the falls, and this he accomplished not a moment before
+we were to plunge over the falls."> <COND (<FSET? ,BERGON ,IN-PARTY> <CRLF> <
+CRLF> <PRINTI "\"Out of curiosity,\" Bergon asked, turning to Praxix, \"what happens when
+the enchantment wears off?\"">)>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL?
+,ACTION-OBJECT ,LEVITATE-SPELL>> <SAVE-SPELL> <UNUSE-ESSENCES> <PRINTI
+"Praxix thought to cast his elevation spell on the raft, but the situation
+was not yet serious enough to take such a risk.">)>)> 
+<DEFINE-ROUTINE ANONF-145> 
+<DEFINE-ROUTINE ANONF-146> 
+<GLOBAL 2ND-PASS <>> 
+<ROOM BEACHED-NEAR (TRAVEL-COMMANDS UP-COMMAND COMB-AREA-COMMAND NUL-COMMAND) (
+ENTER <EXECUTE () <COND (<QSET? ,HERE ,SEEN> <PRINTI
+" But this was to be our last attempt at crossing: the river had beaten us."> <
+DIVIDER> <GIVE-UP-ENDING> <RTRUE>)> <UPDATE-REMOVE ,RAFT> <FCLEAR ,RAFT ,SEEN>
+<COND (<NOT ,FALLS-VICTIM> <REMOVE-PARTY-COMMAND ,COMB-AREA-COMMAND>)>>) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,
+DONT-SCOUT> <FSET ,HERE ,SCOUTED> <FALLS-SCOUT>) (<EQUAL? ,ACTION ,
+COMB-AREA-COMMAND> <FALLS-COMB>) (<EQUAL? ,ACTION ,UP-COMMAND> <SET
+FALLS-VICTIM #ZLOCAL!-IZILCH FALSE-VALUE> <NEXT-DAY> <FCLEAR ,RAFT ,SEEN> <
+MOVE-TO ,RIVER-FALLS #ZLOCAL!-IZILCH STR?458>)>)> 
+<DEFINE-ROUTINE ANONF-147> 
+<DEFINE-ROUTINE ANONF-148> 
+<DEFINE-ROUTINE FALLS-COMB> 
+<ROOM BEACHED-FAR (TRAVEL-COMMANDS UP-COMMAND COMB-AREA-COMMAND NUL-COMMAND) (
+ENTER <EXECUTE () <COND (<NOT ,FALLS-VICTIM> <REMOVE-PARTY-COMMAND ,
+COMB-AREA-COMMAND>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,SCOUT-COMMAND> <
+UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE ,SCOUTED> <FALLS-SCOUT>) (<EQUAL? ,
+ACTION ,COMB-AREA-COMMAND> <FALLS-COMB>) (<EQUAL? ,ACTION ,UP-COMMAND> <
+NEXT-DAY> <PRINTI
+"Scrambling up the rocks, we came to the top of the falls. Exhausted
+and hurt, we quickly fell asleep and did not rise until late the
+next morning."> <CRLF> <CRLF> <GO-TO-ASTRIX-MAZE>)>)> 
+<DEFINE-ROUTINE ANONF-149> 
+<DEFINE-ROUTINE ANONF-150> 
+<DEFINE-ROUTINE GO-TO-ASTRIX-MAZE> 
+<DEFINE-ROUTINE FALLS-SCOUT> 
+<GLOBAL FALLS-VICTIM 0> 
+<GLOBAL PADDLE-FLAG 0> 
+<DEFINE-ROUTINE FIRST-IN-PARTY> 
+<DEFINE-ROUTINE CROSSED-RIVER> 
+<DEFINE-ROUTINE RIVER-MOVE> 
+<GLOBAL PADDLE-TBL <LTABLE 0 "We continued to paddle "
+"Without pausing a moment to rest, we continued paddling ">> 

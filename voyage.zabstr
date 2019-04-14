@@ -1,0 +1,246 @@
+
+<BEGIN-SEGMENT BOAT> 
+<OBJECT BOAT-TWIN-ISLES (LOC BOAT) (SDESC "Twin Isles") (8DESC "TwinIsle") (
+FLAGS DONT-TAKE) (KBD 84) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND>
+<UPDATE-MOVE> <PRINTI
+"Far off, near the southern horizon, we could see the Twin Isles of Estril
+and Lethor. Between them, the sea itself grew dim and lost definition."> <CRLF>
+<CRLF> <PRINTI "\"What do you make of that?\" "> <WPRINTD ,ACTOR> <PRINTI
+" asked one of the crewmen working
+nearby."> <CRLF> <CRLF> <PRINTI
+"\"Why, that's the Misty Isle,\" he responded, surprised that this was not
+common knowledge. \"Sorry's the man that loses his way and enters those
+sinister seas.\"">)>)> 
+<DEFINE-ROUTINE ANONF-359> 
+<OBJECT BOAT-CREW (LOC BOAT) (SDESC "crew") (FLAGS DONT-TAKE) (KBD 67) (EXBITS
+PRAXIXBIT) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <
+PRINTI "Praxix, having never been to sea, was fascinated by the crew of the ">
+<WPRINTD ,CHOSEN-BOAT> <PRINTI
+". There were perhaps half a dozen of them, and each
+was busily addressing himself to the various tasks and chores of
+the seafaring life.">)>)> 
+<DEFINE-ROUTINE ANONF-360> 
+<OBJECT BOAT-CAPTAIN (LOC BOAT) (SDESC "captain") (FLAGS DONT-TAKE DONT-EXAMINE
+) (KBD 67) (ACTION <ACOND () (<AND <EQUAL? ,ACTION ,USE-MIX-COMMAND> <EQUAL? ,
+MIXTURE ,BEND-WILL-SPELL>> <COND (<EQUAL? ,CHOSEN-BOAT ,SOUTH-SEAS> <PRINTI
+"I am certain now that Praxix "> <COND (<FSET? ,BEND-WILL-SPELL ,TRAPPED> <
+PRINTI "sensed the treachery that lurked within the captain, for he cast the will
+bending spell at him. But Praxix was grappling with a will more
+powerful than his own - the will of the "> <PRINT ,BAD-GUY> <PRINTI
+" himself. It was a losing
+battle - Praxix'">) (T <PRINTI
+"did not anticipate the effect of the mixture he cast upon the captain. At first,
+nothing happened, but soon Praxix'">)> <PRINTI
+" body soon began to writhe, and he clutched at his head as if to keep it
+from splitting apart. And then, with a horrible scream, he fell to the ground
+in a heap. I said nothing of this to the others, so overcome was I with
+fear."> <CRLF> <CRLF> <FSET ,STORMY-SEAS ,TRAPPED> <MOVE-TO ,STORMY-SEAS>) (T <
+PRINTI "Perhaps Praxix was bored, but he decided to cast one of his mixtures at
+the captain. Happily, the captain didn't complain about the cloud of dust
+that had been thrown in his face, though he did cough and sneeze a bit
+for a while afterwards. As for the mixture itself, it seemed to have no
+useful effect.">)>)>)> 
+<DEFINE-ROUTINE ANONF-361> 
+<OBJECT BOAT-SKY (LOC BOAT) (SDESC "sky") (FLAGS DONT-TAKE) (KBD 83) (EXBITS <+
+,PRAXIXBIT ,HURTHBIT>) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <
+UPDATE-MOVE> <PRINTI
+"Above us and to the south, the sky was a brilliant blue. But a
+fast-moving storm was approaching rapidly from the north. Every so
+often, bolts of lightning danced among the clouds."> <CRLF> <CRLF> <PRINTI
+"\"Looks like rain,\" "> <WPRINTD ,ACTOR> <PRINTI
+" said, in what turned out to be one of
+the great understatements of our journey.">)>)> 
+<DEFINE-ROUTINE ANONF-362> 
+<COMMAND RELAX> 
+<ROOM BOAT (TRAVEL-COMMANDS RELAX-COMMAND NUL-COMMAND NUL-COMMAND) (CAST-LIMIT
+INF) (GRAPHIC G-BOAT) (FLAGS ENCLOSED) (ENTER <EXECUTE () <SAVE-SPELL ,
+FIRE-SPELL> <SAVE-SPELL ,TREMOR-SPELL> <TELL CR CR
+"We were welcomed aboard by Captain "> <TELL-CAPTAIN> <TELL ", who"> <COND (<
+NOT ,CAPTAIN> <PRINTI ", surprisingly sober,">)> <TELL
+" informed us that
+the ship was ready to sail. It was nearly an hour before the sails were
+raised and we were underway, but a favoring wind carried us swiftly to
+the south. Soon, the faint outline of the Twin Isles appeared at the
+horizon."> <COND (<EQUAL? ,CHOSEN-BOAT ,SOUTH-SEAS> <FSET ,HERE ,FORBIDDING> <
+CHECK-FOREBODING>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,RELAX-COMMAND> <
+MOVE-TO ,STORMY-SEAS>) (<EQUAL? ,ACTION ,CAST-COMMAND> <COND (<EQUAL? ,
+ACTION-OBJECT ,WIND-SPELL> <REMOVE ,HYE-BOAT> <PRINTI
+"Praxix, feeling himself a captive, sought to amuse himself by casting
+his wind spell. It was lucky that he used only a small amount of air
+essence, for the resulting gale nearly capsized our craft, causing great
+concern from the captain and crew."> <CRLF> <CRLF> <PRINTI
+"\"Promise you won't tell!\" Praxix said, seeing that I had observed the
+whole thing.">) (<OR <EQUAL? ,ACTION-OBJECT ,RAIN-SPELL> <EQUAL? ,ACTION-OBJECT
+,LIGHTNING-SPELL>> <REMOVE ,HYE-VOYAGE> <UNUSE-ESSENCES> <PRINTI
+"Later, Praxix confided in me that he had considered casting the \""> <WPRINTD
+,ACTION-OBJECT> <PRINTI
+"\" spell, but one look at the approaching clouds convinced him that
+he could add nothing to what nature had in store.">) (<EQUAL? ,ACTION-OBJECT ,
+LEVITATE-SPELL> <REMOVE ,HYE-BOAT> <PRINTI
+"Bored to distraction by this ocean voyage, Praxix decided to get a
+better look around, and cast his elevation spell on himself. Fifty
+feet above decks, he gazed out toward the Twin Isles, much to the
+surprise of the captain and crew, who had never seen such a magical
+display before."> <CRLF> <CRLF> <PRINTI
+"\"Do you think it wise to flaunt your powers, Praxix?\" Bergon asked,
+irritated at the Wizard's display."> <CRLF> <CRLF> <PRINTI
+"\"I suppose you are right,\" Praxix replied, \"but being at sea makes me
+rather nervous.\"">)>) (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,
+DONT-SCOUT> <FSET ,HERE ,SCOUTED> <MAKE-BUSY ,ACTOR ,GONE-COMMAND> <WPRINTD ,
+ACTOR> <PRINTI " then went off to explore the boat; in fact, there was little else to
+do.">)>)> 
+<DEFINE-ROUTINE ANONF-363> 
+<DEFINE-ROUTINE ANONF-364> 
+<OBJECT STORMY-SEAS-BOAT (LOC STORMY-SEAS) (SDESC "boat") (KBD 66) (FLAGS
+DONT-TAKE) (EXBITS <+ ,PRAXIXBIT ,ESHERBIT>) (ACTION <ACOND () (<EQUAL? ,ACTION
+,EXAMINE-COMMAND> <UPDATE-MOVE> <PRINTI
+"The boat was badly damaged by the storm; the mizzenmast had collapsed
+and fallen into the ocean; the main mast still stood, though it was
+heavily weakened and nearly ready to collapse under its own weight. The
+main sail, though torn, was serviceable, but the rudder had been destroyed,
+making steering all but impossible."> <CRLF> <CRLF> <PRINTI
+"\"What a mess,\" said "> <WPRINTD ,ACTOR> <PRINTI
+", who had not yet recovered from the
+shock."> <CRLF> <CRLF> <PRINTI
+"\"What are we to do?\" I asked, \"Not only the air is still, but - see
+here - the ocean itself is perfectly still and glassy. I think I understand
+why it is that people never return from this place.\"">)>)> 
+<DEFINE-ROUTINE ANONF-365> 
+<COMMAND (CLIMB-MAST CLIMB)> 
+<GLOBAL SPOTTED-ISLAND? <>> 
+<GLOBAL TRIED-CASTING-WIND? <>> 
+<ROOM STORMY-SEAS (TRAVEL-COMMANDS NUL-COMMAND NUL-COMMAND NUL-COMMAND) (
+CAST-LIMIT INF) (ENTER TELL-STORM) (FLAGS DANGEROUS DONT-SCOUT) (CLOCK <EXECUTE
+() <COND (<NOT <CHECK-ESSENCES ,WIND-SPELL>> <CRLF> <CRLF> <PRINTI
+"The boat floated in the unrelenting mist for many days, without even a hint
+of movement. Praxix, sadly, could do nothing, having run entirely out of air
+essence. But then, on the third day at sea, another storm rose up and tossed
+the boat violently, flinging it into a submerged reef."> <ILL-WIND #
+ZLOCAL!-IZILCH TRUE-VALUE>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+CLIMB-MAST-COMMAND> <REMOVE-TRAVEL-COMMAND> <COND (,TRIED-CASTING-WIND? <PRINTI
+"I tried to locate the Misty Isle">) (T <PRINTI
+"I tried to gain some view of our situation">)> <PRINTI
+" by climbing the mast, but it shook so badly as I clambered up that I became
+frightened and returned to the deck."> <CRLF> <CRLF> <PRINTI
+"\"A wise decision,\" Praxix said, \"You will do us no good by falling from
+the mast.\"">) (<EQUAL? ,ACTION ,PROCEED-COMMAND> <ILL-WIND>) (<EQUAL? ,ACTION
+,STOP-COMMAND> <PRINTI
+"Thinking it better to hold off for the moment, Praxix put his
+air essence away and considered what to do next."> <END-OPTION>) (<EQUAL? ,
+ACTION ,CAST-COMMAND> <COND (<EQUAL? ,ACTION-OBJECT ,FAR-VISION-SPELL> <PRINTI
+"It was reasonable to give Praxix' flare spell a try, but his fireball
+was enveloped by the gloom almost as it left his fingertips.">) (<EQUAL? ,
+ACTION-OBJECT ,WIND-SPELL> <COND (,SPOTTED-ISLAND? <PRINTI
+"Using my fix on the island as a reference, Praxix cast his wind spell
+into the air. The wind blew fiercely, as the "> <WPRINTD ,CHOSEN-BOAT> <PRINTI
+" made
+its way through the fog. It was only minutes later when we escaped
+the fog; an island was ahead..."> <CRLF> <CRLF> <PRINTI
+"\"The Misty Isle,\" said Praxix, \"And, wouldn't you know it - it's
+not even misty!\""> <CRLF> <CRLF> <COND (,DEMON-SEARCHING? <DEMON-TELL>) (T <
+ISLAND-ENDING>)>) (,TRIED-CASTING-WIND? <REMOVE ,HYE-MIST> <ILL-WIND>) (T <SET
+TRIED-CASTING-WIND? #ZLOCAL!-IZILCH TRUE-VALUE> <PRINTI
+"Praxix started to remove the air essence from his pouch, but
+was struck with a dilemma."> <CRLF> <CRLF> <PRINTI
+"\"From which direction shall the wind blow?\" he asked me, not
+expecting an answer."> <CRLF> <CRLF> <PRINTI
+"I answered anyway, trying to make light of our desperate situation.
+\"Onshore,\" I said."> <OPTION ,PRAXIX ,PROCEED-COMMAND ,STOP-COMMAND>)>) (<AND
+<EQUAL? ,ACTION-OBJECT ,LEVITATE-SPELL> <NOT ,SPOTTED-ISLAND?>> <SET
+SPOTTED-ISLAND? #ZLOCAL!-IZILCH TRUE-VALUE> <PRINTI
+"Praxix whipped up a large batch of his elevation spell and cast it
+at me. I had risen only a few dozen feet before I lost sight of the deck,
+and then I climbed a while longer, terrified by the gray nothingness
+that surrounded me. And then, I cleared the mist and was suspended in
+the clear afternoon air. Before me, an island stood, basking in the
+warmth of a cloudless sky."> <CRLF> <CRLF> <PRINTI
+"Slowly, I descended to the deck, indicating to Praxix in which direction
+the island lay."> <CRLF> <CRLF> <REMOVE-TRAVEL-COMMAND ,HERE ,
+CLIMB-MAST-COMMAND> <PRINTI
+"\"Well, well,\" he said, \"We may survive this voyage after all!\"">)>)>)> 
+<DEFINE-ROUTINE ANONF-366> 
+<DEFINE-ROUTINE ANONF-367> 
+<DEFINE-ROUTINE ILL-WIND> 
+<COMMAND STOP> 
+<DEFINE-ROUTINE TELL-STORM> 
+<DEFINE-ROUTINE TELL-CAPTAIN> 
+<CONSTANT WAVE-SAVE
+" Tossed with me into the tumult, it had split in two, its larger piece intact
+and floating on the waves. Grabbing hold of that precious flotsam, I pulled myself
+up and fell unconscious atop it. The next day, the storm having passed, I was found
+by passing fishermen and taken back to Zan where, after a few sleepless nights, I
+booked passage to Lendros, and my home in the plains."> 
+<OBJECT PRAXIX-POUCH (SDESC "Praxix' pouch") (12DESC "pouch") (8DESC "pouch") (
+KBD 80) (FLAGS DONT-EXAMINE) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+PICK-UP-COMMAND> <UPDATE-FSET ,PRAXIX-POUCH ,DONT-TAKE> <SET TAG-HOLDING-POUCH
+#ZLOCAL!-IZILCH TRUE-VALUE> <TRAVEL-COMMANDS ,TAG ,MIX-COMMAND> <PRINTI
+"Lying beside Praxix was his pouch of magical powders, and, as
+discreetly as I could, I picked them up. Inside the pouch were a number
+of smaller bags. Of these, only the reagents were simple to recognize. But
+the others numbered "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+", not four as I had expected.
+Each of these bags held a powder, and these powders were of different colors and
+consistencies."> <CRLF> <CRLF> <PRINTI
+"I tried to think what Praxix would do, what he was trying to do, when he was
+struck down by this messenger of evil. "> <COND (<FSET? ,LIGHTNING-SPELL ,SEEN>
+<PRINTI "And then it occurred to me: lightning, which">)> <COND (<NOT <FSET? ,
+LIGHTNING-SPELL ,SEEN>> <PRINTI
+"I thought about the various spells that Praxix had cast during our
+journey, but none seemed powerful enough. Perhaps Praxix had a spell
+to call forth a bolt of lightning, but even so, I had no idea of which
+combination of essences would produce it?">) (<FSET? ,LIGHTNING-SPELL ,
+INCAPACITATED> <PRINTI
+", I remembered, was a mixture
+of fire and water essences, with just a pinch of earth essence.
+The only problem was: which essence was which?">) (T <PRINTI
+" I suspected would be the
+combination of fire and water essences. The only problem was: which essence
+was which?"> <COND (<FSET? ,TALE-MAGIC ,SEEN> <PRINTI
+" And was there a third essence involved, as Praxix said was
+sometimes the case?">)> <RTRUE>)>)>)> 
+<DEFINE-ROUTINE ANONF-368> 
+<GLOBAL TAG-HOLDING-POUCH <>> 
+<OBJECT DEMON-DEMON (TIME 0) (ACTION <EXECUTE () <COND (<AND <EQUAL? ,ACTION ,
+EXAMINE-COMMAND> <EQUAL? ,ACTION-OBJECT ,PRAXIX-OBJECT>> <RTRUE>)> <SETG
+DEMON-COUNT <ADD ,DEMON-COUNT 1>> <TELL CR CR> <COND (<ZERO? ,DEMON-COUNT> <
+PRINTI "\"We know who you are, and we know what you seek,\" the demon continued,
+\"but you will be needing a lesson in manners.\"">) (<EQUAL? ,DEMON-COUNT 1> <
+PRINTI "\"Let me see,\" the demon went on, \"Who, do you suppose, should receive
+this lesson?\"">) (<EQUAL? ,DEMON-COUNT 2> <SETG DEMON-VICTIM <FIRST-IN-PARTY ,
+HURTH ,ESHER ,MINAR ,BERGON>> <PRINTI
+"\"Praxix will not do,\" the demon spat, \"I would not like
+to be accused of destroying one so defenseless. No, I believe the
+honor should go to "> <WPRINTD ,DEMON-VICTIM> <PRINTI ".\"">) (<EQUAL? ,
+DEMON-COUNT 3> <PRINTI "\""> <WPRINTD ,DEMON-VICTIM> <PRINTI
+", rise!\" the demon ordered, and, face contorted
+hideously, the demon's victim stood and approached the foul monster.">) (T <
+PARTY-REMOVE ,DEMON-VICTIM> <PRINTI
+"And then, the demon stretched out his arm, hand open, at "> <WPRINTD ,
+DEMON-VICTIM> <PRINTI " and, as he slowly closed his hand, it seemed that "> <
+WPRINTD ,DEMON-VICTIM> <PRINTI
+" was
+being squeezed mercilessly; he screamed in agony as he demon's fist closed
+ever tighter. Moments later, he was dead, crushed by this awful monster."> <
+CRLF> <CRLF> <PRINTI
+"\"The same fate, or worse, awaits all those who seek to defy the "> <PRINT ,
+BAD-GUY> <PRINTI
+". This is but a taste of what is to follow.\" Then, he swung his arm to his
+side and opened his clenched fist; "> <WPRINTD ,DEMON-VICTIM> <PRINTI
+"'s body was flung from
+the boat and into the ocean waters."> <CRLF> <CRLF> <PRINTI
+"Mounting the awful creature that had borne him here, he flew off into
+the distant north."> <COND (<NOT ,TAG-HOLDING-POUCH> <HINT ,HINT-POUCH>)> <
+END-DEMON>)>>)> 
+<DEFINE-ROUTINE ANONF-369> 
+<GLOBAL DEMON-VICTIM <>> 
+<DEFINE-ROUTINE DEMON-TELL> 
+<OBJECT PRAXIX-OBJECT (SDESC "Praxix") (FLAGS DONT-TAKE) (EXBITS ESHERBIT) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <WPRINTD ,
+ACTOR> <PRINTI " went over to where Praxix lay and examined him thoroughly."> <
+CRLF> <CRLF> <PRINTI "\"He's not hurt badly,\" he said."> <CRLF> <CRLF> <PRINTI
+"\"How very thoughful you are, "> <WPRINTD ,ACTOR> <PRINTI
+",\" the demon boomed. \"But do not concern
+yourself, for I shall not kill your Wizard friend - at least not yet. But now to
+business.\"">)>)> 
+<DEFINE-ROUTINE ANONF-370> 
+<DEFINE-ROUTINE END-DEMON> 

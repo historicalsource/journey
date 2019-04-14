@@ -1,0 +1,291 @@
+
+<BEGIN-SEGMENT STAIR> 
+<GLOBAL STAIR-TO-PRISON? <>> 
+<ROOM STAIR-JUNCTION (TRAVEL-COMMANDS LEFT-COMMAND RIGHT-COMMAND DOWN-COMMAND)
+(GRAPHIC G-STAIR-JUNCTION) (FLAGS UNDERGROUND DONT-SCOUT) (ENTER FSET-SEEN) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,RIGHT-COMMAND> <PRINTI
+"After another long climb, the stairs ended blindly. "> <COND (<FSET? ,HURTH ,
+IN-PARTY> <PRINTI
+"\"We have come to the Bern i-Zar,\" Hurth said, motioning to the
+blank wall that stood before us."> <CRLF> <CRLF> <PRINTI
+"\"It figures,\" I blurted out; Hurth laughed gently, then spoke
+the word of command that opened the gate.">) (T <PRINTI
+"Praxix approached the blank wall that lay before us, and sure
+enough, a gate appeared, then opened."> <CRLF> <CRLF> <PRINTI
+"\"I don't believe I ever will get used to these gates,\" I said,
+and Praxix smiled.">)> <MOVE-TO ,BERN-I-DEN>) (<EQUAL? ,ACTION ,LEFT-COMMAND> <
+COND (<FSET? ,STAIR-CHASM ,SEEN> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"Again, we made the strenuous and dizzying climb to the crumbling
+stairs."> <CRLF> <CRLF> <PRINTI
+"\"I am not inclined to do this again,\" Bergon said, panting. \"Let
+us find some way across the chasm or explore elsewhere.\"">) (T <PRINTI
+"The left stair rose in tighter and tighter spirals, the
+air thinning as we went. Not long before we had hoped to
+reach the top, the stairs had crumbled and an abyss, perhaps
+ten paces wide, yawned before us. Beyond that, the stairs
+continued their seemingly endless climb.">)> <MOVE-TO ,STAIR-CHASM>) (<EQUAL? ,
+ACTION ,DOWN-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"Unsure of whether we had seen all there was to see in the lower parts
+of the caverns, we determined to return to the bottom of the stairs and
+continue our explorations."> <MOVE-TO ,STAIR-BOTTOM>)>)> 
+<DEFINE-ROUTINE ANONF-158> 
+<ROOM BERN-I-DEN (TRAVEL-COMMANDS EXIT-COMMAND DOWN-COMMAND NUL-COMMAND) (
+GRAPHIC G-STAIR-GATE) (FLAGS UNDERGROUND DONT-SCOUT) (ENTER <EXECUTE () <COND (
+<AND <NOT <TRAVEL-COMMAND? ,STAIR-JUNCTION ,DOWN-COMMAND>> <NOT <
+TRAVEL-COMMAND? ,STAIR-JUNCTION ,LEFT-COMMAND>>> <REMOVE-TRAVEL-COMMAND ,HERE ,
+DOWN-COMMAND>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXIT-COMMAND> <
+UPDATE-REMOVE ,TALE-BERN-I-ELAN> <PRINTI
+"We stepped out of the Bern i-Zar, the Mountain Gate, late in the
+evening. It was a cold, windy night, filled with countless stars."> <COND (<
+FSET? ,HURTH ,IN-PARTY> <CRLF> <CRLF> <PRINTI
+"Hurth stood at the gate. \"I cannot go on, as much as I might
+wish it; this is the command of Agrith. And yet, you are good
+friends and shall always be welcome in these halls.\" He
+embraced us all in the Dwarf-fashion, turned, and started back
+into the gate. \"May the earth give you speed!\" he said as
+the great door closed behind him.">) (<FSET? ,MINAR ,IN-PARTY> <CRLF> <CRLF> <
+PRINTI "Our camp had been long silent when Minar spoke. \"I grieve for
+the Dwarf,\" he said, \"though I knew him not. He was a brave man,
+and his reckless murder will not go unavenged.\""> <CRLF> <CRLF> <PRINTI
+"\"The success of our journey will be our best revenge,\" replied
+Bergon. \"And I hope it will bring Hurth peace.\"">)> <CRLF> <CRLF> <PRINTI
+"We spoke much of Hurth that evening, as we lay there beneath
+the moonlit sky."> <COND (<NOT <FSET? ,HURTH ,IN-PARTY>> <PRINTI
+" Praxix said, \"The Dwarves believe that after death, their souls
+rise up into the heavens as shooting stars.\""> <CRLF> <CRLF> <PRINTI
+"I laid awake for hours that night, eyes fixed on that twinkling
+firmament, but I saw no shooting stars and, happily, I drifted off into
+sleep.">) (T <PARTY-REMOVE ,HURTH>)> <COND (<NOT <FSET? ,OUTSIDE-PRISON ,SEEN>>
+<HINT ,HINT-PRISON>) (<NOT <FSET? ,PRISON ,SEEN>> <HINT ,HINT-RUNES>)> <COND (<
+AND <FSET? ,STAIR-CHASM ,SEEN> <NOT <FSET? ,FAR-CHASM ,SEEN>>> <HINT ,
+HINT-CHASM>)> <COND (<AND <NOT <LOC ,HINT-PRISON>> <NOT <FSET? ,
+DARK-EVIL-CAVERN ,SOLVED>>> <HINT ,HINT-EVIL-CAVERN>)> <NEXT-DAY> <COND (<AND ,
+2ND-PASS <FSET? ,HIGH-PLAIN ,SEEN>> <COND (<AND <NOT <FSET? ,BITE-FOREST ,SEEN>
+> <OR <FSET? ,MINAR ,IN-PARTY> <FSET? ,ESHER ,IN-PARTY>>> <PRINTI
+"The next morning, we retraced our earlier steps, skirting the edge of the lake,
+and descending back into the forest for our return to Astrix. It was soon midday,
+and we decided to stop in a nearby clearing for some lunch."> <MOVE-TO ,
+BITE-FOREST> <RTRUE>) (T <CRLF> <CRLF> <N-DAY-TREK 4> <RTRUE>)>)> <CRLF> <CRLF>
+<GATE-TO-HIGH-PLAIN>) (<EQUAL? ,ACTION ,DOWN-COMMAND> <REMOVE-TRAVEL-COMMAND> <
+PRINTI "Uncertain of whether we had explored enough of these caverns, we decended
+to the junction of the two stairs."> <MOVE-TO ,STAIR-JUNCTION>)>)> 
+<DEFINE-ROUTINE ANONF-159> 
+<DEFINE-ROUTINE ANONF-160> 
+<GLOBAL FLOATER <>> 
+<GLOBAL CHASM-STRAGGLER <>> 
+<COMMAND USE-MAGIC> 
+<COMMAND (LEAVE-BERGON LEAVE-BRG)> 
+<COMMAND (LEAVE-PRAXIX LEAVE-PRX)> 
+<COMMAND (LEAVE-HURTH LEAVE-HUR)> 
+<COMMAND (LEAVE-ESHER LEAVE-ESH)> 
+<COMMAND (LEAVE-MINAR LEAVE-MNR)> 
+<DEFINE-ROUTINE FIND-CHASM-STRAGGLER> 
+<ROOM STAIR-CHASM (TRAVEL-COMMANDS CROSS-COMMAND DOWN-COMMAND NUL-COMMAND) (
+GRAPHIC G-STAIR-CHASM) (CAST-LIMIT 3) (FLAGS UNDERGROUND ADVISE) (ENTER
+FSET-SEEN) (ACTION <ACOND () (<EQUAL? ,ACTION ,USE-MAGIC-COMMAND> <PRINTI
+"Preferring to bring along our entire party, we decided to use Praxix' magic
+to get ourselves across the chasm on the way down. With that matter settled it
+was only a short time until we made our way across the abyss."> <MOVE-TO ,
+FAR-CHASM>) (<OR <EQUAL? ,ACTION ,LEAVE-BERGON-COMMAND> <EQUAL? ,ACTION ,
+LEAVE-PRAXIX-COMMAND> <EQUAL? ,ACTION ,LEAVE-HURTH-COMMAND> <EQUAL? ,ACTION ,
+LEAVE-MINAR-COMMAND> <EQUAL? ,ACTION ,LEAVE-ESHER-COMMAND>> <COND (<EQUAL? ,
+ACTION ,LEAVE-BERGON-COMMAND> <SET CHASM-STRAGGLER ,BERGON>) (<EQUAL? ,ACTION ,
+LEAVE-MINAR-COMMAND> <SET CHASM-STRAGGLER ,MINAR>) (<EQUAL? ,ACTION ,
+LEAVE-HURTH-COMMAND> <SET CHASM-STRAGGLER ,HURTH>) (<EQUAL? ,ACTION ,
+LEAVE-ESHER-COMMAND> <SET CHASM-STRAGGLER ,ESHER>) (T <SET CHASM-STRAGGLER ,
+PRAXIX>)> <PRINTI
+"Preferring to preserve Praxix' supply of magical essences, we decided to leave "
+> <WPRINTD ,CHASM-STRAGGLER> <PRINTI
+" behind while we explored the far side of the chasm. It was
+just a matter of moments until "> <COND (<LESS? ,PARTY-MAX 4> <PRINTI "I">) (T
+<PRINTI "the rest of us">)> <PRINTI " made the crossing."> <PARTY-REMOVE ,
+CHASM-STRAGGLER> <MOVE-TO ,FAR-CHASM>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <
+EQUAL? ,ACTION-OBJECT ,WIND-SPELL>> <COND (<FSET? ,HERE ,ENCHANTED> <FCLEAR ,
+HERE ,ENCHANTED> <COND (<EQUAL? ,FLOATER #ZLOCAL!-IZILCH STACK> <PRINTI
+"As Esher turned slowly above us, screaming monosyllables at our
+Wizard-friend, Praxix was busily wiping the "> <TELL-COLOR ,ESSENCE-AIR ,
+ESSENCE-EARTH> <PRINTI
+" residue from his hands and measuring out some additional air
+essence. \"Have no fear! You'll be down in a moment!\" he said.
+Then, pausing for a second, he smiled broadly and added some more.
+With a sharp flick of the wrist, Praxix cast the potent dust
+at our floating comrade, who quite literally flew across the
+abyss in a gale-force wind."> <CRLF> <CRLF> <PRINTI
+"\"What did I say?\" shouted Praxix at the Esher-heap that
+scowlingly stumbled to his feet on the other side. Bergon,
+unwilling to see this conversation progress, tossed Esher">) (T <PRINTI
+"\"Do not be alarmed, "> <WPRINTD ,FLOATER> <PRINTI
+"!\" Praxix said, as he wiped the "> <TELL-COLOR ,ESSENCE-AIR ,ESSENCE-EARTH> <
+PRINTI " residue from his hands, and measured out some additional
+air essence. \"It will just be a moment.\" And then, casting the
+powder at our floating friend, a great wind came up and carried
+him across the abyss. We tossed "> <WPRINTD ,FLOATER>)> <PRINTI
+" our rope, and we were soon ready to cross to the far side of the chasm.
+There was only one problem: since we could find no good anchor for our rope
+on either side of the abyss, we had to consider how we were to return once we
+got across. "> <COND (<NOT <CHECK-ESSENCES ,WIND-SPELL>> <COND (<NOT <EQUAL? ,
+FLOATER #ZLOCAL!-IZILCH STACK>> <SET CHASM-STRAGGLER ,BERGON>) (T <SET
+CHASM-STRAGGLER ,PRAXIX>)> <PRINTI
+"Our options were limited by the fact that Praxix had no remaining air
+essence with which to blow somebody back, which left no choice but to have "> <
+WPRINTD ,CHASM-STRAGGLER> <PRINTI " remain behind. And so it was that "> <
+WPRINTD ,CHASM-STRAGGLER> <PRINTI " did not
+follow us across the chasm."> <PARTY-REMOVE ,CHASM-STRAGGLER>) (T <PRINTI
+"Since Praxix had some air essence in his pouch, it would be possible to use
+his wind spell to fling one of our party across the chasm on the way down. On
+the other hand, we could just as easily leave one of our party behind, and
+avoid using magic altogether."> <FIND-CHASM-STRAGGLER> <RTRUE>)> <MOVE-TO ,
+FAR-CHASM>) (<NOT <QSET? ,HERE ,SCOUTED>> <FSET ,HERE ,DEAD> <PRINTI
+"I don't know what Praxix was thinking when he removed some
+air essence from his pouch and tossed it at Bergon. A fierce
+wind came up and blew Bergon to the edge of the abyss; it
+was only quick thinking "> <COND (<FSET? ,ESHER ,IN-PARTY> <PRINTI "by Esher ">
+)> <FSET ,HERE ,GRAY-MIX> <PRINTI
+"that saved him from plunging
+down into that bottomless void. Bergon was quite displeased,
+though his temper was restrained. \"Let us be a little more
+careful with our magic,\" he said.">) (T <UNUSE-ESSENCES> <PRINTI
+"Praxix gave Bergon a look saying \"How about trying the
+wind spell again?\" Bergon shot back a look saying, in effect, \"I
+will murder you if you do.\"">)>) (<AND <FSET? ,HERE ,ENCHANTED> <
+FLOATER-TO-EARTH>> <RTRUE>) (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <
+UPDATE-FCLEAR ,HERE ,ADVISE> <PRINTI
+"Bergon asked for our advice; he himself thought of trying to jump
+across, but got a negative reaction. Praxix suggested that he might
+have some magic that would help, and this was greeted with some
+measure of skepticism. Overall, no consensus was achieved.">) (<EQUAL? ,ACTION
+,CROSS-COMMAND> <REMOVE-TRAVEL-COMMAND> <FSET ,HERE ,DEAD> <PRINTI
+"Bergon, being the most powerful member of the group, thought he might try
+jumping across the gap, then use the rope to bring the rest of
+us along."> <CRLF> <CRLF> <COND (<FSET? ,ESHER ,IN-PARTY> <PRINTI
+"For once, Esher's pessimism was hard to fault. \"You can't get
+a running start; the footing's no good; and the stairs at the
+other end appear to turn a corner. Otherwise, you've got a fine
+idea.\" Bergon reluctantly agreed.">) (T <PRINTI
+"It didn't take long, however, to convince him that this would be
+far too dangerous to attempt.">)>) (<EQUAL? ,ACTION ,SCOUT-COMMAND> <
+UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE ,SCOUTED> <WPRINTD ,ACTOR> <PRINTI
+" suggested trying to scout out an alternative way up the stairs,
+but this was felt to be fruitless.">) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <
+EQUAL? ,ACTION-OBJECT ,LEVITATE-SPELL>> <FSET ,HERE ,DEAD> <SAVE-SPELL> <SET
+FLOATER ,ACTION-PRSI> <COND (<FSET? ,HERE ,BLUE-MIX> <PRINTI
+"Praxix again levitated "> <WPRINTD ,FLOATER> <PRINTI
+" with his elevation spell."> <CRLF> <CRLF> <PRINTI "\"Not again!\" "> <WPRINTD
+,FLOATER> <PRINTI
+" protested, but there was little he could do
+suspended there, ten feet above our heads.">) (T <PRINTI "Praxix, "> <COND (<
+FSET? ,HERE ,GRAY-MIX> <PRINTI "though chastened">) (T <PRINTI "on his own">)>
+<PRINTI ", decided to try a little magic to get us across.
+Pulling some earth and air essences from his concealed pouch, Praxix mixed
+them, then cast the mixture onto "> <WPRINTD ,FLOATER> <PRINTI "."> <CRLF> <
+CRLF> <PRINTI "\"Hey, wait a minute!\" he said as he rose ten feet into the air
+before us.">)> <FSET ,HERE ,ENCHANTED> <FSET ,HERE ,BLUE-MIX>) (<EQUAL? ,ACTION
+,CAST-COMMAND> <PRAXIX-NO-CAST>) (<EQUAL? ,ACTION ,DOWN-COMMAND> <COND (<FSET?
+,HERE ,DEAD> <PRINTI
+"Having tried our best to cross the chasm, we admitted defeat; slowly,">) (T <
+PRINTI "It was pointless to attempt the crossing; slowly,">)> <PRINTI
+" we made our way
+back down to the junction of the stairs."> <MOVE-TO ,STAIR-JUNCTION>)>)> 
+<DEFINE-ROUTINE ANONF-161> 
+<ROOM FAR-CHASM (TRAVEL-COMMANDS UP-COMMAND NUL-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND DONT-SCOUT) (ENTER FSET-SEEN) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+UP-COMMAND> <PRINTI
+"We continued climbing up the narrow stairs, and finally climbed through
+the heavy oak door which led into the Sunset Tower."> <CRLF> <CRLF> <GRAPHIC ,
+G-SUNSET-TOWER> <PRINTI
+"The view was magnificent! The sun was just setting, and the western sky
+was ablaze with colors reflected by the high wispy clouds at the
+horizon. To the east, far-off and shrouded in cloud, stood this mighty
+tower's twin: the Sunrise Tower"> <COND (,2ND-PASS <PRINTI ", home of Astrix.">
+) (T <PRINTI " where, it was said, we would find
+a mighty ally in the Wizard Astrix. To the north, beyond a desert-like
+plain, the sky was strangely dark and seemingly choked by a heavy,
+black cloud.">)> <COND (<FSET? ,HURTH ,IN-PARTY> <CRLF> <CRLF> <PRINTI
+"\"Our fathers would come to this place to meditate at day's end and
+pray for the day when we should leave this world,\" Hurth said. \"Only
+Agrith comes here now, and far less often than in the past. Now that
+the stair is broken, he may never come again. The world is changing; even
+this strong tower will not survive what is to come!\"">)> <MOVE-TO ,
+SUNSET-TOWER>)>)> 
+<DEFINE-ROUTINE ANONF-162> 
+<OBJECT SUNRISE-MOUNTAIN (LOC SUNSET-TOWER) (SDESC "Sunrise Mt.") (8DESC
+"S'rise Mtn") (KBD 83) (FLAGS DONT-TAKE) (EXBITS PRAXIXBIT) (ACTION <ACOND () (
+<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <WPRINTD ,ACTOR> <PRINTI
+" looked more closely at the Sunrise Mountain, and the route we would
+eventually follow to reach the Tower which stood atop the highest crag.
+It appeared as though numerous paths wound their way up from the shore of the
+great river, but there was no indication of which would be the best to take.">)
+>)> 
+<DEFINE-ROUTINE ANONF-163> 
+<OBJECT SUNRISE-TOWER-OBJECT (LOC SUNSET-TOWER) (SDESC "Sunrise Tower") (12DESC
+"Sunrise Twr.") (8DESC "S'rise Twr") (KBD 83) (FLAGS DONT-TAKE) (EXBITS
+PRAXIXBIT) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <
+WPRINTD ,ACTOR> <PRINTI
+" took a long look at the Sunrise Tower, and motioned for us to do
+likewise. \"What do you make of that?\" he said, pointing at a dark
+shadow which appeared to circle the hooded tower."> <CRLF> <CRLF> <COND (<FSET?
+,HURTH ,IN-PARTY> <PRINTI "Hurth, whose vision">) (<FSET? ,BERGON ,IN-PARTY> <
+PRINTI "Bergon, whose vision">) (T <PRINTI
+"I peered at the shadow, but could discern nothing more than had Praxix. \"It
+is too bad that we don't have Bergon here with us,\" I said. \"His vision is
+quite a bit better than mine,\" I said."> <RTRUE>)> y <PRINTI
+" was the most acute in our party, peered at
+the darkening Tower and said, \"If it weren't so far away, I would
+say it was a bird. But at this distance...\" He paused, shaking his
+head, then gazed at the shadow yet again. \"It cannot be!\""> <COND (<FSET? ,
+PRAXIX ,IN-PARTY> <CRLF> <CRLF> <PRINTI
+"Praxix did not agree. \"There are many creatures that cannot be,
+and yet are. We have seen them ourselves; we have "> <COND (<NOT <FSET? ,HURTH
+,IN-PARTY>> <PRINTI "had ">)> <PRINTI
+"one among us! Doubt not your judgement.\"">)> <RTRUE>)>)> 
+<DEFINE-ROUTINE ANONF-164> 
+<ROOM SUNSET-TOWER (TRAVEL-COMMANDS DOWN-COMMAND NUL-COMMAND NUL-COMMAND) (
+GRAPHIC G-SUNSET-TOWER) (CAST-LIMIT 2) (FLAGS UNDERGROUND PROVISIONER DONT-DROP
+) (ENTER <EXECUTE () <SAVE-PROVISION-COMMANDS ,TAG> <SAVE-PROVISION-COMMANDS ,
+PRAXIX> <PROVISION-COMMANDS ,TAG ,PICK-UP-COMMAND ,DROP-COMMAND ,
+INVENTORY-COMMAND> <PROVISION-COMMANDS ,PRAXIX ,CAST-COMMAND ,EXAMINE-COMMAND>
+<COND (,2ND-PASS <REMOVE ,SUNRISE-MOUNTAIN> <UPDATE-REMOVE ,
+SUNRISE-TOWER-OBJECT>)>>) (EXIT <EXECUTE () <RESTORE-PROVISION-COMMANDS ,TAG> <
+RESTORE-PROVISION-COMMANDS ,PRAXIX>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+LOOK-AROUND-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE ,SCOUTED> <
+UPDATE-FSET ,HERE ,DONT-SCOUT> <WPRINTD ,ACTOR> <PRINTI
+" searched the tower, finding what appeared to be a spyglass of some
+kind. It was old and delicately crafted, but many of its lenses were broken,
+making it more a thing of beauty than an object to be used."> <COND (<FSET? ,
+PRAXIX ,IN-PARTY> <CRLF> <CRLF> <PRINTI
+"\"It is a work of art,\" Praxix said, \"far more valuable than it
+would appear. Such handiworks are rare these days; it is a shame that
+we cannot put it to good use.\"">) (T <CRLF> <CRLF> <PRINTI
+"\"It is crafted beautifully,\" Bergon said. \"What a shame it cannot
+be put to good use.\"">)> <COND (<EQUAL? ,ACTOR ,ESHER> <CRLF> <CRLF> <PRINTI
+"\"And just how would we put a broken spyglass to use?\" "> <WPRINTD ,ACTOR> <
+PRINTI " asked,
+placing it down on a dusty shelf nearby.">) (<EQUAL? ,ACTOR ,MINAR> <CRLF> <
+CRLF> <PRINTI "\"A shame indeed,\" replied Minar, and placed the spyglass down on a
+nearby shelf.">)> <FSET ,SUNSET-TOWER ,SOLVED> <UPDATE-MOVE ,SPYGLASS ,HERE>) (
+<AND <EQUAL? ,ACTION ,CAST-COMMAND> <NOT ,CHASM-STRAGGLER> <NOT <CHECK-ESSENCES
+,WIND-SPELL>>> <PRINTI "Praxix then had the notion of casting his \""> <WPRINTD
+,ACTION-OBJECT> <PRINTI
+"\" spell, but he
+quickly realized that he would be using the air essence we needed for
+crossing the chasm.">) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,
+ACTION-OBJECT ,FAR-VISION-SPELL> <NOT <QSET? ,FAR-VISION-SPELL ,INCAPACITATED>>
+> <UPDATE-FSET ,HERE ,DONT-CAST> <ASTRIX-RESPONDS-TO-FLARE>) (<EQUAL? ,ACTION ,
+DOWN-COMMAND> <NEXT-DAY> <TRAVEL-COMMANDS ,STAIR-JUNCTION ,RIGHT-COMMAND ,
+DOWN-COMMAND> <PRINTI
+"It was getting late, so we started down the stairs, coming quickly to the
+chasm"> <COND (,CHASM-STRAGGLER <PARTY-ADD ,CHASM-STRAGGLER> <PRINTI ", where "
+> <WPRINTD ,CHASM-STRAGGLER> <PRINTI " was waiting impatiently."> <SET
+CHASM-STRAGGLER #ZLOCAL!-IZILCH FALSE-VALUE>) (T <USE-ESSENCES ,WIND-SPELL> <
+PRINTI ". Using Praxix' wind spell, Bergon was blown over the edge and onto the far
+side of the chasm, from which he was able to help the rest of us across.">)> <
+CRLF> <CRLF> <PRINTI
+"We were all very tired now from our arduous climb, so we decided to spend the
+night there on the landing, and in fact did not arise until the next afternoon.
+It was nearly time for dinner when we started down the stairs."> <MOVE-TO ,
+STAIR-JUNCTION>)>)> 
+<DEFINE-ROUTINE ANONF-165> 
+<DEFINE-ROUTINE ANONF-166> 
+<DEFINE-ROUTINE ANONF-167> 
+<DEFINE-ROUTINE ASTRIX-RESPONDS-TO-FLARE> 
+<DEFINE-ROUTINE FLOATER-TO-EARTH> 

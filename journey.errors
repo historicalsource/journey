@@ -1,0 +1,52 @@
+zap of 6/13/89 15:17.
+Release: 83
+     0  Inserting journey.zap.
+    64  Inserting journeyfreq.zap.
+   668  Inserting journeydat.zap.
+ 16015  Inserting journeypur.zap.
+ 18235  Inserting output.zap.
+ 19350  Inserting input.zap.
+ 26926  Inserting intro.zap.
+ 27624  Inserting commands.zap.
+ 31393  Inserting common.zap.
+ 34784  Inserting controls.zap.
+ 34925  Inserting characters.zap.
+ 35605  Inserting objects.zap.
+ 40081  Inserting spells.zap.
+ 49287  Inserting tales.zap.
+ 55823  Inserting combat.zap.
+ 57348  Inserting lavos.zap.
+ 72841  Inserting dwarves.zap.
+ 83333  Inserting forest.zap.
+109811  Inserting river.zap.
+115546  Inserting prison.zap.
+122795  Inserting stair.zap.
+129783  Inserting lake.zap.
+145821  Inserting hermit.zap.
+149676  Inserting astrix.zap.
+153371  Inserting part2.zap.
+157942  Inserting mines.zap.
+169233  Inserting flume.zap.
+181218  Inserting tomb.zap.
+187132  Inserting fog.zap.
+204816  Inserting trap.zap.
+212891  Inserting zan.zap.
+239974  Inserting wharf.zap.
+245757  Inserting voyage.zap.
+253336  Inserting island.zap.
+256037  Inserting hints.zap.
+264660  Inserting journeystr.zap.
+Unreferenced global: PREACTIONS
+Unreferenced global: VERBS
+Unreferenced global: PREPOSITIONS
+Unreferenced global: ACTIONS
+Unreferenced table: BERGON-COMMAND
+
+Lexical buffer space allocated:  912228
+Max lexical space allocated at any one time: 48012
+Object buffer space allocated:  288000
+Source bytes read:  908135
+Object bytes written:  282624
+Preload: 16015; 434 objects; 203 globals; 27 words.
+Used 3:11
+Elapsed time 4:35

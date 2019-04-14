@@ -1,0 +1,273 @@
+zsplit of 5/1/89 13:22.
+2 disks active
+5 disks allowed
+Picture information from /home/development/curpix/journeyapple.d; pictures from /home/development/curpix/journey.apple.1.
+Preload size 107
+Extra preload 23
+Segment 0 pictures go with segment 0.
+Splitting journey.seg...
+Segments: 17
+Pages: 552
+Generated global picture directory:  1 pages.
+Segment 0:  0
+Pages 0-111 499-530 
+144 pages, 23058 picture bytes
+Segment 1:  LAVOS
+Pages 112-142 531-533 
+34 pages, 29663 picture bytes
+Segment 2:  ZAN
+Pages 222 415-479 534-537 
+70 pages, 27908 picture bytes
+Segment 3:  CASTLE
+Pages 202 222 365-386 399-415 538-539 
+43 pages, 30476 picture bytes
+Segment 4:  MILL
+Pages 370 372 386-399 537-538 
+18 pages, 10995 picture bytes
+Segment 5:  TANGLEWOOD
+Pages 204-214 539 
+12 pages, 7196 picture bytes
+Segment 6:  CAVERNS
+Pages 222 303-323 330-338 540-541 
+33 pages, 18359 picture bytes
+Segment 7:  MINES
+Pages 222 323-330 338-365 537 539-540 
+40 pages, 33134 picture bytes
+Segment 8:  PART2
+Pages 299-303 541 
+6 pages, 0 picture bytes
+Segment 9:  DWARVES
+Pages 142-162 225-239 540 550-551 
+39 pages, 12674 picture bytes
+Segment 10:  STAIR
+Pages 239-253 550 
+16 pages, 9476 picture bytes
+Segment 11:  ORC-FIGHT
+Pages 150-162 540 
+14 pages, 8132 picture bytes
+Segment 12:  BOAT
+Pages 202 222 457 479-498 533-534 
+25 pages, 13965 picture bytes
+Segment 13:  FOREST
+Pages 140 162-204 540-541 543-547 
+51 pages, 29227 picture bytes
+Segment 14:  NYMPHS
+Pages 269-284 547-548 
+18 pages, 17633 picture bytes
+Segment 15:  LAKE
+Pages 162-164 222 253-269 284-292 548-550 
+33 pages, 19135 picture bytes
+Segment 16:  RIVER
+Pages 202 214-225 252-253 292-299 541-543 
+26 pages, 5181 picture bytes
+Object bytes read in: 282624
+Putting pages 0 - 31 and 35 - 109 in preload.
+Putting pages 110 - 132 in extra preload.
+Adding segment 0 to disk 2; total size now 58.
+Adding segment 0 pictures to 2; total size now 104.
+Adding global picture directory to 2; total size now 105.
+Adding unused segment LAVOS to disk 3; total size now 71.
+Adding unused segment LAKE (adjacent to LAVOS) to disk 3; total size now 142.
+Adding unused segment DWARVES (adjacent to LAVOS) to disk 3; total size now 203.
+Adding unused segment RIVER (adjacent to LAVOS) to disk 3; total size now 235.
+Adding unused segment STAIR (adjacent to DWARVES) to disk 3; total size now 265.
+Adding unused segment PART2 (adjacent to RIVER) to disk 3; total size now 269.
+Adding unused segment ZAN to disk 4; total size now 125.
+Adding unused segment CASTLE (adjacent to ZAN) to disk 4; total size now 226.
+Adding unused segment MILL (adjacent to ZAN) to disk 4; total size now 259.
+Moving 2 pages to 2.
+3 (118) left on 3.
+13 (121) left on 4.
+270 (0) left on 5.
+163 left on 2.
+Adding unused segment FOREST to disk 5; total size now 108.
+Adding unused segment NYMPHS (adjacent to FOREST) to disk 5; total size now 159.
+Adding unused segment TANGLEWOOD (adjacent to FOREST) to disk 5; total size now 184.
+Adding unused segment CAVERNS to disk 5; total size now 250.
+Moving 12 pages to 2.
+15 (106) left on 3.
+13 (121) left on 4.
+32 (96) left on 5.
+151 left on 2.
+Moving 1 pages to 2.
+15 (106) left on 3.
+14 (120) left on 4.
+33 (95) left on 5.
+150 left on 2.
+Adding unused segment ORC-FIGHT to disk 5; total size now 265.
+Moving 12 pages to 2.
+27 (94) left on 3.
+14 (120) left on 4.
+17 (95) left on 5.
+138 left on 2.
+Moving page 365 from 4 (15 (119) left) to 2 (137 left).
+Moving page 366 from 4 (16 (118) left) to 2 (136 left).
+Moving page 367 from 4 (17 (117) left) to 2 (135 left).
+Moving page 368 from 4 (18 (116) left) to 2 (134 left).
+Moving page 369 from 4 (19 (115) left) to 2 (133 left).
+Moving page 370 from 4 (20 (114) left) to 2 (132 left).
+Moving page 371 from 4 (21 (113) left) to 2 (131 left).
+Moving page 372 from 4 (22 (112) left) to 2 (130 left).
+Moving page 373 from 4 (23 (111) left) to 2 (129 left).
+Moving page 374 from 4 (24 (110) left) to 2 (128 left).
+Moving page 375 from 4 (25 (109) left) to 2 (127 left).
+Moving page 376 from 4 (26 (108) left) to 2 (126 left).
+Moving page 377 from 4 (27 (107) left) to 2 (125 left).
+Moving page 378 from 4 (28 (106) left) to 2 (124 left).
+Moving page 379 from 4 (29 (105) left) to 2 (123 left).
+Moving page 380 from 4 (30 (104) left) to 2 (122 left).
+Moving page 381 from 4 (31 (103) left) to 2 (121 left).
+Moving page 382 from 4 (32 (102) left) to 2 (120 left).
+Moving page 383 from 4 (33 (101) left) to 2 (119 left).
+Moving page 384 from 4 (34 (100) left) to 2 (118 left).
+Moving page 385 from 4 (35 (99) left) to 2 (117 left).
+Moving page 386 from 4 (36 (98) left) to 2 (116 left).
+Moving page 387 from 4 (37 (97) left) to 2 (115 left).
+Moving page 388 from 4 (38 (96) left) to 2 (114 left).
+Moving page 389 from 4 (39 (95) left) to 2 (113 left).
+Moving page 390 from 4 (40 (94) left) to 2 (112 left).
+Moving page 391 from 4 (41 (93) left) to 2 (111 left).
+Moving page 392 from 4 (42 (92) left) to 2 (110 left).
+Moving page 393 from 4 (43 (91) left) to 2 (109 left).
+Moving page 394 from 4 (44 (90) left) to 2 (108 left).
+Moving page 395 from 4 (45 (89) left) to 2 (107 left).
+Moving page 396 from 4 (46 (88) left) to 2 (106 left).
+Moving page 397 from 4 (47 (87) left) to 2 (105 left).
+Adding unused segment BOAT to disk 4; total size now 270.
+Moving 1 pages to 2.
+28 (93) left on 3.
+1 (106) left on 4.
+17 (95) left on 5.
+104 left on 2.
+Moving page 133 from 3 (29 (92) left) to 2 (103 left).
+Moving page 134 from 3 (30 (91) left) to 2 (102 left).
+Moving page 135 from 3 (31 (90) left) to 2 (101 left).
+Moving page 136 from 3 (32 (89) left) to 2 (100 left).
+Moving page 137 from 3 (33 (88) left) to 2 (99 left).
+Moving page 138 from 3 (34 (87) left) to 2 (98 left).
+Moving page 139 from 3 (35 (86) left) to 2 (97 left).
+Moving page 141 from 3 (36 (85) left) to 2 (96 left).
+Moving page 142 from 3 (37 (84) left) to 2 (95 left).
+Moving page 143 from 3 (38 (83) left) to 2 (94 left).
+Moving page 144 from 3 (39 (82) left) to 2 (93 left).
+Moving page 145 from 3 (40 (81) left) to 2 (92 left).
+Moving page 146 from 3 (41 (80) left) to 2 (91 left).
+Moving page 147 from 3 (42 (79) left) to 2 (90 left).
+Moving page 148 from 3 (43 (78) left) to 2 (89 left).
+Moving page 149 from 3 (44 (77) left) to 2 (88 left).
+Moving page 215 from 3 (45 (76) left) to 2 (87 left).
+Moving page 216 from 3 (46 (75) left) to 2 (86 left).
+Moving page 217 from 3 (47 (74) left) to 2 (85 left).
+Moving page 218 from 3 (48 (73) left) to 2 (84 left).
+Moving page 219 from 3 (49 (72) left) to 2 (83 left).
+Moving page 220 from 3 (50 (71) left) to 2 (82 left).
+Moving page 221 from 3 (51 (70) left) to 2 (81 left).
+Moving page 223 from 3 (52 (69) left) to 2 (80 left).
+Moving page 224 from 3 (53 (68) left) to 2 (79 left).
+Moving page 225 from 3 (54 (67) left) to 2 (78 left).
+Moving page 226 from 3 (55 (66) left) to 2 (77 left).
+Moving page 227 from 3 (56 (65) left) to 2 (76 left).
+Moving page 228 from 3 (57 (64) left) to 2 (75 left).
+Moving page 229 from 3 (58 (63) left) to 2 (74 left).
+Moving page 230 from 3 (59 (62) left) to 2 (73 left).
+Moving page 231 from 3 (60 (61) left) to 2 (72 left).
+Moving page 232 from 3 (61 (60) left) to 2 (71 left).
+Moving page 233 from 3 (62 (59) left) to 2 (70 left).
+Moving page 234 from 3 (63 (58) left) to 2 (69 left).
+Moving page 235 from 3 (64 (57) left) to 2 (68 left).
+Moving page 236 from 3 (65 (56) left) to 2 (67 left).
+Moving page 237 from 3 (66 (55) left) to 2 (66 left).
+Moving page 238 from 3 (67 (54) left) to 2 (65 left).
+Moving page 239 from 3 (68 (53) left) to 2 (64 left).
+Moving page 240 from 3 (69 (52) left) to 2 (63 left).
+Moving page 241 from 3 (70 (51) left) to 2 (62 left).
+Moving page 242 from 3 (71 (50) left) to 2 (61 left).
+Moving page 243 from 3 (72 (49) left) to 2 (60 left).
+Moving page 244 from 3 (73 (48) left) to 2 (59 left).
+Moving page 245 from 3 (74 (47) left) to 2 (58 left).
+Moving page 246 from 3 (75 (46) left) to 2 (57 left).
+Moving page 247 from 3 (76 (45) left) to 2 (56 left).
+Moving page 248 from 3 (77 (44) left) to 2 (55 left).
+Moving page 249 from 3 (78 (43) left) to 2 (54 left).
+Moving page 250 from 3 (79 (42) left) to 2 (53 left).
+Moving page 251 from 3 (80 (41) left) to 2 (52 left).
+Moving page 252 from 3 (81 (40) left) to 2 (51 left).
+Moving page 253 from 3 (82 (39) left) to 2 (50 left).
+Moving page 254 from 3 (83 (38) left) to 2 (49 left).
+Moving page 255 from 3 (84 (37) left) to 2 (48 left).
+Moving page 256 from 3 (85 (36) left) to 2 (47 left).
+Moving page 257 from 3 (86 (35) left) to 2 (46 left).
+Moving page 258 from 3 (87 (34) left) to 2 (45 left).
+Moving page 259 from 3 (88 (33) left) to 2 (44 left).
+Moving page 260 from 3 (89 (32) left) to 2 (43 left).
+Moving page 261 from 3 (90 (31) left) to 2 (42 left).
+Moving page 262 from 3 (91 (30) left) to 2 (41 left).
+Moving page 263 from 3 (92 (29) left) to 2 (40 left).
+Moving page 264 from 3 (93 (28) left) to 2 (39 left).
+Moving page 265 from 3 (94 (27) left) to 2 (38 left).
+Moving page 266 from 3 (95 (26) left) to 2 (37 left).
+Moving page 267 from 3 (96 (25) left) to 2 (36 left).
+Moving page 268 from 3 (97 (24) left) to 2 (35 left).
+Moving page 285 from 3 (98 (23) left) to 2 (34 left).
+Moving page 286 from 3 (99 (22) left) to 2 (33 left).
+Moving page 287 from 3 (100 (21) left) to 2 (32 left).
+Moving page 288 from 3 (101 (20) left) to 2 (31 left).
+Moving page 289 from 3 (102 (19) left) to 2 (30 left).
+Adding unused segment MINES to disk 3; total size now 270.
+Moving 1 pages to 2.
+1 (55) left on 3.
+2 (105) left on 4.
+17 (95) left on 5.
+29 left on 2.
+Moving 3 pages to 2.
+4 (52) left on 3.
+2 (105) left on 4.
+20 (92) left on 5.
+26 left on 2.
+Split successful.
+Map size: 1 page; 132 words.
+Making disk map...
+Disk 1: Pages 0 to 31 starting on disk page 1.
+Disk 1: Pages 35 to 109 starting on disk page 33.
+Disk 2: Pages 110 to 132 starting on disk page 0.
+Disk 2: Pages 32 to 34 starting on disk page 23.
+Disk 2: Pages 133 to 164 starting on disk page 26.
+Disk 2: Pages 202 to 202 starting on disk page 58.
+Disk 2: Pages 214 to 269 starting on disk page 59.
+Disk 2: Pages 284 to 289 starting on disk page 115.
+Disk 2: Pages 303 to 303 starting on disk page 121.
+Disk 2: Pages 323 to 323 starting on disk page 122.
+Disk 2: Pages 330 to 330 starting on disk page 123.
+Disk 2: Pages 338 to 338 starting on disk page 124.
+Disk 2: Pages 365 to 397 starting on disk page 125.
+Disk 2: Pages 499 to 530 starting on disk page 158.
+Disk 2: Pages 533 to 533 starting on disk page 190.
+Disk 2: Pages 537 to 537 starting on disk page 191.
+Disk 2: Pages 539 to 541 starting on disk page 192.
+Disk 2: Pages 543 to 543 starting on disk page 195.
+Disk 2: Pages 548 to 548 starting on disk page 196.
+Disk 3: Pages 290 to 302 starting on disk page 0.
+Disk 3: Pages 324 to 329 starting on disk page 13.
+Disk 3: Pages 339 to 365 starting on disk page 19.
+Disk 3: Pages 531 to 532 starting on disk page 46.
+Disk 3: Pages 542 to 542 starting on disk page 48.
+Disk 3: Pages 549 to 551 starting on disk page 49.
+Disk 4: Pages 398 to 498 starting on disk page 0.
+Disk 4: Pages 534 to 536 starting on disk page 101.
+Disk 4: Pages 538 to 538 starting on disk page 104.
+Disk 5: Pages 165 to 201 starting on disk page 0.
+Disk 5: Pages 203 to 213 starting on disk page 37.
+Disk 5: Pages 270 to 283 starting on disk page 48.
+Disk 5: Pages 304 to 322 starting on disk page 62.
+Disk 5: Pages 331 to 337 starting on disk page 81.
+Disk 5: Pages 544 to 547 starting on disk page 88.
+34 blocks (204 bytes).
+Writing disk 1.
+Writing disk 2.
+Added 46 pages of pictures to file.  Total size 244.
+Writing disk 3.
+Added 214 pages of pictures to file.  Total size 266.
+Writing disk 4.
+Added 163 pages of pictures to file.  Total size 268.
+Writing disk 5.
+Added 158 pages of pictures to file.  Total size 250.

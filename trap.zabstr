@@ -1,0 +1,245 @@
+
+<BEGIN-SEGMENT CASTLE> 
+<GLOBAL TRAP-VICTIM <>> 
+<ROOM GROUP-FOREST (TRAVEL-COMMANDS PROCEED-COMMAND NUL-COMMAND NUL-COMMAND) (
+FLAGS DONT-SCOUT) (GRAPHIC G-FOREST) (ENTER <EXECUTE () <COND (<FSET? ,UMBER ,
+IN-PARTY> <PARTY-CHANGE ,UMBER ,TAG> <FSET ,TAG ,SUBGROUP>)> <COND (,A-B-FLAG <
+SETG TRAP-VICTIM <FIRST-IN-PARTY ,BERGON ,ESHER ,MINAR>>) (T <SETG TRAP-VICTIM
+<FIRST-IN-PARTY ,ESHER ,MINAR>>)> <DIVIDER> <TELL "\"There!\" " CHR ,
+TRAP-VICTIM " cried, pointing to the "> <COND (<EQUAL? ,PRAXIX-SIGNAL ,
+FAR-VISION-SPELL> <PRINTI "ball of flame speeding away from an
+unseen spot">) (<EQUAL? ,PRAXIX-SIGNAL ,LIGHTNING-SPELL> <PRINTI
+"bolts of lightning striking the ground
+somewhere">) (T <PRINTI
+"sheets of rain falling on a small piece
+of ground somewhere">)> <TELL
+" to the north. \"It's Praxix, sending us a signal!\"" CR CR> <TELL
+"It had been six hours or more since we had separated from Praxix, and
+we were losing hope of finding him again. The sighting of this magical
+manifestation raised our spirits, and we prepared to make our way in his
+direction."> <NEW-DEFAULT>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+PROCEED-COMMAND> <PRINTI
+"It wasn't long before we were on our way toward what we presumed to be
+Praxix' location. The forest had thinned out somewhat, and we walked
+with ease through the leaf-covered ground. "> <WPRINTCHR ,LEADER> <PRINTI
+" was in the
+lead, and our spirits were high."> <CRLF> <CRLF> <COND (<FSET? ,HURTH ,IN-PARTY
+> <PRINTI "But this was not to be a pleasant afternoon. Just a minute after entering
+this forest, Hurth began complaining of difficult breathing. As his breathing
+became increasingly labored, he soon found it too strenuous to walk, and finally
+he collapsed beneath a tree, wheezing loudly."> <MOVE-TO ,ALLERGY-SITE> <RTRUE>
+)> <PRINTI "But all this changed in a moment, as "> <WPRINTCHR ,TRAP-VICTIM> <
+PRINTI " tripped an
+invisible cord, setting off a trap. A noose, hidden under the mat of fallen
+leaves, grabbed his ankle and lifted him high into the air. Before "> <PRINT #
+ZLOCAL!-IZILCH STACK> <PRINTI
+"
+had time to react, the guttural voices of orcs could be heard nearby, moving
+in "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI " direction."> <PARTY-REMOVE ,
+TRAP-VICTIM> <MOVE-TO ,TRAP-SITE>)>)> 
+<DEFINE-ROUTINE ANONF-309> 
+<DEFINE-ROUTINE ANONF-310> 
+<ROOM ALLERGY-SITE (TRAVEL-COMMANDS PROCEED-COMMAND NUL-COMMAND NUL-COMMAND) (
+FLAGS DANGEROUS DONT-SCOUT) (ENTER <EXECUTE () <COND (<NOT <FSET? ,ESHER ,
+IN-PARTY>> <FSET ,HINT-ALLERGY ,BLUE-MIX>)> <MAKE-BUSY ,HURTH ,ILL-COMMAND> <
+UPDATE-MOVE ,HURTH-OBJECT ,HERE> <UPDATE-FCLEAR ,HURTH-OBJECT ,DONT-EXAMINE>>)
+(CLOCK <EXECUTE () <COND (<AND <QSET? ,HERE ,BLACK-MIX> <FSET? ,HURTH ,IN-PARTY
+> <FSET? ,HURTH ,BUSY>> <CRLF> <CRLF> <PRINTI
+"A moment later, it was over. Hurth, unable to breathe, died there, under the
+tree. We buried him in silence under the shade of the tree."> <CRLF> <CRLF> <
+COND (<FSET? ,ESHER ,IN-PARTY> <PRINTI
+"Esher was full of self-recriminations, feeling that he did not move quickly
+enough to help our friend. But there was little time for such thoughts, and much to
+be done if we were to accomplish our task.">) (T <PRINTI
+"In truth, there was nothing to be done, having neither Esher nor Praxix here
+to help us. It had happened so suddenly, it is entirely possible that they could
+not have done better.">)> <FCLEAR ,HURTH ,BUSY> <UPDATE-REMOVE ,HURTH-OBJECT> <
+HINT ,HINT-ALLERGY> <KILLED-OFF ,HURTH>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION
+,PROCEED-COMMAND> <COND (<FSET? ,HURTH ,BUSY> <PRINTI
+"Hurth's condition was deteriorating with such severity, there was not even
+time to continue ahead in search of aid."> <RTRUE>) (<NOT <FSET? ,HURTH ,
+IN-PARTY>> <PRINTI "Sobered, we started again">) (T <PRINTI
+"Gladdened by our success in reviving our stricken friend, we continued">)> <
+PRINTI " in the direction of Praxix, but yet another tragedy befell us, as "> <
+WPRINTCHR ,TRAP-VICTIM> <PRINTI
+" tripped an invisible cord, setting off a trap. A net,
+hidden under the mat of fallen leaves, rose up from the ground, entangling him and
+lifting him high into the air. Before "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+" had time to react, the guttural
+voices of orcs could be heard nearby, moving in "> <PRINT #ZLOCAL!-IZILCH STACK
+> <PRINTI " direction."> <PARTY-REMOVE ,TRAP-VICTIM> <MOVE-TO ,TRAP-SITE>) (<
+AND <EQUAL? ,ACTION ,EXAMINE-COMMAND> <EQUAL? ,ACTION-OBJECT ,HURTH-OBJECT>> <
+FSET ,HURTH-OBJECT ,BLACK-MIX> <PRINTI
+"Esher now rushed over to Hurth and began to examine him, quickly coming to
+the conclusion that our Dwarvish friend was suffering from a severe allergic
+reaction, a life-threatening one at that."> <CRLF> <CRLF> <UPDATE-REMOVE ,
+HURTH-OBJECT> <COND (<FSET? ,WARREN-WALLS ,SOLVED> <PRINTI
+"Fortunately, Esher had found some hawkbane earlier in our journey, and he
+forced our stricken friend to swallow the bitter root, which he did with
+great difficulty. But the hawkbane worked within seconds, and Hurth was soon
+back on his feet, though surprised by the suddenness of the attack."> <CRLF> <
+CRLF> <PRINTI "\"Have you ever been outside of your caverns?\" Esher asked."> <
+CRLF> <CRLF> <PRINTI "\"Never,\" Hurth replied. \"It is generally forbidden.\""
+> <CRLF> <CRLF> <PRINTI
+"\"Then that is the explanation,\" Esher responded. \"Your body is entirely
+unused to the spores and pollens in the air. It is a good thing I've got an
+ample supply of the remedy.\""> <MAKE-UNBUSY ,HURTH>) (T <PRINTI
+"Tragically, Esher had neither potion, herb, nor root that could mitigate the
+severity of the attack. We tried to comfort Hurth as best we could, but he
+succumbed within minutes."> <CRLF> <CRLF> <PRINTI
+"\"I should have known,\" Esher said, despondently. \"He has never before
+walked on the earth, and his body is entirely unfamiliar with the common spores
+and pollens that we take for granted. I hate to admit it, but I wish Praxix
+had been here - perhaps he could have used his magic to save Hurth.\""> <CRLF>
+<CRLF> <COND (<FSET? ,BERGON ,IN-PARTY> <PRINTI
+"\"Do not be so hard on yourself, Esher,\" Bergon said. \"There is nothing
+that could have been done. Let us bury our friend here, and move on.\"">) (T <
+PRINTI "There was little more to be done here than to bury our friend and hope to
+continue in search of Praxix.">)> <HINT ,HINT-ALLERGY> <FCLEAR ,HURTH ,BUSY> <
+KILLED-OFF ,HURTH>)>)>)> 
+<DEFINE-ROUTINE ANONF-311> 
+<DEFINE-ROUTINE ANONF-312> 
+<DEFINE-ROUTINE ANONF-313> 
+<COMMAND FREE-HIM> 
+<COMMAND TO-PRAXIX> 
+<COMMAND (FOLLOW-ORCS FOL\'W-ORCS)> 
+<ROOM TRAP-SITE (TRAVEL-COMMANDS FREE-HIM-COMMAND HIDE-COMMAND NUL-COMMAND) (
+GRAPHIC G-ORC-TRAP) (FLAGS DONT-SCOUT DANGEROUS) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,GET-ADVICE-COMMAND> <UPDATE-FCLEAR ,HERE ,ADVISE> <PRINTI
+"In discussing our course of action, we were inclined to pursue the faint
+hope of rescuing "> <WPRINTD ,TRAP-VICTIM> <PRINTI " from his captors."> <CRLF>
+<CRLF> <PRINTI "\"I'm afraid "> <WPRINTD ,TRAP-VICTIM> <PRINTI
+" may not survive the orcs long enough for us
+to find Praxix and return here,\" I said.">) (<EQUAL? ,ACTION ,
+TO-PRAXIX-COMMAND> <LEAVE-VICTIM-WITH-ORCS>) (<EQUAL? ,ACTION ,
+FOLLOW-ORCS-COMMAND> <PRINTI
+"Subtlety of movement not being among their strengths, it was a
+simple matter to find the orcs' camp, not far from where the
+trap had been set. As "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+" approached, a noisome odor permeated the air,
+in itself a sign that orcs were near. When "> <PRINT #ZLOCAL!-IZILCH STACK> <
+PRINTI " arrived, "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+" found that dozens
+of orcs were here, perhaps hundreds, living in abject squalor, either out in
+the open or in makeshift tents of rotten cloth. There was no sign
+of "> <WPRINTD ,TRAP-VICTIM> <PRINTI "."> <MOVE-TO ,OUTSIDE-ORC-CAMP>) (<OR <
+EQUAL? ,ACTION ,FREE-HIM-COMMAND> <EQUAL? ,ACTION ,HIDE-COMMAND>> <UPDATE-FSET
+,HERE ,ADVISE> <COND (<EQUAL? ,ACTION ,FREE-HIM-COMMAND> <PRINTI
+"\"Quickly!\" "> <WPRINTD ,TRAP-VICTIM> <PRINTI
+" said, \"The orcs are almost here!\""> <CRLF> <CRLF> <PRINTI
+"Hurrying to cut the heavily intertwined layers of rope, "> <PRINT #
+ZLOCAL!-IZILCH STACK> <PRINTI
+" swiftly running out of time. The orcs were nearly upon "> <PRINT #
+ZLOCAL!-IZILCH STACK> <PRINTI ", and "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+" would be badly outnumbered. Having little choice">) (T <PRINTI
+"With little chance of helping "> <WPRINTD ,TRAP-VICTIM> <PRINTI
+" before the orcs
+arrived">)> <PRINTI ", "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+" hid in the brush nearby, waiting for a better opportunity to
+help. It was a matter of moments before a half-dozen orcs arrived, armed to
+the teeth."> <CRLF> <CRLF> <PRINTI
+"Laughing and taunting, the hideous creatures poked and prodded
+our friend while "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+" could do nothing more than watch in horror.
+Finally, they took him down and bound him, then led him off into the forest.">
+<TRAVEL-COMMANDS ,HERE ,TO-PRAXIX-COMMAND ,FOLLOW-ORCS-COMMAND>)>)> 
+<DEFINE-ROUTINE ANONF-314> 
+<COMMAND TO-CAMP> 
+<COMMAND USE O-USE () <TELL
+"There was little of the red rock left, and this did not appear to
+be a good time to use it.">> 
+<DEFINE-ROUTINE V-USE> 
+<DEFINE-ROUTINE O-USE> 
+<ROOM OUTSIDE-ORC-CAMP (TRAVEL-COMMANDS TO-CAMP-COMMAND TO-PRAXIX-COMMAND
+NUL-COMMAND) (GRAPHIC G-OUTSIDE-ORC-CAMP) (FLAGS DANGEROUS ADVISE) (ENTER
+FSET-SEEN) (ACTION <ACOND () (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <
+UPDATE-FCLEAR ,HERE ,ADVISE> <WPRINTD ,ACTOR> <PRINTI
+" asked for advice, and between us we thought up a few suggestions, all bad.
+We would certainly be massacred if we attempted storming the orc camp, and even
+then we could not know where "> <WPRINTD ,TRAP-VICTIM> <PRINTI
+" was being held."> <COND (<AND <FSET? ,ACTIVE-MINE ,SOLVED> <NOT <FSET? ,
+RED-ROCK ,DEAD>>> <CRLF> <CRLF> <PRINTI
+"\"I wish I knew how the miner did it,\" I said, wistfully thinking back to
+his magical disappearances.">)> <RTRUE>) (<AND <EQUAL? ,ACTION ,
+INVENTORY-COMMAND> <NOT <QSET? ,HERE ,EXAMINED>>> <PRINTI
+"The situation appeared grim, and I wondered if there might be anything
+in my pack which would help."> <COND (<IN? ,RED-ROCK ,INVENTORY> <FSET ,
+RED-ROCK ,DEAD> <PRINTI
+" To my astonishment, I came up literally empty-handed, for as I pulled my
+hand from the pack, I found it to be entirely transparent. And then I
+put two pieces together: the disappearing miner and the pieces of red rock
+that had inadvertantly fallen from his sack."> <CRLF> <CRLF> <PRINTI
+"Reaching back into the pack, I noticed that some powder had been scraped
+off one of the red rocks. \"A magical reagent!\" I said to myself, proud to have
+made such an important discovery. \"Praxix will be pleased - if we find him,
+that is.\""> <TRAVEL-COMMANDS ,TAG ,PICK-UP-COMMAND ,USE-COMMAND ,
+INVENTORY-COMMAND>) (T <PRINTI " It appeared there was not; "> <COND (<FSET? ,
+ACTIVE-MINE ,SOLVED> <PRINTI
+"how I wished we had found the secret to the miner's disappearing trick.
+It would certainly come in handy just about now!">) (T <PRINTI
+"I sighed deeply, certain that "> <WPRINTD ,TRAP-VICTIM> <PRINTI
+" was beyond help.">)>)>) (<EQUAL? ,ACTION ,USE-COMMAND> <SETG RED-ROCK-COUNT <
+SUB ,RED-ROCK-COUNT 1>> <RESTORE-TAG-COMMANDS> <PRINTI "Determined to save "> <
+WPRINTD ,TRAP-VICTIM> <PRINTI
+", I took one of the red rocks
+from my pack and pummelled it into a fine powder which I then spread across
+my body. In a matter of moments, I was completely invisible! Not
+knowing how long the powder would work, I moved quickly into the heart of
+the orcs' camp."> <CRLF> <CRLF> <PRINTI
+"It took quite a while, but I finally found "> <WPRINTD ,TRAP-VICTIM> <PRINTI
+", bound and
+gagged inside a tent alongside the cooking area."> <CRLF> <CRLF> <PRINTI
+"\"Psst! "> <WPRINTD ,TRAP-VICTIM> <PRINTI
+"!\" I whispered from just beside his right ear.
+He nearly jumped out of his bonds at the sound of my voice."> <CRLF> <CRLF> <
+PRINTI "\"Mmgmm rumggm,\" he said frantically through his gag."> <CRLF> <CRLF>
+<PRINTI "\"Calm down,\" I said, \"I'm just invisible.\" It didn't take long to
+free him, but we now faced a difficult decision."> <PARTY-ADD ,TRAP-VICTIM> <
+MAKE-SUBGROUP ,TAG ,TRAP-VICTIM> <MOVE-TO ,ORCS-CAMP>) (<EQUAL? ,ACTION ,
+SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE ,SCOUTED> <WPRINTD ,
+ACTOR> <PRINTI " went off to scout out the orcs camp. A few minutes later, he
+returned."> <CRLF> <CRLF> <PRINTI
+"\"Lots of orcs,\" he said, panting, \"but no sign of "> <WPRINTD ,TRAP-VICTIM>
+<PRINTI ". He's probably being held in one of the tents.\"">) (<EQUAL? ,ACTION
+,TO-CAMP-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"One thought was to enter the orcs' camp, and attempt to find our
+captured friend. But the odds of success were staggeringly small;
+after all, "> <PRINT #ZLOCAL!-IZILCH STACK> <PRINTI
+" not invisible! No, that would not work, but "> <PRINT #ZLOCAL!-IZILCH STACK>
+<PRINTI " felt that there must be some strategy that would.">) (<EQUAL? ,ACTION
+,TO-PRAXIX-COMMAND> <LEAVE-VICTIM-WITH-ORCS>)>)> 
+<DEFINE-ROUTINE ANONF-315> 
+<DEFINE-ROUTINE LEAVE-VICTIM-WITH-ORCS> 
+<COMMAND (USE-RED-ROCK USE-ROCK)> 
+<COMMAND RUN-FOR-IT> 
+<ROOM ORCS-CAMP (TRAVEL-COMMANDS USE-RED-ROCK-COMMAND RUN-FOR-IT-COMMAND
+NUL-COMMAND) (GRAPHIC G-ORC-TENT) (FLAGS DANGEROUS ADVISE) (ENTER <EXECUTE () <
+CIT ,TAG ,GET-ADVICE-COMMAND>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+GET-ADVICE-COMMAND> <UPDATE-FCLEAR ,HERE ,ADVISE> <PRINTI
+"First, I looked out from the tent and, indeed, the coast was clear. But
+how long would that last? It would be safest to use the red rock, but there
+was only one left, and I feared wasting what little we had of this potent
+magic. After all, what would Praxix say?"> <CRLF> <CRLF> <PRINTI
+"\"Your instincts have served you well thus far,\" "> <WPRINTD ,TRAP-VICTIM> <
+PRINTI " said.
+\"I would advise you to use them again.\"">) (<EQUAL? ,ACTION ,
+USE-RED-ROCK-COMMAND> <SETG RED-ROCK-COUNT <SUB ,RED-ROCK-COUNT 1>> <
+UPDATE-REMOVE ,RED-ROCK> <PRINTI
+"Taking the last of the red rocks from my pack, I crushed it into a
+powder and spread it over "> <WPRINTD ,TRAP-VICTIM> <PRINTI
+", who obligingly disappeared.
+Leaving the orcs' camp had been as simple as entering, and we were soon out
+of danger. Not long afterward, we reappeared."> <TRAP-VICTIM-SAVED>) (<EQUAL? ,
+ACTION ,RUN-FOR-IT-COMMAND> <PRINTI
+"Hoping to save as much reagent as possible, we waited for an opportune
+moment, then dashed into the safety of the nearby trees. Certain we had
+not been seen, we put some more distance between ourselves and the orcs."> <
+TRAP-VICTIM-SAVED>)>)> 
+<DEFINE-ROUTINE ANONF-316> 
+<DEFINE-ROUTINE ANONF-317> 
+<DEFINE-ROUTINE TRAP-VICTIM-SAVED> 
+<GLOBAL REJOINED <>> 
+<DEFINE-ROUTINE REJOIN-AT-CASTLE> 
+<DEFINE-ROUTINE PRAXIX-WAITS-FOR-PARTY> 
+<DEFINE-ROUTINE CASTLE-MILL-TO-CAVERNS> 
+<DEFINE-ROUTINE CASTLE-MILL-TO-ASTRIX> 

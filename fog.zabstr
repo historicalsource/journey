@@ -1,0 +1,710 @@
+
+<BEGIN-SEGMENT CASTLE> 
+<ROOM FOG-CAMP (TRAVEL-COMMANDS PROCEED-COMMAND NUL-COMMAND NUL-COMMAND) (ENTER
+<EXECUTE () <FCLEAR ,PRAXIX ,LIT>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE ,SCOUTED> <WPRINTD ,
+ACTOR> <PRINTI " tried to scout out the area, but the heavy mist made his task all
+but impossible."> <CRLF> <CRLF> <COND (<EQUAL? ,ACTOR ,HURTH> <PRINTI
+"\"I cannot say what lies ahead,\" he announced, \"though I have found
+some heavy tracks in the mud which I fear to be orc footprints. We must be
+careful, and move quietly!\"">) (T <PRINTI
+"\"It's not good,\" he said, \"There are footprints in the mud just ahead,
+and I doubt their owners are friendly.\"">)>) (<EQUAL? ,ACTION ,PROCEED-COMMAND
+> <PRINTI "Early the next morning, we started again. The air was heavy with mist,
+and it was difficult to see just a few paces before us. We had been moving
+silently for an hour when "> <WPRINTD ,LEADER> <PRINTI " became alarmed."> <
+CRLF> <CRLF> <PRINTI
+"Gathering together, we soon learned that Praxix was missing from our
+ranks. \"Praxix! Praxix!\" we called, but there was no reply, only the
+sounds of the forest."> <CRLF> <CRLF> <PRINTI
+"\"Praxix! Praxix!\" The words fell only upon the deaf ears of the forest."> <
+DIVIDER> <MAKE-SUBGROUP ,PRAXIX> <MOVE-TO ,TREE-FORK>)>)> 
+<DEFINE-ROUTINE ANONF-265> 
+<DEFINE-ROUTINE ANONF-266> 
+<COMMAND ASK-TREE O-ASK-TREE () <TELL-TALE ,ACTION-OBJECT> <RTRUE>> 
+<DEFINE-ROUTINE V-ASK-TREE> 
+<DEFINE-ROUTINE O-ASK-TREE> 
+<OBJECT ASK-TREE-OBJECTS> 
+<OBJECT ASK-TREE-LOCATION (LOC ASK-TREE-OBJECTS) (SDESC "location") (KBD 76) (
+TEXT <EXECUTE () <TELL
+"\"Where am I?\" Praxix asked, thinking it might help. It didn't." CR CR> <TELL
+"\"You're here with me,\" the tree replied." CR CR> <TELL
+"\"And where would that be?\" Praxix tried." CR CR> <TELL
+"\"In the forest?\" the tree replied uncertainly, trying his best to be
+helpful." CR CR> <TELL
+"Praxix slumped to the ground, rubbing his head. This was shaping up to
+be a miserable day, he thought. Best to leave this leaf-laden philosopher
+and try to find the others.">>)> 
+<DEFINE-ROUTINE ANONF-267> 
+<OBJECT ASK-TREE-PATHS (LOC ASK-TREE-OBJECTS) (SDESC "paths") (KBD 80) (TEXT <
+EXECUTE () <FSET ,ASK-TREE-PATHS ,SEEN> <TRAVEL-COMMANDS ,HERE ,
+MILKY-WAY-COMMAND ,ROAD-TO-RUIN-COMMAND ,GARDEN-PATH-COMMAND> <UPDATE-REMOVE ,
+ACTION-OBJECT> <TELL
+"Hoping at least to get some useful information from this root-bound
+nuisance, Praxix asked, \"Do you know where these paths lead?\"" CR CR> <TELL
+"\"Why, of course; on the left is the Milky Way, right in front of you is
+the road to ruin, and here on the right is the garden path,\" the tree replied
+matter-of-factly." CR CR> <TELL
+"\"I don't suppose you have a preference,\" Praxix asked with little
+hope." CR CR> <TELL
+"\"No, I've never felt the need for one,\" the tree responded, \"I'm not
+going much of anywhere.\" And with that, he shook a few branches to indicate
+the limits of his movement.">>)> 
+<DEFINE-ROUTINE ANONF-268> 
+<COMMAND (ROAD-TO-RUIN RUIN)> 
+<COMMAND MILKY-WAY> 
+<COMMAND (GARDEN-PATH GARDEN)> 
+<ROOM TREE-FORK (TRAVEL-COMMANDS LEFT-COMMAND CENTER-COMMAND RIGHT-COMMAND) (
+ENTER <EXECUTE () <COND (<NOT <QSET? ,HERE ,SEEN>> <PRINTI
+"\"Praxix! Praxix!\" the voice cried out. \"Wake up!\""> <CRLF> <CRLF> <GRAPHIC
+,G-TALKING-TREE> <PRINTI
+"Praxix rose slowly and took stock of his situation. After separating
+from the group, he had wandered aimlessly through the dense fog for the
+better part of the morning before stopping to indulge in the tasty, red
+berries that blanketed the ground beneath him. And then, he fell into
+a deep, yet restless, sleep."> <CRLF> <CRLF> <PRINTI
+"Now, someone was calling him, but who? He swung around, but found himself
+alone. His head ached, and he wished for nothing more than to be left in
+peace until the pain subsided."> <CRLF> <CRLF> <PRINTI
+"\"Praxix! Don't you have anything better to do,\" the voice continued,
+\"than to sleep the day away?\""> <CRLF> <CRLF> <PRINTI
+"Praxix swung around again and faced a modest-sized oak tree as it was just
+finishing the preceding question. \"You know my name?\" he asked, startled
+more by the personal reference than the fact that he was being addressed in
+whatever fashion by the local flora."> <CRLF> <CRLF> <PRINTI
+"\"Why, of course!\" the tree replied enthusiastically. \"All trees sing your
+praises.\""> <CRLF> <CRLF> <PRINTI
+"\"They do?\" Praxix responded coyly, for he was not above flattery."> <CRLF> <
+CRLF> <PRINTI "\"Oh, my, yes! We know how you helped old Tully when his house caught fire.
+And then there was the poor Helspar widow, how you helped her...\""> <CRLF> <
+CRLF> <PRINTI "\"Yes, yes, I see,\" Praxix interrupted, not wishing to pursue the matter
+further. But he did not see, at least very clearly, and his head throbbed
+in much the same way that he expected the Tremor spell would cause if cast
+upon his cranium."> <TRAVEL-COMMANDS ,PRAXIX ,CAST-COMMAND ,ASK-TREE-COMMAND ,
+EXAMINE-COMMAND>)>>) (EXIT FIXUP-PRAXIX-COMMANDS) (ACTION <ACOND () (<OR <
+EQUAL? ,ACTION ,LEFT-COMMAND> <EQUAL? ,ACTION ,MILKY-WAY-COMMAND>> <COND (<IN?
+,TALKING-TREE ,HERE> <LEAVE-TREE #ZLOCAL!-IZILCH STR?55>) (T <PRINTI
+"This time he took the leftmost path. ">)> <PRINT ,PATH-TO-MILL> <MOVE-TO ,MILL
+>) (<OR <EQUAL? ,ACTION ,CENTER-COMMAND> <EQUAL? ,ACTION ,ROAD-TO-RUIN-COMMAND>
+> <COND (<IN? ,TALKING-TREE ,HERE> <LEAVE-TREE #ZLOCAL!-IZILCH STR?172>) (T <
+PRINTI "This time he took the center path. ">)> <PRINTI
+"Although the path twisted its way through the forest, it had been a more
+important thoroughfare long ago, as evidenced by the crumbling stonework lying
+by the wayside. "> <PRINT ,MOAT-DESC> <MOVE-TO ,OUTSIDE-MOAT>) (<EQUAL? ,ACTION
+,RIGHT-COMMAND> <REMOVE-TRAVEL-COMMAND> <GUARDED-PATH>) (<EQUAL? ,ACTION ,
+GARDEN-PATH-COMMAND> <REMOVE-TRAVEL-COMMAND> <GUARDED-PATH>)>)> 
+<DEFINE-ROUTINE ANONF-269> 
+<DEFINE-ROUTINE ANONF-270> 
+<CONSTANT PATH-TO-MILL
+"The path snaked and wound its way toward the west, ending at the
+side of a river, which Praxix assumed to be the very same that
+we had followed from the underground caverns. The remains of an
+old building stood here, crumbling; inside, a badly rusted
+mechanism sat. Praxix imagined it would be used for the grinding
+of grain."> 
+<CONSTANT MOAT-DESC
+"Soon the forest
+gave way to a clearing, in the middle of which stood the ruins of a moated
+castle. What little remained of the bridge hung tentatively over the
+water, making any crossing a speculative affair."> 
+<OBJECT MILL-MACHINERY (SDESC "mechanism") (8DESC "machine") (KBD 77) (LOC MILL
+) (EXBITS PRAXIXBIT) (FLAGS DONT-TAKE) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+EXAMINE-COMMAND> <UPDATE-MOVE> <FSET ,MILL-MACHINERY ,EXAMINED> <FSET ,HERE ,
+NEAR-DARK> <PRINTI
+"Badly rusted from many years of disuse, the mill machinery stood as it
+had for countless years. Praxix attempted to turn the great water wheel,
+but it had rusted to the point of inoperability. He did, however, notice
+a small passageway leading down from the machinery into a darker area below.">
+<ADD-TRAVEL-COMMAND ,HERE ,DOWN-COMMAND>)>)> 
+<DEFINE-ROUTINE ANONF-271> 
+<DEFINE-ROUTINE MILL-TO-ASTRIX> 
+<ROOM MILL (TRAVEL-COMMANDS PROCEED-COMMAND NUL-COMMAND NUL-COMMAND) (GRAPHIC
+G-MILL) (ENTER FSET-SEEN) (CLOCK <EXECUTE () <COND (<AND <FSET? ,PRAXIX ,LIT> <
+FSET? ,MILL-MACHINERY ,EXAMINED>> <FORCE-TRAVEL-COMMAND ,HERE ,DOWN-COMMAND>)>>
+) (ACTION <ACOND ("AUX" TMP) (<EQUAL? ,ACTION ,DOWN-COMMAND> <COND (<NOT <FSET?
+,PRAXIX ,LIT>> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"It took only a few steps for Praxix to realize that the path leading inside
+the mill mechanism was dark and potentially dangerous. Rather than risk injury,
+he returned to the open air.">) (T <COND (<NOT ,SUBGROUP-MODE> <PRINTI
+"Praxix insisted in exploring the mechanism himself, and we soon wished that
+he hadn't."> <CRLF> <CRLF> <MAKE-SUBGROUP ,PRAXIX>)> <PRINTI
+"At first, it appeared that the passage was merely some maintenance path with
+access to the internal working parts of the mill mechanism. However, the path
+soon reached a set of stone steps that led down beneath ground level, ending
+at the junction of two paths."> <CRLF> <CRLF> <PRINTI
+"But no sooner had Praxix started to think about where to proceed next, the
+ground collapsed beneath the steps, and the resulting avalanche of stone
+completely buried his only known route to the outside."> <MOVE-TO ,XFER-JCN> <
+SET TMP <ADD #ZLOCAL!-IZILCH STACK 1>> <SETG TAG-SWAP-CHR <GET ,PARTY .TMP>> <
+PUT ,PARTY #ZLOCAL!-IZILCH STACK ,TAG-SWAP-CHR> <PUT ,PARTY .TMP ,TAG> <FSET ,
+TAG ,SHADOW> <SCENE ,MILL-SCENE>)>) (<EQUAL? ,ACTION ,PROCEED-COMMAND> <
+LEAVE-MILL-AREA>)>)> 
+<DEFINE-ROUTINE ANONF-272> 
+<DEFINE-ROUTINE ANONF-273> 
+<OBJECT MILL-SCENE (ACTION <ACOND () (<EQUAL? ,ACTION ,INVENTORY-COMMAND> <
+PRINTI "Praxix took stock of his possessions finding "> <COND (<NOT <
+LIST-CONTENTS ,INVENTORY>> <PRINTI "only">) (T <PRINTI " and">)> <PRINTI
+" his magical paraphenalia - his staff and pouch of powders."> <UPDATE-FSET ,
+HERE ,INVENTORIED>) (<EQUAL? ,ACTION ,DROP-COMMAND> <COND (<EQUAL? ,HERE ,
+XFER-1-ANTE ,XFER-2-ANTE ,XFER-3-ANTE> <UPDATE-MOVE ,ACTION-OBJECT #
+ZLOCAL!-IZILCH STACK> <PRINTI
+"Thinking it might be helpful, Praxix dropped the "> <WPRINTD ,ACTION-OBJECT> <
+PRINTI " over the railing and
+down to the bottom of the pit, where it landed "> <COND (<EQUAL? ,HERE ,
+XFER-1-ANTE> <PRINTI "almost immediately.">) (T <PRINTI
+"more than a couple of seconds later."> <CRLF> <CRLF> <PRINTI
+"\"An awfully long way down,\" he said, gazing absently into the abyss.">)>) (T
+<PRINTI "Praxix thought to drop the "> <WPRINTD ,ACTION-OBJECT> <PRINTI
+", but felt it imprudent to do so.">)>)>)> 
+<DEFINE-ROUTINE ANONF-274> 
+<GLOBAL TAG-SWAP-CHR <>> 
+<DEFINE-ROUTINE LEAVE-MILL-AREA> 
+<DEFINE-ROUTINE LEAVE-TREE> 
+<DEFINE-ROUTINE GUARDED-PATH> 
+<OBJECT MOAT-BRIDGE (SDESC "bridge") (FLAGS DONT-TAKE) (ACTION <ACOND () (<
+EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <PRINTI
+"Praxix' eye passed along the course of the bridge. Once supported by
+huge stone pillars which rose high into the air, the roadway was now
+barely suspended above the water, its wooden planking rotted nearly to
+non-existence.">)>)> 
+<DEFINE-ROUTINE ANONF-275> 
+<OBJECT MOAT-WATER (SDESC "water") (FLAGS DONT-TAKE) (ACTION <ACOND () (<EQUAL?
+,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <PRINTI
+"Looking down at the moat itself was none too pleasant; the water had a
+dark greenish cast, and strange red weeds covered much of the surface.
+Every so often, large bubbles of air surfaced, from what source Praxix
+could only imagine.">)>)> 
+<DEFINE-ROUTINE ANONF-276> 
+<ROOM OUTSIDE-MOAT (TRAVEL-COMMANDS CROSS-COMMAND NUL-COMMAND NUL-COMMAND) (
+GRAPHIC G-MOAT) (ENTER <EXECUTE () <UPDATE-MOVE ,MOAT-BRIDGE ,HERE> <
+UPDATE-MOVE ,MOAT-WATER ,HERE>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+CROSS-COMMAND> <PRINTI
+"Praxix decided to explore the castle; gingerly, he made his way
+across the bridge, the boards creaking and groaning with each step he
+took. Halfway across, the board beneath his feet gave way, and he
+was nearly over the side when his arm caught hold of a supporting brace.
+Pulling himself to his feet, he realized that getting to the castle and
+back again would be chancy at best."> <MOVE-TO ,CASTLE-BRIDGE>)>)> 
+<DEFINE-ROUTINE ANONF-277> 
+<DEFINE-ROUTINE ANONF-278> 
+<ROOM CASTLE-BRIDGE (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND NUL-COMMAND)
+(FLAGS DONT-CAST) (ENTER FSET-SEEN) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+PROCEED-COMMAND> <PRINTI
+"Resolved to go on, Praxix took greater care in crossing the final
+half of the bridge, arriving with no further incident to himself.
+The bridge was another matter; having had just about enough from
+the long ages, it crumbled and sank into the moat, leaving behind a
+single large pier standing (or, rather, leaning) near the moat's midpoint."> <
+CRLF> <CRLF> <PRINTI
+"What remained of an ancient castle lay before him and he walked eagerly
+into what would have been the courtyard. Of the four towers which had guarded
+this fortress, only one stood, and that only barely; the others lay
+in piles of broken stone and mortar."> <MOVE-TO ,CASTLE-COURTYARD>) (<EQUAL? ,
+ACTION ,BACK-COMMAND> <PRINTI
+"Not wishing to chance being trapped on the castle grounds, Praxix returned
+to the safety of the near shore. "> <COND (<FSET? ,MILL ,SEEN> <MILL-TO-ASTRIX>
+) (T <PRINTI "Following the only path nearby, he re-entered the forest and was soon
+at the edge of the river he presumed to be the same we had followed in
+leaving the lower levels of the caverns. At the river's edge stood the
+crumbling remains of an old mill building."> <MOVE-TO ,MILL>)>)>)> 
+<DEFINE-ROUTINE ANONF-279> 
+<COMMAND TOWER> 
+<OBJECT CASTLE-COURTYARD-RUINS (SDESC "ruins") (LOC CASTLE-COURTYARD) (ACTION <
+ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <PRINTI
+"Praxix made a complete circle gazing at the remains of this castle.
+Besides the fragments of three towers and the ghostly spectre of the
+fourth, little remained to tell the tale of the castle's past.">)>)> 
+<DEFINE-ROUTINE ANONF-280> 
+<ROOM CASTLE-COURTYARD (TRAVEL-COMMANDS TOWER-COMMAND MOAT-COMMAND NUL-COMMAND)
+(CAST-LIMIT 3) (GRAPHIC G-COURTYARD) (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <
+COND (<AND <OR <FSET? ,CASTLE-TOWER ,SEEN> ,PRAXIX-SIGNAL> <OR <FSET? ,
+CASTLE-TROVE ,SEEN> <AND <NOT <FSET? ,UMBER ,IN-PARTY>> <FSET? ,CASTLE-DUNGEON
+,SEEN>>>> <COND (,PRAXIX-SIGNAL <CRLF> <CRLF> <PRAXIX-WAITS-FOR-PARTY>) (T <
+REMOVE-TRAVEL-COMMAND ,HERE ,TOWER-COMMAND> <COND (<EQUAL? #ZLOCAL!-IZILCH
+STACK ,NUL-COMMAND> <CRLF> <CRLF> <PRINTI
+"And so it was that Praxix became stranded on this man-made island,
+with no means of escape and no help in sight."> <COND (<AND <NOT <
+CHECK-ESSENCES ,FAR-VISION-SPELL>> <NOT <CHECK-ESSENCES ,LIGHTNING-SPELL>> <NOT
+<CHECK-ESSENCES ,RAIN-SPELL>>> <HINT ,HINT-SIGNAL> <DIVIDER> <PRINTI
+"The rest of us, having lost hope of reuniting with Praxix, slowly made
+our way back to Astrix. Sadly, we never saw Praxix again."> <PART-TWO-ENDING>)>
+)>)>)>>) (ACTION <ACOND () (<SENDING-SIGNAL?> <PRAXIX-SENDS-SIGNAL>) (<EQUAL? ,
+ACTION ,TOWER-COMMAND> <PRINTI
+"Walking into the base of the tower, he saw two staircases, one rising
+to the battlements above, the other descending beneath the ground into
+darkness."> <MOVE-TO ,CASTLE-BASE>) (<EQUAL? ,ACTION ,MOAT-COMMAND> <PRINTI
+"Heading back toward the moat, Praxix surveyed the damage. Hardly a piece
+of the collapsed bridge remained above the surface; there would be no
+crossing here. And as for the water, it looked no more appetizing than when
+he first cast his eyes upon it."> <TRAVEL-COMMANDS ,HERE ,TOWER-COMMAND> <
+UPDATE-MOVE ,MOAT-WATER ,INSIDE-MOAT> <MOVE-TO ,INSIDE-MOAT>)>)> 
+<DEFINE-ROUTINE ANONF-281> 
+<DEFINE-ROUTINE ANONF-282> 
+<DEFINE-ROUTINE SENDING-SIGNAL?> 
+<COMMAND MOAT> 
+<ROOM INSIDE-MOAT (TRAVEL-COMMANDS COURTYARD-COMMAND SWIM-COMMAND NUL-COMMAND)
+(CAST-LIMIT 3) (GRAPHIC G-COURTYARD) (ACTION <ACOND () (<AND <EQUAL? ,ACTION ,
+CAST-COMMAND> <OR <EQUAL? ,ACTION-OBJECT ,WIND-SPELL> <EQUAL? ,ACTION-OBJECT ,
+LEVITATE-SPELL>> <NOT <QSET? ,HERE ,ENCHANTED>>> <UNUSE-ESSENCES> <PRINTI
+"Praxix considered using some combination of elevation and wind to get him
+across the moat, but first he did some figuring. And the figuring told him
+that he was an odds-on favorite to land inside of the moat rather than beyond
+it. Praxix was not by nature a betting man, and it occurred to him that
+this would be a poor time to start."> <CRLF> <CRLF> <PRINTI
+"\"I could use a good length of rope,\" he said to a bird which had
+just perched nearby. \"If the others were here, I wouldn't have this
+problem, would I?\"">) (<SENDING-SIGNAL?> <PRAXIX-SENDS-SIGNAL>) (<EQUAL? ,
+ACTION ,COURTYARD-COMMAND> <PRINTI
+"There was little for Praxix to do here than wonder how he had gotten
+himself into this predicament, so he returned to the courtyard."> <MOVE-TO ,
+CASTLE-COURTYARD>) (<EQUAL? ,ACTION ,SWIM-COMMAND> <REMOVE-TRAVEL-COMMAND> <
+PRINTI "It occurred to Praxix to swim across the moat, but he decided to test the
+waters first. So, removing his shoe, he dipped an unwilling toe into the
+moat. The first sensation he felt was warmth; then, an odd tingling
+feeling gripped him. The water's surface rippled disturbingly, and Praxix
+swore he felt something pincer-like grab at his toe just as he pulled
+it from the water. Needless to say, Praxix gave up any thought of
+subjecting other body parts to the moat.">)>)> 
+<DEFINE-ROUTINE ANONF-283> 
+<COMMAND COURTYARD> 
+<ROOM CASTLE-BASE (TRAVEL-COMMANDS UP-COMMAND DOWN-COMMAND COURTYARD-COMMAND) (
+ENTER <EXECUTE () <COND (<OR <NOT <FSET? ,CASTLE-TOWER ,SEEN>> <NOT <FSET? ,
+CASTLE-DUNGEON ,SEEN>>> <REMOVE-PARTY-COMMAND ,COURTYARD-COMMAND>)>>) (GRAPHIC
+G-COURTYARD) (ACTION <ACOND () (<EQUAL? ,ACTION ,UP-COMMAND> <COND (<FSET? ,
+CASTLE-TOWER ,SEEN> <REMOVE-TRAVEL-COMMAND>)> <PRINTI "Praxix"> <COND (<FSET? ,
+UMBER ,IN-PARTY> <PRINTI ", with Umber in tow,">)> <PRINTI
+" climbed the crumbling stairs and was soon atop the tower."> <MOVE-TO ,
+CASTLE-TOWER>) (<EQUAL? ,ACTION ,DOWN-COMMAND> <CASTLE-DUNGEON-MOVE>) (<EQUAL?
+,ACTION ,COURTYARD-COMMAND> <PRINTI
+"From there, it was a short walk back to the courtyard."> <MOVE-TO ,
+CASTLE-COURTYARD>)>)> 
+<DEFINE-ROUTINE ANONF-284> 
+<DEFINE-ROUTINE ANONF-285> 
+<DEFINE-ROUTINE CASTLE-DUNGEON-MOVE> 
+<ROOM CASTLE-TOWER (TRAVEL-COMMANDS DOWN-COMMAND NUL-COMMAND NUL-COMMAND) (
+CAST-LIMIT 3) (ENTER <EXECUTE () <COND (<NOT <QSET? ,HERE ,SEEN>> <GRAPHIC ,
+G-UMBER> <PRINTI
+" Much to his surprise, he was not alone, for a man was already there,
+leaning over a battlement and staring toward the distant horizon. As
+Praxix approached, the man turned and greeted him with unrestrained
+enthusiasm, as though he were a dear friend long absent and presumed
+dead."> <CRLF> <CRLF> <PRINTI
+"\"Ah, Praxix, my friend! We meet again!\" he said."> <CRLF> <CRLF> <PRINTI
+"Praxix approached this too cheerful young man of whom he had no particular
+recollection. \"Does this mean we have met before?\" he asked."> <CRLF> <CRLF>
+<PRINTI "\"Yes we have, though you were somewhat - what's the word -
+confused?\" he replied, and leaned forward towards Praxix' mouth,
+sniffing."> <CRLF> <CRLF> <PRINTI "\"Indeed?\" said Praxix, eyebrows raised.">
+<CRLF> <CRLF> <PRINTI "\"No. I think I meant to say 'incoherent.' "> <COND (,
+ASK-TREE-PATHS <PRINTI
+"First, you told all sorts of odd stories about yourself, and then you asked
+some questions. Told you about these ruins, as a matter of fact.">) (T <PRINTI
+"You told me all sorts of stories about yourself, then ran off.">)> <PRINTI
+" I don't mean to be getting personal, seeing as how we've
+just barely met, but I'd be staying away from those berries if I were
+you. At least early in the day.\""> <CRLF> <CRLF> <PRINTI
+"\"Ah, yes. I do remember,\" Praxix admitted, turning the faintest shade
+of red. There was no talking tree, he realized; only a vivid
+hallucination brought upon, apparently, by the berries he had indulged
+in earlier in the day."> <CRLF> <CRLF> <PRINTI
+"\"I don't know about you, but I could use a little company. May I join
+you?\" the man asked."> <OPTION ,PRAXIX ,ACCEPT-COMMAND ,DECLINE-COMMAND>) (T <
+GRAPHIC ,G-UMBER>)>>) (ACTION <ACOND ("AUX" (CNT 0) CHR) (<EQUAL? ,ACTION ,
+DOWN-COMMAND> <COND (<OR <FSET? ,CASTLE-TROVE ,SEEN> <AND <FSET? ,
+CASTLE-DUNGEON ,SEEN> <NOT <FSET? ,UMBER ,IN-PARTY>>>> <MOVE-TO ,CASTLE-BASE #
+ZLOCAL!-IZILCH STR?651>) (T <CASTLE-DUNGEON-MOVE>)>) (<EQUAL? ,ACTION ,
+ACCEPT-COMMAND> <PRINTI
+"There was no apparent harm in this, so Praxix assented."> <CRLF> <CRLF> <
+PARTY-CHANGE ,TAG ,UMBER> <FSET ,UMBER ,SUBGROUP> <SET UPDATE-FLAG #
+ZLOCAL!-IZILCH TRUE-VALUE> <PRINTI
+"\"Name's Umber,\" the man said by way of belated introduction, \"and
+I'm pleased to meet you.\" He put out his hand, and smiled broadly, reminding
+Praxix of the used merchandise sellers whom he despised so deeply."> <CRLF> <
+CRLF> <PRINTI "\"What have I done?\" Praxix asked the heavens with upraised hands.
+\"Trapped up here with... with...\" He paused, choosing his words with care.
+\"With my party out there,\" he said, moving his hands across the broad
+expanse of forest that lay before him."> <CRLF> <CRLF> <PRINTI
+"\"Don't they know you're here?\" Umber asked, once again smiling."> <CRLF> <
+CRLF> <PRINTI "A brilliant thought crossed Praxix' mind, then left as quickly as it had
+entered. \"No, we were separated in the fog this morning.\""> <CRLF> <CRLF> <
+PRINTI "\"Ah. Did I hear you say 'trapped'?\" Umber asked, smile waning."> <
+CRLF> <CRLF> <PRINTI
+"\"Yes, trapped. The bridge collapsed as I crossed it. So unless you're
+up for a swim in the moat...,\" was Praxix' reply, and it left Umber at
+a loss for words and smiles."> <END-OPTION>) (<EQUAL? ,ACTION ,DECLINE-COMMAND>
+<HINT ,HINT-UMBER> <PRINTI
+"\"I'm sorry, but I think not,\" Praxix replied as graciously as
+possible."> <CRLF> <CRLF> <PRINTI
+"\"Well, then. Perhaps we shall meet again!\" the young man replied,
+and walked out of sight."> <CRLF> <CRLF> <PRINTI
+"\"And perhaps not,\" Praxix said, with a wave of his hand. He heaved
+a sigh of relief, and pondered what he should do next."> <END-OPTION>) (<
+SENDING-SIGNAL?> <PRAXIX-SENDS-SIGNAL>)>)> 
+<DEFINE-ROUTINE ANONF-286> 
+<DEFINE-ROUTINE ANONF-287> 
+<DEFINE-ROUTINE PRAXIX-SENDS-SIGNAL> 
+<GLOBAL PRAXIX-SIGNAL <>> 
+<GLOBAL PRAXIX-SIGNAL-ROOM <>> 
+<ROOM CASTLE-TROVE (TRAVEL-COMMANDS BACK-COMMAND NUL-COMMAND NUL-COMMAND) (
+GRAPHIC G-TROVE) (ENTER FSET-SEEN) (CAST-LIMIT 2) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,BACK-COMMAND> <TRAVEL-COMMANDS ,CASTLE-BASE ,UP-COMMAND ,
+COURTYARD-COMMAND> <COND (<NOT <IN? ,SIXTH-STONE ,PRAXIX>> <PRINTI
+"Declining the offer to take some of the stones, ">)> <PRINTI
+"Praxix suggested he had
+seen enough; the two then ascended the stairs, arriving back at the
+base of the turret."> <COND (,PRAXIX-SIGNAL <PRINTI
+" They then took the few short steps back to the courtyard."> <MOVE-TO ,
+CASTLE-COURTYARD>) (T <MOVE-TO ,CASTLE-BASE>)>) (<AND <EQUAL? ,ACTION ,
+USE-MIX-COMMAND> <EQUAL? ,MIXTURE ,SPECIAL-VISION-SPELL> <EQUAL? ,ACTION-OBJECT
+,STONE-PILE>> <MOVE ,SIXTH-STONE ,PRAXIX> <UPDATE-REMOVE ,STONE-PILE> <GRAPHIC
+#ZLOCAL!-IZILCH FALSE-VALUE ,G-TROVE-STONE ,TOP-RIGHT> <PRINTI
+"Praxix cast his mixture at the pile of stones, and for
+an instant, it appeared that nothing would happen. And then, slowly, from
+the middle of the pile, a dim glow appeared, strengthening with each
+passing moment. Praxix scrambled onto the pile, shovelling stones away with
+his bare hands until the source of light was revealed. It was a small black
+stone, perfectly round, and glowing with a powerful dark light."> <CRLF> <CRLF>
+<PRINTI "\"The Earth Stone,\" he said, under his breath, taking the black stone
+and placing it inside his cloak."> <CRLF> <CRLF> <PRINTI
+"\"Pardon me,\" Umber said, \"but did you just say 'Erstin'? I once knew
+a man with that name, but I wouldn't think he'd be an acquaintance of
+yours.\""> <CRLF> <CRLF> <PRINTI
+"\"Yes, of course,\" Praxix mumbled, without knowing why. But it had the desirable
+effect of ending the conversation, as Umber could find nothing beyond a befuddled
+\"Ah\" to reply."> <MIXTURE-CAST>)>)> 
+<DEFINE-ROUTINE ANONF-288> 
+<OBJECT STONE-PILE (LOC CASTLE-TROVE) (SDESC "stones") (FLAGS DONT-TAKE) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-FSET ,ACTION-OBJECT
+,DONT-EXAMINE> <PRINTI
+"There were thousands upon thousands of stones in the chest, of all
+colors, shapes, and sizes. A profitable business for Umber, to be
+sure."> <CRLF> <CRLF> <PRINTI
+"\"Not too valuable, I would say,\" Umber said, picking up a few more
+of the stones. \"But don't let the townsfolk know it!\"">)>)> 
+<DEFINE-ROUTINE ANONF-289> 
+<OBJECT CASTLE-DUNGEON-CELLS (LOC CASTLE-DUNGEON) (FLAGS DONT-TAKE) (SDESC
+"cells") (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <
+PRINTI "Praxix went through each of the cells in the dungeon, finding only rusted
+chains and manacles. Perhaps there had been prisoners here in days long past,
+but their remains would long since have turned to dust.">)>)> 
+<DEFINE-ROUTINE ANONF-290> 
+<ROOM CASTLE-DUNGEON (TRAVEL-COMMANDS UP-COMMAND NUL-COMMAND NUL-COMMAND) (
+GRAPHIC G-DUNGEON) (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <COND (<AND <FSET? ,
+UMBER ,IN-PARTY> <NOT <QSET? ,HERE ,SCOUTED>>> <CRLF> <CRLF> <PRINTI
+"The dungeons were dark and damp, but Umber was as cheerful as ever.
+\"There are many secrets in these dungeons,\" he said. \"If you
+give me your word you will tell no one, I will show you my favorite.\""> <CRLF>
+<CRLF> <PRINTI "Praxix agreed, and Umber led him to the farthest of the dungeon cells.
+Then, he removed one of the blocks in the cell wall, and reached for an
+unseen lever that was hidden behind. As he did so, the entire wall slid
+aside, revealing a large chamber."> <CRLF> <CRLF> <PRINTI
+"The chamber was bare, save the rusted manacles hanging from the walls,
+but in the center sat a large chest, brimming with precious stones."> <CRLF> <
+CRLF> <PRINTI "\"I see you have been here before,\" Praxix said, with the slightest
+hint of sarcasm."> <CRLF> <CRLF> <PRINTI
+"\"Many times,\" Umber responded, \"I make my living selling
+these stones. I figure it's safer to leave the bulk of them here so
+that folks back in town don't get too suspicious. Every week or so, I
+come here and pick up a few dozen.\""> <MOVE-TO ,CASTLE-TROVE>)>>) (ACTION <
+ACOND () (<EQUAL? ,ACTION ,UP-COMMAND> <PRINTI
+"Disappointed at having found nothing of interest, Praxix climbed the
+crumbling stairs and was soon "> <COND (<NOT <FSET? ,CASTLE-TOWER ,SEEN>> <
+PRINTI "atop the tower."> <MOVE-TO ,CASTLE-TOWER>) (T <PRINTI
+"back at ground level."> <MOVE-TO ,CASTLE-BASE>)>)>)> 
+<DEFINE-ROUTINE ANONF-291> 
+<DEFINE-ROUTINE ANONF-292> 
+<OBJECT TALKING-TREE (LOC TREE-FORK) (SDESC "talking tree") (8DESC "tree") (KBD
+84) (FLAGS DONT-TAKE) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <
+UPDATE-MOVE> <WPRINTD ,ACTOR> <PRINTI
+" examined the talking tree skeptically, walking around it as an art expert
+would a hideous piece of sculpture, but finally arrived at the
+inescapable conclusion that this was indeed a talking tree, about seven
+feet in height, neatly trimmed, and covered in wide, oddly shaped leaves.">)>)>
+
+<DEFINE-ROUTINE ANONF-293> 
+<END-SEGMENT> 
+<BEGIN-SEGMENT MILL> 
+<COMMAND (CONTROL-ROOM CONTROLS)> 
+<ROOM XFER-JCN (TRAVEL-COMMANDS LEFT-COMMAND RIGHT-COMMAND BACK-COMMAND) (FLAGS
+UNDERGROUND) (GRAPHIC G-XFER-JCN) (ENTER FSET-SEEN) (ACTION <ACOND () (<EQUAL?
+,ACTION ,BACK-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"It was no use; no matter how Praxix tried, he could not move enough debris to
+make his escape possible.">) (<EQUAL? ,ACTION ,LEFT-COMMAND> <FIRST-XFER-ANTE>
+<MOVE-TO ,XFER-1-ANTE>) (<OR <EQUAL? ,ACTION ,RIGHT-COMMAND> <EQUAL? ,ACTION ,
+CONTROL-ROOM-COMMAND>> <PRINTI
+"A narrow doorway led Praxix into a small, closetlike chamber. On one wall, a
+large glass window overlooked a shallow pit. Otherwise, the room was bare
+except for a strange device mounted against another of the walls."> <MOVE-TO ,
+XFER-MASTER> <CHANGE-TRAVEL-COMMAND ,XFER-JCN ,RIGHT-COMMAND ,
+CONTROL-ROOM-COMMAND> <RTRUE>)>)> 
+<DEFINE-ROUTINE ANONF-294> 
+<DEFINE-ROUTINE FIRST-XFER-ANTE> 
+<COMMAND (BACK-TO-PITS BACK-PITS)> 
+<ROOM XFER-MASTER (TRAVEL-COMMANDS BACK-COMMAND NUL-COMMAND NUL-COMMAND
+NUL-COMMAND) (FLAGS UNDERGROUND) (REFRESH COMPLETE-DIAL-GRAPHICS) (ENTER <
+EXECUTE () <FSET ,HERE ,SEEN> <COND (<NOT <FSET? ,XFER-CONTROLS ,SEEN>> <
+GRAPHIC ,G-XFER-MASTER>) (T <COMPLETE-DIAL-GRAPHICS>)>>) (ACTION <ACOND () (<OR
+<EQUAL? ,ACTION ,BACK-COMMAND> <EQUAL? ,ACTION ,BACK-TO-PITS-COMMAND>> <COND (<
+NOT <QSET? ,HERE ,BLACK-MIX>> <PRINTI
+"Praxix then left this control room, or whatever it was, and reached the base
+of the crumbled stairs. Seeing no way of getting through in that direction, he
+started down the other path."> <CRLF> <CRLF> <CHANGE-TRAVEL-COMMAND ,HERE ,
+BACK-COMMAND ,BACK-TO-PITS-COMMAND #ZLOCAL!-IZILCH TRUE-VALUE> <FIRST-XFER-ANTE
+>) (T <PRINTI "It took only a few moments for Praxix to pass the rubble of the stairs and continue
+onward to the railing above the shallow pit.">)> <MOVE-TO ,XFER-1-ANTE>)>)> 
+<DEFINE-ROUTINE ANONF-295> 
+<DEFINE-ROUTINE ANONF-296> 
+<DEFINE-ROUTINE COMPLETE-DIAL-GRAPHICS> 
+<DEFINE-ROUTINE DIAL-GRAPHICS> 
+<GLOBAL LEFT-DIAL 4> 
+<GLOBAL RIGHT-DIAL 5> 
+<GLOBAL BUTTON-PUSHED <>> 
+<GLOBAL XFER-TBL <LTABLE XFER-1 XFER-2 XFER-3 NXFER-1 NXFER-2 NXFER-3>> 
+<CONSTANT PRAXIX-NO-DIAL
+"Slowly, Praxix twisted the dial on the right, but ended up leaving it
+pointing to the "> 
+<COMMAND RIGHT-DIAL O-DIAL () <COND (<EQUAL? ,RIGHT-DIAL #ZLOCAL!-IZILCH STACK>
+<PRINT ,PRAXIX-NO-DIAL> <WPRINTD ,ACTION-OBJECT> <PRINTI " rune.">) (T <SETG
+RIGHT-DIAL <GETP ,ACTION-OBJECT ,P?TEMP>> <TELL-DIAL #ZLOCAL!-IZILCH STR?57>)>>
+
+<DEFINE-ROUTINE V-RIGHT-DIAL> 
+<COMMAND LEFT-DIAL O-DIAL () <COND (<EQUAL? ,LEFT-DIAL #ZLOCAL!-IZILCH STACK> <
+PRINT ,PRAXIX-NO-DIAL> <WPRINTD ,ACTION-OBJECT> <PRINTI " rune.">) (T <SETG
+LEFT-DIAL <GETP ,ACTION-OBJECT ,P?TEMP>> <TELL-DIAL #ZLOCAL!-IZILCH STR?55>)>> 
+<DEFINE-ROUTINE V-LEFT-DIAL> 
+<DEFINE-ROUTINE TELL-DIAL> 
+<COMMAND WAIT <> () <TELL
+"As Praxix waited, the droning noise grew ever louder."> <SET
+I-BUTTON-PUSH-FLAG 100> <RTRUE>> 
+<DEFINE-ROUTINE V-WAIT> 
+<GLOBAL FIDDLED-WITH-DEVICE <>> 
+<COMMAND (PUSH-BUTTON PUSH-BUT 'N) <> () <CHANGE-TRAVEL-COMMAND ,HERE ,
+PUSH-BUTTON-COMMAND ,WAIT-COMMAND> <SET BUTTON-PUSHED #ZLOCAL!-IZILCH
+TRUE-VALUE> <SET FIDDLED-WITH-DEVICE #ZLOCAL!-IZILCH TRUE-VALUE> <QUEUE
+I-BUTTON-PUSH -1> <TELL
+"Praxix pushed the button, and it appeared that nothing was happening. A dull
+droning noise, however, could soon be discerned, and it grew stronger as the
+moments passed."> <RTRUE>> 
+<DEFINE-ROUTINE V-PUSH-BUTTON> 
+<GLOBAL I-BUTTON-PUSH-FLAG -1> 
+<OBJECT I-BUTTON-PUSH (TIME 0) (ACTION <EXECUTE ("AUX" FROM TO) <SETG
+I-BUTTON-PUSH-FLAG <ADD ,I-BUTTON-PUSH-FLAG 1>> <COND (<EQUAL? ,
+I-BUTTON-PUSH-FLAG 1> <CRLF> <CRLF> <PRINTI
+"The droning was now quite loud and echoed throughout the chamber.">) (<GRTR? ,
+I-BUTTON-PUSH-FLAG 1> <SET BUTTON-PUSHED #ZLOCAL!-IZILCH FALSE-VALUE> <SET
+I-BUTTON-PUSH-FLAG -1> <REMOVE ,I-BUTTON-PUSH> <CHANGE-TRAVEL-COMMAND ,
+XFER-MASTER ,WAIT-COMMAND ,PUSH-BUTTON-COMMAND> <CRLF> <CRLF> <PRINTI
+"The droning noise had grown to an overwhelming intensity when it suddenly
+stopped. The silence in these dark halls was now nearly as deafening."> <SET
+FROM <GET ,XFER-TBL ,LEFT-DIAL>> <SET TO <GET ,XFER-TBL ,RIGHT-DIAL>> <COND (<
+EQUAL? .TO .FROM> T) (<AND <EQUAL? ,HERE ,XFER-MASTER> <FIRST? .FROM> <EQUAL? .
+TO ,XFER-1>> <CRLF> <CRLF> <PRINTI
+"But something peculiar caught Praxix' eye as he looked through the glass and
+down into the pit below. Something was down there, but he couldn't tell what.">
+) (<EQUAL? ,HERE .FROM> <MOVE-TO .TO> <CRLF> <CRLF> <COND (<NOT <QSET? ,
+XFER-MASTER ,TRAPPED>> <PRINTI "You can well imagine Praxix' surprise when he">
+) (T <PRINTI "Suddenly, though unsurprisingly, Praxix">)> <PRINTI
+" found himself standing at the bottom of a "> <COND (<EQUAL? .TO ,XFER-1> <
+PRINTI "shallow">) (T <PRINTI "seemingly bottomless">)> <PRINTI " pit."> <
+XFER-OBJECTS-CHECK .TO> <COND (<FIRST? .FROM> <PRINTI
+" Not only that, but everything
+that had been on the ground before was now here as well.">)> <COND (<EQUAL? .TO
+,XFER-3> <PRINTI
+" Fortunately, a shaft of light piercing the darkness indicated an exit
+nearby.">) (T <SET XFER-TRAP #ZLOCAL!-IZILCH TRUE-VALUE>)>) (<AND <EQUAL? ,HERE
+.TO> <FIRST? .FROM>> <CRLF> <CRLF> <COND (<NOT <QSET? ,XFER-MASTER ,DEAD>> <
+PRINTI "You can well imagine Praxix' surprise when ">) (T <PRINTI
+"Praxix was merely startled this time, as ">)> <LIST-CONTENTS .FROM> <PRINTI
+" suddenly appeared on the ground beside him.">)> <SET UPDATE-FLAG #
+ZLOCAL!-IZILCH TRUE-VALUE> <MOVE-ALL .FROM .TO>)>>)> 
+<DEFINE-ROUTINE ANONF-297> 
+<GLOBAL XFER-TRAP <>> 
+<CONSTANT DIAL-O-TABLE <LTABLE TOP-RUNE UPPER-LEFT-RUNE LOWER-LEFT-RUNE
+UPPER-RIGHT-RUNE LOWER-RIGHT-RUNE BOTTOM-RUNE>> 
+<DEFINE-ROUTINE O-DIAL> 
+<GLOBAL INITIAL-RUNE-TBL <LTABLE 0 TOP-RUNE UPPER-LEFT-RUNE LOWER-LEFT-RUNE
+UPPER-RIGHT-RUNE LOWER-RIGHT-RUNE BOTTOM-RUNE>> 
+<GLOBAL RUNES-SET <>> 
+<DEFINE-ROUTINE INIT-RUNES> 
+<GLOBAL RUNE-TBL <LTABLE 0 0 0 0 0 0>> 
+<OBJECT TOP-RUNE (SDESC "top") (KBD 84) (TEMP 0) (GRAPHIC G-RUNE-TOP)> 
+<OBJECT UPPER-LEFT-RUNE (SDESC "upper left") (8DESC "up left") (KBD 85) (TEMP 0
+) (GRAPHIC G-RUNE-UL)> 
+<OBJECT LOWER-LEFT-RUNE (SDESC "lower left") (8DESC "low left") (KBD 76) (TEMP
+0) (GRAPHIC G-RUNE-LL)> 
+<OBJECT UPPER-RIGHT-RUNE (SDESC "upper right") (8DESC "up right") (KBD 85) (
+TEMP 0) (GRAPHIC G-RUNE-UR)> 
+<OBJECT LOWER-RIGHT-RUNE (SDESC "lower right") (8DESC "low right") (KBD 76) (
+TEMP 0) (GRAPHIC G-RUNE-LR)> 
+<OBJECT BOTTOM-RUNE (SDESC "bottom") (KBD 66) (TEMP 0) (GRAPHIC G-RUNE-BOT)> 
+<OBJECT XFER-CONTROLS (LOC XFER-MASTER) (SDESC "device") (KBD 68) (FLAGS
+DONT-TAKE DONT-CAST) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <
+UPDATE-MOVE> <COND (<NOT <QSET? ,XFER-CONTROLS ,EXAMINED>> <FSET ,XFER-CONTROLS
+,SEEN> <COMPLETE-DIAL-GRAPHICS> <PRINTI
+"Two devices that resembled dials of some sort were imbedded in the wall of the
+chamber. Around each of the dials were the same six peculiar runes, in a language
+that he could not recognize. Below and between the two dials sat a short, stubby,
+black button."> <PUTP ,ACTION-OBJECT ,P?SDESC #ZLOCAL!-IZILCH STR?682> <SET
+UPDATE-FLAG #ZLOCAL!-IZILCH TRUE-VALUE> <TRAVEL-COMMANDS ,HERE ,BACK-COMMAND ,
+LEFT-DIAL-COMMAND ,RIGHT-DIAL-COMMAND ,PUSH-BUTTON-COMMAND>)>)>)> 
+<DEFINE-ROUTINE ANONF-298> 
+<ROOM NXFER-1 (TRAVEL-COMMANDS UP-COMMAND NUL-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND) (GRAPHIC G-DARK-CAVERN) (ACTION NXFER)> 
+<ROOM NXFER-2 (TRAVEL-COMMANDS UP-COMMAND NUL-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND) (GRAPHIC G-DARK-CAVERN) (ACTION NXFER)> 
+<ROOM NXFER-3 (TRAVEL-COMMANDS UP-COMMAND NUL-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND) (GRAPHIC G-DARK-CAVERN) (ACTION NXFER)> 
+<DEFINE-ROUTINE NXFER> 
+<DEFINE-ROUTINE TELL-ANTE-RUNE> 
+<ROOM XFER-1-ANTE (TRAVEL-COMMANDS PROCEED-COMMAND DOWN-COMMAND BACK-COMMAND) (
+FLAGS UNDERGROUND) (ENTER <EXECUTE () <SET CURRENT-GRAPHIC #ZLOCAL!-IZILCH
+FALSE-VALUE> <GRAPHIC ,G-XFER-ANTE> <COND (<FSET? ,XFER-MASTER ,SEEN> <
+REMOVE-TRAVEL-COMMAND ,HERE ,BACK-COMMAND> <FORCE-TRAVEL-COMMAND ,HERE ,
+CONTROL-ROOM-COMMAND>)> <COND (<FSET? ,XFER-MASTER ,SOLVED> <TELL-ANTE-RUNE 1>)
+>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,PROCEED-COMMAND> <PRINTI
+"Continuing down the passageway, Praxix came to another railing separating him
+from a rather more precipitous drop than at the previous pit. In fact, he could
+not discern a bottom anywhere."> <MOVE-TO ,XFER-2-ANTE>) (<EQUAL? ,ACTION ,
+DOWN-COMMAND> <COND (<NOT <FSET? ,XFER-1 ,SOLVED>> <PRINTI
+"With an agility that belied his advancing years, Praxix flung himself over
+the railing and down into the pit below. To his amazement, long strips of
+fire and earth essences coursed through the rock. It would be quite a haul,
+indeed, if he could mine any of the precious material.">) (T <PRINTI
+"Praxix again flung himself over the railing and down into the pit below.">)> <
+XFER-OBJECTS-CHECK ,XFER-1> <MOVE-TO ,XFER-1>) (<OR <EQUAL? ,ACTION ,
+BACK-COMMAND> <EQUAL? ,ACTION ,CONTROL-ROOM-COMMAND>> <COND (<NOT <FSET? ,
+XFER-MASTER ,SEEN>> <PRINTI
+"Praxix now retraced his steps to the base of the fallen stairs. Having little
+choice, he entered the narrow doorway into a small, closetlike chamber. On one wall, a
+large glass window overlooked a shallow pit. Otherwise, the room was bare
+except for a strange device mounted against another of the walls.">) (T <PRINTI
+"Then, Praxix quickly retraced his steps back to the control room.">)> <MOVE-TO
+,XFER-MASTER>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,
+WIND-SPELL> <NOT <FSET? ,XFER-MASTER ,ENCHANTED>>> <DO-XFER-WIND>)>)> 
+<DEFINE-ROUTINE ANONF-299> 
+<DEFINE-ROUTINE ANONF-300> 
+<DEFINE-ROUTINE XFER-OBJECTS-CHECK> 
+<DEFINE-ROUTINE DO-XFER-WIND> 
+<COMMAND MINE-ROCK> 
+<DEFINE-ROUTINE FORCE-MINE-ROCK> 
+<ROOM XFER-1 (TRAVEL-COMMANDS MINE-ROCK-COMMAND UP-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND) (GRAPHIC G-DARK-CAVERN) (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <
+FORCE-MINE-ROCK>>) (CLOCK FORCE-MINE-ROCK) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+MINE-ROCK-COMMAND> <REMOVE-TRAVEL-COMMAND> <COND (<EQUAL? #ZLOCAL!-IZILCH STACK
+,HERE ,INVENTORY> <FIND-ESSENCE ,ESSENCE-FIRE 5> <FIND-ESSENCE ,ESSENCE-EARTH 5
+> <FSET ,XFER-1 ,SOLVED> <PRINTI
+"Having the perfect tool at hand, Praxix gathered as much of the rock
+containing the earth and fire essences as was practical, considering the great
+deal of time necessary to crush the rocks down into powder. Rather than spend
+the rest of the day at it, he settled for taking a moderate amount of each."> <
+CRLF> <CRLF> <PRINTI
+"\"Not bad for a day's work,\" he said aloud, as he climbed out of the pit
+and stood again alongside the railing. \"Now, my only problem is getting
+out of this place alive.\""> <MOVE-TO ,XFER-1-ANTE>) (T <PRINTI
+"The only problem for Praxix was that the rock in which the essences were
+embedded was harder than any other he had come across. There was no chance
+he would be able to mine the rocks without the proper tools.">)>) (<AND <EQUAL?
+,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,TREMOR-SPELL>> <PRINTI
+"Thinking that his tremor spell might shake some of the rocks loose, Praxix
+carefully measured out a small amount of earth essence and cast it at the
+ground. The ensuing tremor nearly caused an avalanche of its own, without
+so much as budging the rocks in which he had such a keen interest.">) (<EQUAL?
+,ACTION ,UP-COMMAND> <PRINTI
+"Finished with his examination of the pit, Praxix clambered up the side walls and
+was soon back on the other side of the railing."> <MOVE-TO ,XFER-1-ANTE>)>)> 
+<DEFINE-ROUTINE ANONF-301> 
+<DEFINE-ROUTINE ANONF-302> 
+<ROOM XFER-2-ANTE (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND DOWN-COMMAND
+NUL-COMMAND) (FLAGS UNDERGROUND) (ENTER <EXECUTE () <SET CURRENT-GRAPHIC #
+ZLOCAL!-IZILCH FALSE-VALUE> <GRAPHIC ,G-XFER-ANTE> <COND (<FSET? ,XFER-MASTER ,
+SEEN> <FORCE-TRAVEL-COMMAND ,HERE ,CONTROL-ROOM-COMMAND>)> <COND (<FSET? ,
+XFER-MASTER ,SOLVED> <TELL-ANTE-RUNE 2>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION
+,PROCEED-COMMAND> <PRINTI
+"The passageway ended abruptly before him at the site of yet another railing
+and associated pit. From the looks of things, an avalanche had permanently
+sealed the way to what could only be presumed to be another set of pits. As
+he leaned on the railing, "> <COND (<NOT <FSET? ,XFER-MASTER ,SOLVED>> <PRINTI
+"resting his elbows into an inch or so of accumulated dust, ">)> <PRINTI
+"he peered down into the depths of the pit and discerned a narrow shaft
+of sunlight piercing the darkness."> <MOVE-TO ,XFER-3-ANTE>) (<EQUAL? ,ACTION ,
+CONTROL-ROOM-COMMAND> <PRINTI
+"In a matter of moments, Praxix had retraced his steps back to the control room."
+> <MOVE-TO ,XFER-MASTER>) (<EQUAL? ,ACTION ,BACK-COMMAND> <PRINTI
+"In just a few moments, Praxix was back at the first of the pits."> <MOVE-TO ,
+XFER-1-ANTE>) (<EQUAL? ,ACTION ,DOWN-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"Getting down into the pit would pose something of a dilemma for Praxix. It was
+painfully obvious that falling or jumping into the pit would mean certain
+death.">) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,
+LEVITATE-SPELL>> <XFER-DESCEND ,XFER-2>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <
+EQUAL? ,ACTION-OBJECT ,WIND-SPELL> <NOT <FSET? ,XFER-MASTER ,ENCHANTED>>> <
+DO-XFER-WIND>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,
+FAR-VISION-SPELL>> <DO-XFER-FLARE ,XFER-2>)>)> 
+<DEFINE-ROUTINE ANONF-303> 
+<DEFINE-ROUTINE ANONF-304> 
+<DEFINE-ROUTINE XFER-DESCEND> 
+<DEFINE-ROUTINE DO-XFER-FLARE> 
+<ROOM XFER-2 (TRAVEL-COMMANDS UP-COMMAND NUL-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND) (GRAPHIC G-DARK-CAVERN) (ACTION NXFER)> 
+<OBJECT PICK-AXE (LOC XFER-2) (SDESC "pick-axe") (KBD 80) (ACTION <ACOND () (<
+EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-FSET ,ACTION-OBJECT ,DONT-EXAMINE> <
+PRINTI "At this point, Praxix examined the axe more carefully. It was nearly new, though,
+like everything else, it was covered in dust.">) (<EQUAL? ,ACTION ,
+PICK-UP-COMMAND> <COND (<NOT <QSET? ,PICK-AXE ,USED-UP>> <PRINTI
+"\"This should come in rather useful,\" Praxix said, as he picked up the pick
+axe and slung it over his shoulder.">) (T <PRINTI
+"Praxix then picked up the pick-axe and slung it over his shoulder, as he had
+done before.">)> <UPDATE-MOVE ,PICK-AXE ,INVENTORY>) (<EQUAL? ,ACTION ,
+DROP-COMMAND> <UPDATE-REMOVE ,PICK-AXE> <PRINTI
+"Rather than carry the pick-axe any longer, Praxix rested it against a nearby
+wall.">)>)> 
+<DEFINE-ROUTINE ANONF-305> 
+<ROOM XFER-3-ANTE (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND DOWN-COMMAND
+NUL-COMMAND) (FLAGS UNDERGROUND) (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <SET
+CURRENT-GRAPHIC #ZLOCAL!-IZILCH FALSE-VALUE> <GRAPHIC ,G-XFER-ANTE ,
+G-XFER-ANTE-LIGHT ,BOTTOM-RIGHT> <COND (<FSET? ,XFER-MASTER ,SEEN> <
+FORCE-TRAVEL-COMMAND ,HERE ,CONTROL-ROOM-COMMAND>)> <COND (<FSET? ,XFER-MASTER
+,SOLVED> <PRINTI
+" Alongside the opening to the chamber below was a rune that had been obliterated by
+the passage of the long years.">)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+PROCEED-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"It didn't take more than two looks at the debris before him for Praxix to realize
+that he wasn't going any further in this direction.">) (<EQUAL? ,ACTION ,
+BACK-COMMAND> <PRINTI
+"Quickly, Praxix retreated to the middle of the three pits."> <MOVE-TO ,
+XFER-2-ANTE>) (<EQUAL? ,ACTION ,CONTROL-ROOM-COMMAND> <PRINTI
+"Quickly, Praxix passed by the two other pits as he made his way back to the
+control room."> <MOVE-TO ,XFER-MASTER>) (<EQUAL? ,ACTION ,DOWN-COMMAND> <
+REMOVE-TRAVEL-COMMAND> <PRINTI
+"Getting down into the pit would pose something of a dilemma for Praxix. It was
+painfully obvious that falling or jumping into the pit would mean certain
+death.">) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,
+LEVITATE-SPELL>> <XFER-DESCEND ,XFER-3>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <
+EQUAL? ,ACTION-OBJECT ,WIND-SPELL> <NOT <FSET? ,XFER-MASTER ,ENCHANTED>>> <
+DO-XFER-WIND>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,
+FAR-VISION-SPELL>> <DO-XFER-FLARE ,XFER-3>)>)> 
+<DEFINE-ROUTINE ANONF-306> 
+<DEFINE-ROUTINE ANONF-307> 
+<COMMAND (FOLLOW-LIGHT FIND-LIGHT)> 
+<ROOM XFER-3 (TRAVEL-COMMANDS FOLLOW-LIGHT-COMMAND NUL-COMMAND NUL-COMMAND) (
+FLAGS UNDERGROUND DONT-CAST) (GRAPHIC G-MINER-PASSAGE) (ACTION <EXECUTE ("AUX"
+TMP) <COND (<EQUAL? ,ACTION ,FOLLOW-LIGHT-COMMAND> <COND (<IN? ,PICK-AXE ,
+INVENTORY> <REMOVE ,PICK-AXE> <PRINTI
+"Having no further need for the pick-axe, Praxix dropped it on the ground. He
+then started following the stream of light, following a dirt path. ">)> <PRINTI
+"The path wound its way up a crumbling set of stairs, but these soon were nearly
+unrecognizable. Clambering the rest of the way back to ground level, he finally
+extricated himself from the ground about one hundred paces away from the mill
+itself. And as he looked back toward the large grinding wheel, he realized that
+he had been dead wrong from the outset."> <CRLF> <CRLF> <PRINTI
+"\"The mill is not for grains at all,\" he said aloud, \"but for milling
+the stones of magical essences! To think I've been exploring a magic mine!\"">
+<CRLF> <CRLF> <COND (,REJOINED <PRINTI
+"You can imagine our relief at seeing our Wizard friend again, for it had been
+quite some time since he had disappeared into the mill's mechanism, triggering the
+avalanche that prevented us from following him."> <CRLF> <CRLF> <PRINTI
+"\"Come, come, don't stand there gawking,\" he said, wagging his finger at us.
+\"We still have much to do.\""> <CRLF> <CRLF>)> <FCLEAR ,TAG ,SHADOW> <SET TMP
+<ADD #ZLOCAL!-IZILCH STACK 1>> <PUT ,PARTY #ZLOCAL!-IZILCH STACK ,TAG> <PUT ,
+PARTY .TMP ,TAG-SWAP-CHR> <SCENE #ZLOCAL!-IZILCH FALSE-VALUE> <LEAVE-MILL-AREA>
+) (T <NXFER>)>>)> 
+<DEFINE-ROUTINE ANONF-308> 

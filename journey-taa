@@ -1,0 +1,2 @@
+#
+/sys/interlogic/zap/zsplit -a 2 -d 5 -v ~curpix/journeyapple.d ~curpix/journey.apple.1 -p 107 -e 23 -0 journey 270

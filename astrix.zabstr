@@ -1,0 +1,70 @@
+
+<BEGIN-SEGMENT RIVER> 
+<GLOBAL ASTRIX-TRAP <>> 
+<COMMAND GIVE-UP> 
+<ROOM ASTRIX-MAZE (TRAVEL-COMMANDS LEFT-COMMAND RIGHT-COMMAND NUL-COMMAND) (
+ENTER <EXECUTE () <FCLEAR ,WEBBA-MAP ,DONT-EXAMINE>>) (GRAPHIC G-MOUNTAIN) (
+CAST-LIMIT INF) (ACTION <ACOND () (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET
+,HERE ,DONT-SCOUT> <FSET ,HERE ,SCOUTED> <COND (<EQUAL? ,ACTOR ,ESHER> <WPRINTD
+,ACTOR> <PRINTI " was sent to scout out the various paths, and returned a short while
+later. \"They all seem to lead up the mountain,\" he said. \"Perhaps
+it does not matter which one we take.\"">) (T <WPRINTD ,ACTOR> <PRINTI
+" went ahead to scout the various paths, and returned a short while
+later. \"I have not been this far east in my travels,\" he said, \"I
+sense great danger here; I wish we did not have to guess which path
+to take up the mountain.\"">)> <CRLF> <CRLF> <PRINTI
+"\"I fear that such a powerful Wizard as Astrix would try to defend
+himself against unwanted visitors,\" Praxix "> <COND (<EQUAL? ,ACTOR ,ESHER> <
+PRINTI "countered">) (T <PRINTI "said, echoing Minar's concerns">)> <PRINTI "."
+>) (<EQUAL? ,ACTION ,LEFT-COMMAND> <AM-MOVE 0>) (<EQUAL? ,ACTION ,RIGHT-COMMAND
+> <AM-MOVE 1>) (<EQUAL? ,ACTION ,BACK-COMMAND> <AM-MOVE -1>) (<AND <EQUAL? ,
+ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,FAR-VISION-SPELL> <NOT <QSET? ,
+FAR-VISION-SPELL ,INCAPACITATED>>> <ASTRIX-RESPONDS-TO-FLARE>) (<EQUAL? ,ACTION
+,GIVE-UP-COMMAND> <HINT ,HINT-WEBBA-MAP> <REMOVE ,HINT-AVALANCHE> <REMOVE ,
+HINT-MTN-LION> <GIVE-UP-ENDING>)>)> 
+<DEFINE-ROUTINE ANONF-215> 
+<DEFINE-ROUTINE ANONF-216> 
+<DEFINE-ROUTINE GIVE-UP-ENDING> 
+<GLOBAL ASTRIX-MAZE-PATH 0> 
+<GLOBAL ASTRIX-MAZE-ROUTE 1> 
+<GLOBAL ASTRIX-FORK 1> 
+<DEFINE-ROUTINE AM-MOVE> 
+<CONSTANT ASTRIX-MAZE-STR-1 <LTABLE "We decided to start by taking the "
+"Both paths looked much the same, but nevertheless we chose the "
+"At this fork, we took the " "After some discussion, we decided upon the "
+"We nearly came to blows over the next decision, but it was finally
+agreed to pursue the "
+"\"This had better be the path,\" Praxix said, as we started out
+upon the " "\"A bug,\" said Praxix, who turned into a newt and raced down the "
+>> 
+<CONSTANT ASTRIX-MAZE-STR-2 <LTABLE
+"Judging by the speed at which the path ascended, we felt certain that we were on the
+right path, or, at any rate, a path good enough to take us to Astrix' tower atop the
+mountain. But the path soon forked, and gave no hint as to which would lead us further."
+"The climb became steeper, and our movement slower, yet the fortress of Astrix loomed
+ever closer. And then, the path split again, with larger path heading left and the
+narrower one right."
+"Although the path climbed for a short while, it soon began to descend down a steep
+gully, lowering our hopes that we had chosen well. When we again reached a fork, we
+were relieved, figuring that one would return us to our ascent of the mountain. Yet
+both appeared to descend even further."
+"Down and down we went, and we had soon lost Astrix' tower from our view. \"Guess
+what,\" Praxix said, pointing out the spot ahead at which the path forked for yet
+another time. It wasn't necessary, as the appearance of forks in the path was starting
+to wear on our nerves."
+"Sure enough, we hadn't gone more than one hundred paces, when we came to another fork.
+\"At least we didn't have to march for hours this time,\" Praxix said, testily."
+"And it well might have been, for we started climbing swiftly, and were soon scrambling
+over rocks as we attempted to follow the feeble path that lay before us. \"If this isn't
+the path,\" he said, \"then I'm one unhappy Wizard.\" And that is precisely what Praxix
+became when we came at last to another fork in the path."
+"\"And a lousy, rotten one at that!\"">> 
+<DEFINE-ROUTINE AM-LION> 
+<DEFINE-ROUTINE AM-AVALANCHE> 
+<DEFINE-ROUTINE SPARE-VICTIM> 
+<DEFINE-ROUTINE HAPPENED-QUICKLY> 
+<DEFINE-ROUTINE ARRIVE-AT-ASTRIX-TOWER> 
+<DEFINE-ROUTINE STONE-COUNT> 
+<DEFINE-ROUTINE STONE-NAME> 
+<DEFINE-ROUTINE FIRST-STONE> 
+<GLOBAL PASS-1-STONES 0> 

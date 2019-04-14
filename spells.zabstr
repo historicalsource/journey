@@ -1,0 +1,406 @@
+
+<BEGIN-SEGMENT 0> 
+<GLOBAL DONT-CAST-FLAG <>> 
+<OBJECT ALWAYS-SPELLS> 
+<DEFINE-ROUTINE PRAXIX-TOO-DANGEROUS-TO-CAST> 
+<GLOBAL DISSIPATION-WARNING <>> 
+<DEFINE-ROUTINE CHECK-CAST-LIMIT> 
+<DEFINE-ROUTINE DISSIPATION-CHECK> 
+<DEFINE-ROUTINE PRAXIX-NO-CAST> 
+<GLOBAL RED-ROCK-COUNT 3> 
+<CONSTANT AIRBIT 1> 
+<CONSTANT FIREBIT 2> 
+<CONSTANT EARTHBIT 4> 
+<CONSTANT WATERBIT 8> 
+<CONSTANT BLUEBIT 16> 
+<CONSTANT GRAYBIT 32> 
+<CONSTANT BLACKBIT 64> 
+<CONSTANT AIROFF 1> 
+<CONSTANT FIREOFF 2> 
+<CONSTANT EARTHOFF 3> 
+<CONSTANT WATEROFF 4> 
+<CONSTANT BLUEOFF 5> 
+<CONSTANT GRAYOFF 6> 
+<CONSTANT BLACKOFF 7> 
+<CONSTANT EMAX 7> 
+<GLOBAL ESSENCE-OBJECT-TBL <LTABLE ESSENCE-AIR ESSENCE-FIRE ESSENCE-EARTH
+ESSENCE-WATER REAGENT GRAY-REAGENT BLACK-REAGENT>> 
+<GLOBAL ESSENCE-CONT-TBL <LTABLE ESSENCES ESSENCES ESSENCES ESSENCES REAGENTS
+REAGENTS REAGENTS>> 
+<DEFINE-ROUTINE ADD-ESSENCE> 
+<DEFINE-ROUTINE FIND-ESSENCE> 
+<GLOBAL FOUND-ESSENCE <>> 
+<OBJECT I-FOUND-ESSENCE (TIME 0) (ACTION <EXECUTE () <SET FOUND-ESSENCE #
+ZLOCAL!-IZILCH FALSE-VALUE>>)> 
+<DEFINE-ROUTINE ANONF-24> 
+<GLOBAL ESSENCE-TBL <LTABLE 7 0 9 0 5 3 4>> 
+<DEFINE-ROUTINE CHECK-USED-UP-ESSENCES> 
+<OBJECT POUCH (LOC INVENTORY) (SDESC "pouch") (FLAGS DONT-TAKE NEVER-DROP
+DONT-CAST) (KBD 80) (EXBITS PRAXIXBIT) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+EXAMINE-COMMAND> <COND (<NOT <QSET? ,POUCH ,EXAMINED>> <PRINTI
+"The key to Praxix' wizardly powers lay within the badly worn, brown leather
+pouch that he carried inside his cloak. This pouch contained his entire stock of
+magical essences, with whose help it was possible to conjure up a variety of magical
+spells. But these essences were in very limited supply, and one cannot be too harsh
+on Praxix for the frequency with which he would assess the quantities of those
+in his possession."> <CRLF> <CRLF> <PRINTI
+"He did so now, taking out his pouch and finding">) (T <WPRINTD ,PRAXIX> <
+PRINTI ", "> <COND (,FOUND-ESSENCE <PRINTI
+"having just added to his stock of magical essences, took inventory">) (T <
+PRINTI "ever concerned about his magical resources, took out his pouch">)> <
+PRINTI " and found">)> <COND (<NOT <FIRST? ,ESSENCES>> <PRINTI
+" not a single speck of magical essence.">) (T <TELL-AMOUNTS ,ESSENCES>)> <COND
+(<FIRST? ,REAGENTS> <PRINTI " In addition, he found"> <TELL-AMOUNTS ,REAGENTS>)
+> <RTRUE>)>)> 
+<DEFINE-ROUTINE ANONF-25> 
+<DEFINE-ROUTINE TELL-AMOUNTS> 
+<CONSTANT ESSENCE-AMT-TBL <LTABLE "very small" "small" "moderate" "moderate"
+"fairly large" "fairly large" "large" "large" "very large" "very large"
+"very large" "very large" "very large" "very large" "disgustingly large"
+"horrendously large" "hideously large" "bugiferously large">> 
+<CONSTANT ESSENCE-AMT-TBL-X <LTABLE "one" "two" "three or four" "three or four"
+"five or six" "five or six" "seven or eight" "seven or eight" "nearly ten"
+"ten or more" "ten or more" "a dozen or more" "a dozen or more"
+"a dozen or more" "a dozen or more" "a dozen or more">> 
+<DEFINE-ROUTINE CHECK-ESSENCES> 
+<DEFINE-ROUTINE UNUSE-ESSENCES> 
+<DEFINE-ROUTINE USE-ESSENCE> 
+<DEFINE-ROUTINE USE-ESSENCES> 
+<OBJECT INVISIBLE-SPELL (SDESC "Invisibility") (8DESC "Invisible") (KBD 73) (
+TEMP 0) (EBITS 0) (ACTION <EXECUTE () <COND (<PRE-SPELL> T) (T <PRINTI
+"Praxix reached into his cloak and took out the red invisibility
+powder; there was enough left for at most "> <PRINT #ZLOCAL!-IZILCH STACK> <
+PRINTI " use"> <COND (<NOT <EQUAL? ,RED-ROCK-COUNT 1>> <PRINTI "s">)> <PRINTI
+", and this did not seem
+like the best situation to waste the precious material."> <CHECK-CAST-LIMIT>)>>
+)> 
+<DEFINE-ROUTINE ANONF-26> 
+<DEFINE-ROUTINE CAST-INVISIBLE> 
+<OBJECT WIND-SPELL (LOC ALWAYS-SPELLS) (SDESC "Wind") (TEMP 0) (KBD 87) (EBITS
+AIRBIT) (ACTION <EXECUTE () <COND (<PRE-SPELL> T) (T <PRINTI
+"Praxix reached into his cloak and brought forth some air essence.
+As he tossed it into the air, a great wind came up, almost knocking
+us off our feet. When the wind subsided, "> <WPRINTD ,LEADER> <PRINTI
+" quite reasonably asked, \"What was that for?\""> <CRLF> <CRLF> <PRINTI
+"\"What, the wind?\" Praxix replied. \"Oh! Just testing, just
+testing.\""> <DISSIPATION-CHECK> <CHECK-CAST-LIMIT>)>>)> 
+<DEFINE-ROUTINE ANONF-27> 
+<DEFINE-ROUTINE UNDERGROUND-CHECK> 
+<OBJECT RAIN-SPELL (LOC ALWAYS-SPELLS) (SDESC "Rain") (TEMP 0) (KBD 82) (EBITS
+WATERBIT) (ACTION <EXECUTE () <COND (<UNDERGROUND-CHECK> T) (<PRE-SPELL> T) (T
+<PRINTI "Praxix reached into his cloak and brought forth a little bit of
+water essence. He cast it into the air, and soon clouds gathered
+and a light rain fell on us. It lasted only a minute, but it
+was refreshing nonetheless."> <DISSIPATION-CHECK> <CHECK-CAST-LIMIT>)>>)> 
+<DEFINE-ROUTINE ANONF-28> 
+<DEFINE-ROUTINE PRE-SPELL> 
+<OBJECT TREMOR-SPELL (LOC ALWAYS-SPELLS) (SDESC "Tremor") (TEMP 0) (KBD 84) (
+EBITS EARTHBIT) (ACTION <EXECUTE () <COND (<PRE-SPELL> T) (T <PRINTI
+"Praxix reached into his cloak and brought forth some earth essence. "> <COND (
+<OR <FSET? ,HERE ,UNDERGROUND> <FSET? ,HERE ,ENCLOSED>> <PRINTI
+"But then, fearing for the safety of the party, he replaced it."> <
+UNUSE-ESSENCES>) (T <PRINTI
+"As he tossed it onto the ground, there was a violent
+shaking from within the earth. Fortunately, nobody was hurt by this
+display of magical heroics."> <DISSIPATION-CHECK>)> <CHECK-CAST-LIMIT>)>>)> 
+<DEFINE-ROUTINE ANONF-29> 
+<OBJECT LEVITATE-SPELL (LOC ALWAYS-SPELLS) (SDESC "Elevation") (TEMP 0) (KBD 69
+) (EBITS <+ ,EARTHBIT ,AIRBIT>) (PRSI <EXECUTE ("AUX" TMP) <COND (<AND <EQUAL?
+,HERE ,STAIR-CHASM> <FSET? ,HERE ,BLUE-MIX>> <FIND-OBJECT ,FLOATER>) (<AND ,
+SUBGROUP-MODE <FSET? ,PRAXIX ,SUBGROUP>> <FIND-OBJECT ,HIMSELF-OBJECT>) (<AND <
+EQUAL? ,HERE ,MINE-HOLE> <SET TMP <GETP ,HERE ,P?TEMP>>> <FIND-OBJECT #
+ZLOCAL!-IZILCH STACK>) (<EQUAL? ,HERE ,STORMY-SEAS> <FIND-OBJECT ,TAG-OBJECT>)
+(<EQUAL? ,HERE ,IN-RIVER> <FIND-OBJECT ,RAFT>) (<EQUAL? ,HERE ,BOAT> <
+FIND-OBJECT ,HIMSELF-OBJECT>) (T <FIND-PARTY-OBJECTS>)> <COND (<AND <EQUAL? ,
+HERE ,GOLD-STREAM> <GRTR? #ZLOCAL!-IZILCH STACK 0>> <FIND-OBJECT ,TAG-OBJECT>)>
+<PRSI-TBL #ZLOCAL!-IZILCH STR?281>>) (ACTION <EXECUTE () <COND (<PRE-SPELL> T)
+(T <PRINTI "Perhaps as a joke, Praxix took some air essence and earth essence out
+of his cloak, mixed them in his hand, and flung them at "> <WPRINTD ,
+ACTION-PRSI> <PRINTI "."> <CRLF> <CRLF> <PRINTI
+"He scowled as he rose into the air, then (a long minute later) he slowly fell
+back to earth, amid a chorus of laughter from the rest of the
+party. \"Works like it should!\" Praxix said, proudly. \"Do not be cross!
+We may have need for such things!\""> <DISSIPATION-CHECK> <CHECK-CAST-LIMIT>)>>
+)> 
+<DEFINE-ROUTINE ANONF-30> 
+<DEFINE-ROUTINE ANONF-31> 
+<OBJECT FOG-SPELL (SDESC "Fog") (TEMP 0) (KBD 70) (EBITS <+ ,WATERBIT ,AIRBIT>)
+(ACTION PRAXIX-DEFAULT-CAST)> 
+<OBJECT MUD-SPELL (LOC ALWAYS-SPELLS) (SDESC "Mud") (TEMP 0) (KBD 77) (EBITS <+
+,WATERBIT ,EARTHBIT>) (ACTION <EXECUTE () <COND (<PRE-SPELL> T) (<AND <NOT <
+FSET? ,HERE ,ENCLOSED>> <NOT <QSET? ,MUD-SPELL ,EXAMINED>>> <PRINTI
+"Praxix then decided to cast his mud spell, though none of us could quite
+fathom why. In any event, he took two powders from his pouch and cast them
+at the ground, which soon became a morass of thick, brown sludge."> <CRLF> <
+CRLF> <PRINTI "\"A little used and much misunderstood spell,\" Praxix said, wiping the "
+> <TELL-COLOR ,ESSENCE-WATER ,ESSENCE-EARTH> <PRINTI
+" residue from his hands. \"Only occasionally useful, yet always a mess.\""> <
+CRLF> <CRLF> <PRINTI
+"We had no idea what he was talking about, of course, and it seemed best not
+to pursue the matter further.">) (T <PRINTI
+"Praxix then had the peculiar notion of casting his mud spell"> <PRINTI
+", but decided it was a terrible waste of time."> <UNUSE-ESSENCES>)>>)> 
+<DEFINE-ROUTINE ANONF-32> 
+<OBJECT LIGHTNING-SPELL (LOC ALWAYS-SPELLS) (SDESC "Lightning") (TEMP 0) (KBD
+76) (EBITS <+ ,WATERBIT ,FIREBIT>) (PRSI <EXECUTE () <FIND-OBJECTS ,HERE ,
+DONT-CAST> <COND (<AND <NOT <FSET? ,HERE ,ENCLOSED>> <NOT <FSET? ,HERE ,INDOORS
+>>> <FIND-OBJECT ,GROUND>)> <PRSI-TBL #ZLOCAL!-IZILCH STR?281>>) (ACTION <
+EXECUTE () <COND (<UNDERGROUND-CHECK> T) (<PRE-SPELL> T) (<EQUAL? ,ACTION-PRSI
+,GROUND> <PRINTI
+"Praxix raised a finger to the wind, then took a quick glance at the sky.
+The rest of us looked on in bewilderment as Praxix
+removed some fire and water essences from his pouch and mixed them carefully
+in his hand. Finally, he added just the smallest amount of earth essence
+and cast the combination into the sky while aiming his staff at a nearby
+piece of earth."> <CRLF> <CRLF> <PRINTI
+"A moment later, the sky was filled with clouds. A dull rumble of
+thunder preceded a single bolt of white lightning which smote the ground
+at which Praxix' staff was still pointing."> <COND (<NOT <QSET? ,
+LIGHTNING-SPELL ,INCAPACITATED>> <CRLF> <CRLF> <PRINTI
+"Praxix, proud of his accomplishment, turned to me and said, \"It's
+that tiny bit of earth essence that gives the lightning spell its
+extra punch!\" Then, he turned to the others and spoke.">)> <CRLF> <CRLF> <
+PRINTI "\"It's quite exciting to watch,\" he said, \"and sometimes it is
+even helpful!\""> <COND (<FSET? ,ESHER ,IN-PARTY> <CRLF> <CRLF> <PRINTI
+"\"I assume you'll let us know when that is,\" Esher said, derisively."> <CRLF>
+<CRLF> <PRINTI "Praxix frowned and replied, \"I shall make it a point that you are
+the first to know.\"">)> <DISSIPATION-CHECK> <FSET ,LIGHTNING-SPELL ,SEEN> <
+CHECK-CAST-LIMIT>) (T <PECULIAR-NOTION #ZLOCAL!-IZILCH STR?285>)>>)> 
+<DEFINE-ROUTINE ANONF-33> 
+<DEFINE-ROUTINE ANONF-34> 
+<DEFINE-ROUTINE PECULIAR-NOTION> 
+<DEFINE-ROUTINE PRAXIX-DEFAULT-CAST> 
+<OBJECT GROUND (SDESC "ground") (LOC RANDOM-OBJECTS) (KBD 71)> 
+<OBJECT RANDOM-OBJECTS> 
+<OBJECT FIRE-SPELL (LOC ALWAYS-SPELLS) (SDESC "Blaze") (TEMP 0) (KBD 66) (EBITS
+FIREBIT) (PRSI <EXECUTE () <FIND-OBJECTS ,HERE ,DONT-CAST> <FIND-OBJECT ,GROUND
+> <PRSI-TBL #ZLOCAL!-IZILCH STR?281>>) (ACTION <EXECUTE () <COND (<PRE-SPELL> T
+) (<EQUAL? ,ACTION-OBJECT ,GROUND> <PRINTI
+"Praxix took out his fire essence and cast it on the ground before
+our feet. The spot burst into a white-hot flame that died out only
+a few moments later."> <CRLF> <CRLF> <PRINTI
+"\"Quite useful,\" Praxix said, mainly to himself. \"Keeping away
+dangerous beasts, cooking meals, warming up a cold campsite. One never
+knows when a good fire will be needed!\""> <DISSIPATION-CHECK> <
+CHECK-CAST-LIMIT>) (T <PECULIAR-NOTION #ZLOCAL!-IZILCH STR?288>)>>)> 
+<DEFINE-ROUTINE ANONF-35> 
+<DEFINE-ROUTINE ANONF-36> 
+<OBJECT UNDERGROUND-SPELLS> 
+<OBJECT LIGHT-SPELL (LOC ALWAYS-SPELLS) (SDESC "Glow") (TEMP 0) (KBD 71) (EBITS
+<+ ,FIREBIT ,EARTHBIT>) (PRSI <EXECUTE () <FIND-OBJECTS ,PRAXIX-CAST-OBJECTS> <
+FIND-OBJECTS ,INVENTORY ,DONT-CAST> <FIND-OBJECTS ,HERE ,DONT-CAST> <PRSI-TBL #
+ZLOCAL!-IZILCH STR?17>>) (ACTION CAST-LIGHT)> 
+<DEFINE-ROUTINE ANONF-37> 
+<OBJECT FAR-VISION-SPELL (LOC ALWAYS-SPELLS) (SDESC "Flare") (TEMP 0) (KBD 70)
+(EBITS <+ ,FIREBIT ,AIRBIT>) (ACTION CAST-FAR-VISION)> 
+<GLOBAL WEBBA-MAP-GLOW-LOC 0> 
+<OBJECT I-CLEAR-WEBBA-MAP-EXAMINE (TIME 0) (ACTION <EXECUTE () <COND (<NOT <
+EQUAL? ,HERE ,WEBBA-MAP-GLOW-LOC>> <REMOVE ,I-CLEAR-WEBBA-MAP-EXAMINE> <
+UPDATE-FSET ,WEBBA-MAP ,DONT-EXAMINE>)>>)> 
+<DEFINE-ROUTINE ANONF-38> 
+<DEFINE-ROUTINE CAST-LIGHT> 
+<OBJECT I-WEBBA-MAP-GLOW (TIME 0) (ACTION <EXECUTE () <FCLEAR ,WEBBA-MAP ,
+ENCHANTED>>)> 
+<DEFINE-ROUTINE ANONF-39> 
+<DEFINE-ROUTINE DONT-WASTE-LIGHT> 
+<DEFINE-ROUTINE CAST-FAR-VISION> 
+<CONSTANT UNSTABLE-MIX 0> 
+<GLOBAL MIX-ESSENCE 0> 
+<GLOBAL MIX-REAGENT <>> 
+<COMMAND MIX O-MIX () <TELL "Carefully, Praxix mixed the " AO
+" with an equal amount of "> <TELL D ,ACTION-PRSI ", "> <SET MIX-ESSENCE ,
+ACTION-PRSI> <SET MIX-REAGENT ,ACTION-OBJECT> <COND (<AND <EQUAL? ,MIX-REAGENT
+,REAGENT ,BLUE-REAGENT> <EQUAL? ,MIX-ESSENCE ,ESSENCE-FIRE>> <SET MIXTURE ,
+SPECIAL-VISION-SPELL>) (<AND <EQUAL? ,MIX-REAGENT ,REAGENT ,BLUE-REAGENT> <
+EQUAL? ,MIX-ESSENCE ,ESSENCE-WATER>> <SET MIXTURE ,ANIMATE-SPELL>) (<AND <
+EQUAL? ,MIX-REAGENT ,GRAY-REAGENT> <EQUAL? ,MIX-ESSENCE ,ESSENCE-AIR>> <SET
+MIXTURE ,FOREBODING-SPELL>) (<AND <EQUAL? ,MIX-REAGENT ,GRAY-REAGENT> <EQUAL? ,
+MIX-ESSENCE ,ESSENCE-FIRE>> <SET MIXTURE ,BEND-WILL-SPELL>) (<AND <EQUAL? ,
+MIX-REAGENT ,BLACK-REAGENT> <EQUAL? ,HERE ,ZAN-CAVE>> <COND (<EQUAL? ,
+MIX-ESSENCE ,ESSENCE-FIRE> <SET MIXTURE ,DARKNESS-SPELL>) (<EQUAL? ,MIX-ESSENCE
+,ESSENCE-WATER> <SET MIXTURE ,ILLNESS-SPELL>) (<EQUAL? ,MIX-ESSENCE ,
+ESSENCE-EARTH> <SET MIXTURE ,COLD-SPELL>) (T <SET MIXTURE ,DESPAIR-SPELL>)>) (T
+<SET MIXTURE ,UNSTABLE-MIX>)> <COND (<AND <EQUAL? ,MIX-REAGENT ,BLACK-REAGENT>
+<ZERO? ,MIXTURE>> <UPDATE-REMOVE ,BLACK-REAGENT> <PRINTI
+"but the strangest thing happened. The mixture
+itself, along with the remaining black reagent, simply vanished into the
+air."> <CRLF> <CRLF> <COND (<GRTR? ,BLACK-COUNT 0> <PRINTI
+"\"It would appear that without Umber, the mixtures are powerless,\"
+Praxix said. \"He possesses a great power, and his magic has harnessed
+the very essence of evil! But for what purpose?\"">)> <RTRUE>) (<AND ,MIXTURE <
+FSET? ,MIXTURE ,SEEN>> <PRINTI "and was soon ready to cast the mixture.">) (T <
+COND (,MIXTURE <FSET ,MIXTURE ,SEEN>)> <PRINTI
+"and was now ready to cast the unknown mix
+to see what enchantment it would perform.">)> <SET MIX-DONE #ZLOCAL!-IZILCH
+TRUE-VALUE> <COND (,MIXTURE <USE-ESSENCES ,MIXTURE>) (T <USE-ESSENCE ,
+MIX-REAGENT> <USE-ESSENCE ,MIX-ESSENCE>)> <FIXUP-PRAXIX-COMMANDS>> 
+<DEFINE-ROUTINE V-MIX> 
+<DEFINE-ROUTINE FIXUP-PRAXIX-COMMANDS> 
+<GLOBAL MIX-DONE <>> 
+<COMMAND USE-MIX O-CAST-MIX () <SET MIX-DONE #ZLOCAL!-IZILCH FALSE-VALUE> <
+FIXUP-PRAXIX-COMMANDS> <COND (<EQUAL? ,PARTY-MODE ,FIGHT-MODE> <CHANGE-CIT ,
+PRAXIX 2 ,NUL-COMMAND>)> <COND (<ZERO? ,MIXTURE> <COND (<EQUAL? ,MIX-REAGENT ,
+GRAY-REAGENT> <FSET ,MIX-ESSENCE ,GRAY-MIX>) (<EQUAL? ,MIX-REAGENT ,
+BLUE-REAGENT ,REAGENT> <FSET ,MIX-ESSENCE ,BLUE-MIX>) (T <FSET ,MIX-ESSENCE ,
+BLACK-MIX>)> <PRINTI
+"Even as Praxix cast this unknown mixture, it disintegrated into the air."> <
+CRLF> <CRLF> <COND (,SUBGROUP-MODE <PRINTI
+"\"Blasted powders,\" he said aloud.">) (<NOT <QSET? ,MIX-REAGENT ,TRAPPED>> <
+PRINTI "\"Astrix warned us that some mixtures would be unstable,\" he said,
+\"It would appear that he was right.\"">) (T <PRINTI
+"\"Another unstable mixture,\" Praxix said with a sigh.">)>) (T <PRINTI
+"Praxix cast his mixture at "> <COND (<NOT <EQUAL? ,ACTION-OBJECT ,
+BERGON-OBJECT ,ESHER-OBJECT ,MINAR-OBJECT>> <PRINTI "the ">)> <WPRINTD ,
+ACTION-OBJECT> <PRINTI
+", but nothing appeared to
+happen. \"It was worth a try,\" Praxix said, but he was clearly disappointed
+with the result.">)>> 
+<DEFINE-ROUTINE V-USE-MIX> 
+<DEFINE-ROUTINE O-CAST-MIX> 
+<OBJECT PRAXIX-CAST-OBJECTS> 
+<OBJECT STAFF (LOC PRAXIX-CAST-OBJECTS) (SDESC "staff") (KBD 83) (ACTION <ACOND
+() (<AND <EQUAL? ,ACTION ,USE-MIX-COMMAND> <NOT <ZERO? ,MIXTURE>>> <COND (<
+EQUAL? ,MIXTURE ,FOREBODING-SPELL> <FSET ,FOREBODING-SPELL ,ENCHANTED> <PRINTI
+"Praxix cast this strange new mixture at his staff, and the oddest
+thing happened. Rather than the pale red glow of his \"glow\" spell,
+his staff now gave off a "> <COND (<FSET? ,HERE ,FORBIDDING> <PRINTI
+"deep red glow">) (T <PRINTI
+"dim green glow which was barely perceptible to the eye">)> <PRINTI "."> <QUEUE
+RESET-FOREBODING-OBJ 5> <COND (<NOT <QSET? ,STAFF ,ENCHANTED>> <PRINTI
+" We waited a while longer, but nothing further happened."> <REMOVE ,
+HYE-FOREBODING> <CRLF> <CRLF> <PRINTI
+"\"Odd,\" Praxix said, \"Either the spell is useless, or it works in a
+manner that we have not yet discovered - I wonder which.\"">)> <MIXTURE-CAST> <
+RTRUE>) (T <PRINTI
+"Unsure of what to cast the mixture at, Praxix thought to try his staff. Sadly,
+though, nothing happened."> <MIXTURE-CAST> <RTRUE>)>)>)> 
+<DEFINE-ROUTINE ANONF-40> 
+<DEFINE-ROUTINE FIND-PARTY-OBJECTS> 
+<GLOBAL MIXTURE 0> 
+<OBJECT SPECIAL-VISION-SPELL (EBITS <+ ,FIREBIT ,BLUEBIT>)> 
+<OBJECT ANIMATE-SPELL (EBITS <+ ,WATERBIT ,BLUEBIT>)> 
+<OBJECT FOREBODING-SPELL (EBITS <+ ,AIRBIT ,GRAYBIT>)> 
+<OBJECT BEND-WILL-SPELL (EBITS <+ ,FIREBIT ,GRAYBIT>)> 
+<OBJECT ILLNESS-SPELL (EBITS <+ ,WATERBIT ,BLACKBIT>)> 
+<OBJECT DARKNESS-SPELL (EBITS <+ ,FIREBIT ,BLACKBIT>)> 
+<OBJECT COLD-SPELL (EBITS <+ ,EARTHBIT ,BLACKBIT>)> 
+<OBJECT DESPAIR-SPELL (EBITS <+ ,AIRBIT ,BLACKBIT>)> 
+<OBJECT REAGENT (SDESC "reagent") (KBD 82) (EOFF 5) (PRSI PRSI-ESSENCE) (FLAGS
+DONT-EXAMINE)> 
+<OBJECT BLUE-REAGENT (SDESC "blue reagent") (8DESC "blue rgt") (KBD 66) (EOFF 5
+) (PRSI PRSI-ESSENCE) (FLAGS DONT-EXAMINE)> 
+<OBJECT GRAY-REAGENT (SDESC "gray reagent") (8DESC "gray rgt") (KBD 71) (EOFF 6
+) (PRSI PRSI-ESSENCE) (FLAGS DONT-EXAMINE)> 
+<OBJECT BLACK-REAGENT (SDESC "black reagent") (12DESC "black rgt.") (8DESC
+"blk rgt") (KBD 71) (EOFF 7) (PRSI PRSI-ESSENCE) (FLAGS DONT-EXAMINE)> 
+<DEFINE-ROUTINE PRSI-TBL> 
+<DEFINE-ROUTINE PRSI-SETUP> 
+<DEFINE-ROUTINE PRSI-ESSENCE> 
+<OBJECT ESSENCES> 
+<OBJECT ESSENCE-FIRE (LOC ESSENCES) (SDESC "fire essence") (12DESC "fire") (
+8DESC "fire") (EOFF 2) (TEMP 2) (COLOR 0) (MIX-SPELL LIGHT-SPELL
+FAR-VISION-SPELL TAG-POWDERS LIGHTNING-SPELL) (PRSI ESSENCE-PRSI) (KBD 70)> 
+<OBJECT ESSENCE-WATER (LOC ESSENCES) (SDESC "water essence") (12DESC "water") (
+8DESC "water") (EOFF 4) (TEMP 3) (COLOR 0) (MIX-SPELL MUD-SPELL FOG-SPELL
+LIGHTNING-SPELL TAG-POWDERS) (PRSI ESSENCE-PRSI) (KBD 87)> 
+<OBJECT ESSENCE-AIR (LOC ESSENCES) (SDESC "air essence") (12DESC "air") (8DESC
+"air") (EOFF 1) (TEMP 1) (COLOR 0) (MIX-SPELL LEVITATE-SPELL TAG-POWDERS
+FAR-VISION-SPELL FOG-SPELL) (PRSI ESSENCE-PRSI) (KBD 65)> 
+<OBJECT ESSENCE-EARTH (LOC ESSENCES) (SDESC "earth essence") (12DESC "earth") (
+8DESC "earth") (EOFF 3) (TEMP 0) (COLOR 0) (MIX-SPELL TAG-POWDERS
+LEVITATE-SPELL LIGHT-SPELL MUD-SPELL) (PRSI ESSENCE-PRSI) (KBD 69)> 
+<OBJECT SALT (SDESC "salt") (TEMP 4) (COLOR 0)> 
+<OBJECT NUL-ESSENCE-1 (LOC ESSENCES) (SDESC "nul essence") (TEMP 5) (COLOR 0)> 
+<OBJECT NUL-ESSENCE-2 (LOC ESSENCES) (SDESC "nul essence") (TEMP 6) (COLOR 0)> 
+<OBJECT NUL-ESSENCE-3 (LOC ESSENCES) (SDESC "nul essence") (TEMP 7) (COLOR 0)> 
+<DEFINE-ROUTINE ESSENCE-PRSI> 
+<DEFINE-ROUTINE GET-SPELL> 
+<DEFINE-ROUTINE TELL-COLOR> 
+<OBJECT REAGENTS> 
+<GLOBAL NUM-POWDERS 8> 
+<DEFINE-ROUTINE REMOVE-MISSING-POWDERS> 
+<DEFINE-ROUTINE EP-CHECK> 
+<DEFINE-ROUTINE O-MIX> 
+<DEFINE-ROUTINE MIXTURE-CAST> 
+<DEFINE-ROUTINE SAVE-SPELL> 
+<DEFINE-ROUTINE RESTORE-SPELLS> 
+<OBJECT SAVED-SPELLS> 
+<GLOBAL DEMON-COUNT -1> 
+<OBJECT TAG-POWDERS (SDESC "mixture") (ACTION <ACOND () (<EQUAL? ,ACTION ,
+CAST-COMMAND> <COND (<AND <EQUAL? ,TAG-SPELL ,LIGHTNING-SPELL> <EQUAL? ,
+TAG-PINCH ,ESSENCE-EARTH>> <GRAPHIC ,G-EVIL-ONE> <PRINTI
+"The time seemed right, so I flung the mixture of essences at the Dread
+Lord and, as an added touch, I grabbed Praxix' staff and pointed it at him as well. 
+The clouds approached, and before the demon could react, a single bolt of
+lightning was hurled from the sky, smiting him and the hideous creature that had
+borne him here. All that remained was his silver locket, which clattered to
+the ground at our feet."> <CRLF> <CRLF> <PRINTI
+"But as the smoking remains of the Dread Lord rose into the sky, so did another
+shape, forming itself from the very ashes. Its face was a pale gray, its eyes a
+fiery red."> <CRLF> <CRLF> <PRINTI
+"\"You are fortunate to have defeated me,\" it said in a dark whisper, \"but, after
+all, my form was merely flesh and blood, as was the miserable creature that carried
+me here.\""> <CRLF> <CRLF> <PRINTI
+"And then, his eyes turned to me, and his gaze burned my skin.
+\"I shall make it a point that we meet again; and then, we shall see...\"
+The smoke dissipated, and the voice trailed off into nothingness."> <CRLF> <
+CRLF> <PRINTI "Praxix, having missed the whole thing, now regained consciousness, and
+I told him what had happened. Then, I bent down and picked up the demon's locket,
+placing it in my pack."> <CRLF> <CRLF> <PRINTI
+"\"Well, well,\" he said, proudly. \"We shall be making a Wizard of
+you yet!\""> <END-DEMON>) (T <SET DEMON-COUNT 10> <HINT ,HINT-MAGIC> <PRINTI
+"As soon as the mixture left my fingertips, I knew I had failed. For
+what happened was that "> <COND (<EQUAL? ,TAG-SPELL ,LIGHTNING-SPELL> <PRINTI
+"the clouds gathered slowly, and a few small bolts of lightning appeared,
+though they did not nearly reach the earth.">) (<EQUAL? ,TAG-SPELL ,
+LEVITATE-SPELL> <PRINTI
+"the demon rose into the air! I had cast a spell of elevation
+on him, and he merely laughed at my futile effort.">) (<EQUAL? ,TAG-SPELL ,
+MUD-SPELL> <PRINTI
+"the ground before us turned soft and squishy; I had a mud producing
+spell, and the demon laughed hideously at my ridiculous effort.">) (<EQUAL? ,
+TAG-SPELL ,LIGHT-SPELL> <PRINTI
+"the demon's cape started to glow faintly - I had cast the glow spell
+my mistake!">) (<EQUAL? ,TAG-SPELL ,FOG-SPELL> <PRINTI
+"a thick fog started to form around us; the demon blew it away with a
+powerful breath! I had prepared the wrong mixture!">) (<EQUAL? ,TAG-SPELL ,
+FAR-VISION-SPELL> <PRINTI
+"a fireball flew from my fingertips, passing the demon by harmlessly -
+in my haste, I had prepared the wrong mixture!">) (T <PRINTI
+"nothing whatever happened.">)>)>)>)> 
+<DEFINE-ROUTINE ANONF-41> 
+<GLOBAL TAG-SPELL <>> 
+<GLOBAL TAG-PINCH <>> 
+<DEFINE-ROUTINE TAG-POWDER-MIX> 
+<COMMAND ADD-PINCH O-ADD-PINCH () <SETG TAG-PINCH <GETP ,ACTION-OBJECT ,
+P?ESSENCE>> <TRAVEL-COMMANDS ,TAG ,CAST-COMMAND> <TELL
+"Then, I added to the mixture just the smallest pinch of the " AO " powder.">> 
+<DEFINE-ROUTINE V-ADD-PINCH> 
+<DEFINE-ROUTINE O-ADD-PINCH> 
+<OBJECT TAG-C-RED-POWDER (LOC TAG-POWDERS) (SDESC "coarse red") (8DESC
+"crs red") (FLAGS COARSE) (KBD 82) (PRSI PRSI-TAG-POWDERS) (TEMP 0) (ESSENCE 0)
+(MIX-COLOR "red" "violet" "orange" "pink") (ACTION TAG-POWDER-MIX)> 
+<OBJECT TAG-RED-POWDER (LOC TAG-POWDERS) (SDESC "fine red") (KBD 82) (PRSI
+PRSI-TAG-POWDERS) (TEMP 0) (ESSENCE 0) (MIX-COLOR "red" "violet" "orange"
+"pink") (ACTION TAG-POWDER-MIX)> 
+<OBJECT TAG-C-BLUE-POWDER (LOC TAG-POWDERS) (SDESC "coarse blue") (8DESC
+"crs blue") (FLAGS COARSE) (KBD 66) (PRSI PRSI-TAG-POWDERS) (TEMP 1) (ESSENCE 0
+) (MIX-COLOR "violet" "blue" "green" "pale blue") (ACTION TAG-POWDER-MIX)> 
+<OBJECT TAG-BLUE-POWDER (LOC TAG-POWDERS) (SDESC "fine blue") (KBD 66) (PRSI
+PRSI-TAG-POWDERS) (TEMP 1) (ESSENCE 0) (MIX-COLOR "violet" "blue" "green"
+"pale blue") (ACTION TAG-POWDER-MIX)> 
+<OBJECT TAG-C-YELLOW-POWDER (LOC TAG-POWDERS) (SDESC "coarse yellow") (12DESC
+"crs. yellow") (8DESC "crs yell") (FLAGS COARSE) (KBD 89) (TEMP 2) (ESSENCE 0)
+(MIX-COLOR "orange" "green" "yellow" "pale yellow") (PRSI PRSI-TAG-POWDERS) (
+ACTION TAG-POWDER-MIX)> 
+<OBJECT TAG-YELLOW-POWDER (LOC TAG-POWDERS) (SDESC "fine yellow") (8DESC
+"fin yell") (KBD 89) (TEMP 2) (ESSENCE 0) (MIX-COLOR "orange" "green" "yellow"
+"pale yellow") (PRSI PRSI-TAG-POWDERS) (ACTION TAG-POWDER-MIX)> 
+<OBJECT TAG-C-WHITE-POWDER (LOC TAG-POWDERS) (SDESC "coarse white") (8DESC
+"crs white") (FLAGS COARSE) (KBD 87) (PRSI PRSI-TAG-POWDERS) (TEMP 3) (ESSENCE
+0) (MIX-COLOR "pink" "pale blue" "pale yellow" "white") (ACTION TAG-POWDER-MIX)
+> 
+<OBJECT TAG-WHITE-POWDER (SDESC "fine white") (8DESC "fin white") (KBD 87) (
+PRSI PRSI-TAG-POWDERS) (TEMP 3) (ESSENCE 0) (MIX-COLOR "pink" "pale blue"
+"pale yellow" "white") (ACTION TAG-POWDER-MIX)> 
+<DEFINE-ROUTINE PRSI-TAG-POWDERS> 

@@ -1,0 +1,230 @@
+
+<BEGIN-SEGMENT ZAN> 
+<COMMAND ELFENTIDE> 
+<COMMAND ZEPHYR> 
+<COMMAND (SOUTH-SEAS SOUTHSEAS)> 
+<COMMAND YES> 
+<COMMAND NO> 
+<GLOBAL GOOD-CAPTAIN <>> 
+<GLOBAL GOOD-CAPTAIN-NAME <>> 
+<GLOBAL CAPTAIN-TBL <LTABLE W?ELEVAR W?CRIBALD W?CALFON W?ANDRIL W?BENDOR
+W?SISKA W?IBARA W?KELNOR W?ULMAN W?ANSAX W?GILFAN W?VENDOR W?MEREZI>> 
+<GLOBAL CAPTAIN-NAME-TBL <LTABLE "Elevar" "Cribald" "Calfon" "Andril" "Bendor"
+"Siska" "Ibara" "Kelnor" "Ulman" "Ansax" "Gilfan" "Vendor" "Merezi">> 
+<DEFINE-ROUTINE GOOD-CAPTAIN-SETUP> 
+<ROOM WHARF (TRAVEL-COMMANDS BACK-COMMAND NUL-COMMAND NUL-COMMAND NUL-COMMAND)
+(GRAPHIC G-WHARF) (ENTER <EXECUTE () <UPDATE-REMOVE ,MUD-SPELL> <COND (<FSET? ,
+ZAN-2 ,BLACK-MIX> <ADD-TRAVEL-COMMAND ,ZAN-2 ,INN-COMMAND>)> <COND (<NOT <QSET?
+,HERE ,SEEN>> <CRLF> <CRLF> <PRINTI
+"As we arrived at the waterfront, the harbormaster was just preparing to leave
+his station for the evening. As we had no clear notion of which boats might be
+available for charter, or what captains might be willing to take us to
+the Misty Isle, we sought his advice."> <CRLF> <CRLF> <PRINTI
+"Rather than divulging our true purpose, Bergon simply told the harbormaster
+that we wished to charter a boat early the next morning for one of the neighboring
+islands."> <CRLF> <CRLF> <PRINTI
+"\"If you'd like, I could suggest a few of the captains that might be interested,\"
+the harbormaster replied. \"Or do you have some particular captain in mind?\"">
+<OPTION ,BERGON ,YES-COMMAND ,NO-COMMAND>)> <COND (<AND <FSET? ,ELFENTIDE ,SEEN
+> <FSET? ,SOUTH-SEAS ,SEEN> <OR <FSET? ,ZEPHYR ,SEEN> <FSET? ,HERE ,USED-UP>>>
+<FSET ,HERE ,TRAPPED> <FSET ,HERE ,ADVISE>)>>) (FLAGS ADVISE) (ACTION <ACOND (
+"AUX" WDS W1) (<EQUAL? ,ACTION ,YES-COMMAND> <COND (<READ-ELVISH ,BERGON> <SET
+WDS <GETB ,E-LEXV 1>> <SET W1 <GET ,E-LEXV 1>> <PRINTI
+"\"In fact, we did have someone in mind,\" Bergon replied. \"His name was "> <
+PRINTT ,E-TEMP ,E-TEMP-LEN> <PRINTI ", I believe.\""> <CRLF> <CRLF> <COND (<AND
+<EQUAL? .WDS 1> <EQUAL? .W1 ,GOOD-CAPTAIN>> <PRINTI
+"\"Now that's a laugh,\" the harbormaster replied, chortling. \"I can't imagine
+what use he'll be to you, but you'll find him aboard the Zephyr - that's on the
+third pier, fourth boat to the left. If you don't have any luck with the old sot,
+try over at the Elfentide or the South Seas - they're both in port and available
+for charter. "> <PRINT ,GOOD-CAPTAIN-NAME> <PRINTI
+", indeed! You folks have yourselves a fine evening.\" He laughed again, pointed
+out the two other boats he had suggested, and strode back into town."> <FSET ,
+HERE ,USED-UP> <TRAVEL-COMMANDS ,HERE ,ELFENTIDE-COMMAND ,SOUTH-SEAS-COMMAND ,
+ZEPHYR-COMMAND ,BACK-COMMAND>) (<AND <EQUAL? .WDS 1> <EQUAL? .W1 ,W?CALFON ,
+W?STEGG>> <PRINTI
+"\"Why, that's him over there,\" the harbormaster replied, pointing toward a
+nearby mooring. \"Boat's called the "> <COND (<EQUAL? .W1 ,W?CALFON> <PRINTI
+"Elfentide">) (T <PRINTI "South Seas">)> <PRINTI
+", and I'm right sure its for hire. But, if it's not, you might try the "> <
+COND (<EQUAL? .W1 ,W?CALFON> <PRINTI "South Seas">) (T <PRINTI "Elfentide">)> <
+PRINTI ", right over there. You folks have a good night!\" And with that, he turned
+and strode away."> <TRAVEL-COMMANDS ,HERE ,ELFENTIDE-COMMAND ,
+SOUTH-SEAS-COMMAND ,BACK-COMMAND>) (<AND <EQUAL? .WDS 1> <INTBL? .W1 #
+ZLOCAL!-IZILCH ?TMP2!-IZILCH #ZLOCAL!-IZILCH STACK>> <PRINTI
+"\"Hmm,\" the harbormaster replied, \"Last I saw him was a few weeks ago, on the
+Stout. He'll be back before spring, I expect.\""> <CRLF> <CRLF> <SET ACTION ,
+NO-COMMAND> <AGAIN>) (<OR <EQUAL? .WDS 1> <FSET? ,HERE ,TRIED>> <PRINTI
+"\"Never heard of him,\" the harbormaster replied."> <CRLF> <CRLF> <SET ACTION
+,NO-COMMAND> <AGAIN>) (T <FSET ,HERE ,TRIED> <PRINTI
+"\"Come again,\" the harbormaster replied. \"What was his name?\""> <CRLF> <SET
+ACTION ,NO-COMMAND> <AGAIN>)>) (T <PRINTI
+"But Bergon apparently had nobody in mind, for he said nothing."> <CRLF> <CRLF>
+<SET ACTION ,NO-COMMAND> <AGAIN>)> <END-OPTION>) (<EQUAL? ,ACTION ,NO-COMMAND>
+<PRINTI "\"Let me suggest you ask the captains of the Elventide, over there, and
+the South Seas, over there,\" he said, pointing out the two boats."> <
+TRAVEL-COMMANDS ,HERE ,ELFENTIDE-COMMAND ,SOUTH-SEAS-COMMAND ,BACK-COMMAND> <
+END-OPTION>) (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <UPDATE-FCLEAR ,HERE ,ADVISE
+> <COND (<FSET? ,HERE ,TRAPPED> <PRINTI
+"Having seen the boats available for hire, we had a difficult choice to
+make."> <CRLF> <CRLF> <COND (<FSET? ,ELFENTIDE ,DEAD> <PRINTI
+"\"It will help somewhat that we haven't the option of taking
+the Elfentide,\" I said, \"though the captain's words sent shivers
+down my spine.\" Concluding my thoughts, I added,">) (T <PRINTI
+"\"The captains were all willing to take us, and that is a good sign,\" I said,
+hopefully.">)> <PRINTI " \"Perhaps it does not matter which one we choose.\"">
+<COND (<AND <FSET? ,SOUTH-SEAS ,TRUTHFUL> <FSET? ,ZEPHYR ,TRUTHFUL> <FSET? ,
+ELFENTIDE ,TRUTHFUL>> <CRLF> <CRLF> <PRINTI
+"\"The captain of the South Seas was willing to take us directly to
+the Misty Isle; shall we not take take him up on his offer?\" Bergon
+asked."> <CRLF> <CRLF> <PRINTI
+"\"His offer does not please me when I consider the responses of
+the others,\" Praxix countered. \"Why, I wonder, is he so anxious
+to take us into probable danger?\"">)> <RTRUE>) (T <PRINTI
+"Huddling together, we agreed that the best plan of attack would be to
+check out each of the boats and make any decisions later."> <CRLF> <CRLF> <
+PRINTI "\"Our decision here is critical,\" "> <WPRINTD ,ACTOR> <PRINTI
+" said. \"Let us learn as much
+as we can about the boats and their crews.\"">)>) (<EQUAL? ,ACTION ,
+SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE ,SCOUTED> <WPRINTD ,
+ACTOR> <PRINTI " took a quick look around the wharf, reporting that there were
+no other boats obviously available for charter. The rest, it seems, were
+vacant, or out trawling, or had been previously hired.">) (<EQUAL? ,ACTION ,
+BACK-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"I suggested we return to town, but Bergon was firm. \"Astrix warned us
+not to tarry in Zan, and I feel we are not entirely safe here. Let us
+arrange to charter one of the boats; I know I will sleep easier knowing that
+we sail tomorrow.">) (<EQUAL? ,ACTION ,ELFENTIDE-COMMAND> <FSET ,HERE ,
+DONT-SCOUT> <FCLEAR ,HERE ,ADVISE> <COND (<NOT <QSET? ,ELFENTIDE ,SEEN>> <
+PRINTI "The 'Elfentide' was a fore-and-aft rigged fishing vessel, whose main mast
+stood fifty feet or more above decks, and whose tall mizzenmast sat just
+forward of the rudderpost."> <CRLF> <CRLF> <PRINTI
+"\"This is what you'd call a ketch,\" said Bergon, \"and a beauty at
+that.\""> <CRLF> <CRLF> <PRINTI
+"The captain stood at the bow, peering out over the sea, and every so often
+barked an order at one of his deck hands."> <MOVE-TO ,ELFENTIDE>) (T <
+CHOOSE-BOAT #ZLOCAL!-IZILCH STR?761> <CHOOSE-ELFENTIDE> <RETURN-FROM-WHARF>)>)
+(<EQUAL? ,ACTION ,ZEPHYR-COMMAND> <FSET ,HERE ,DONT-SCOUT> <FCLEAR ,HERE ,
+ADVISE> <COND (<NOT <QSET? ,ZEPHYR ,SEEN>> <PRINTI
+"The 'Zephyr', like the 'Elfentide', was a fore-and-aft rigged fishing boat,
+with two tall masts."> <CRLF> <CRLF> <PRINTI
+"The captain sat at the wheelhouse, head between his knees."> <MOVE-TO ,ZEPHYR>
+) (T <CHOOSE-BOAT #ZLOCAL!-IZILCH STR?763> <CHOOSE-ZEPHYR> <RETURN-FROM-WHARF>)
+>) (<EQUAL? ,ACTION ,SOUTH-SEAS-COMMAND> <FSET ,HERE ,DONT-SCOUT> <FCLEAR ,HERE
+,ADVISE> <COND (<NOT <QSET? ,SOUTH-SEAS ,SEEN>> <PRINTI
+"Like the other boats here, the 'South Seas' was fore-and-aft rigged, but
+with a shorter mizzenmast than the other two."> <CRLF> <CRLF> <PRINTI
+"\"This boat's a yawl,\" said Bergon, \"and a beauty at that.\""> <CRLF> <CRLF>
+<PRINTI "At first, it appeared that the boat was deserted, but the captain soon came up
+from below decks with a member of his crew."> <MOVE-TO ,SOUTH-SEAS>) (T <
+CHOOSE-BOAT #ZLOCAL!-IZILCH STR?765> <CHOOSE-SOUTH-SEAS> <RETURN-FROM-WHARF>)>)
+>)> 
+<DEFINE-ROUTINE ANONF-351> 
+<DEFINE-ROUTINE ANONF-352> 
+<DEFINE-ROUTINE CHOOSE-BOAT> 
+<DEFINE-ROUTINE RETURN-FROM-WHARF> 
+<DEFINE-ROUTINE CHOOSE-ZEPHYR> 
+<ROOM ZEPHYR (TRAVEL-COMMANDS NUL-COMMAND NUL-COMMAND NUL-COMMAND) (SDESC
+"Zephyr") (GRAPHIC G-ZEPHYR) (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <TELL CR CR
+"The sound of our footsteps on the wooden planking must have plainly announced
+our arrival, but nevertheless the captain did not move." CR CR> <TELL
+"Finally, Bergon spoke. \"Excuse us, sir,\" he said, and the wizened
+man at the wheel raised his head. He was not a pretty sight, having not
+shaved or bathed in a week. A nearly empty bottle of whiskey lay beside
+him, its former contents amply represented by his foul breath." CR CR> <TELL
+"\"You're not from these parts,\" he said, in a slur. \"What would you be
+doing in Zan?\"" CR CR> <TELL
+"\"We've come to charter a boat,\" Bergon replied." CR CR> <TELL
+"\"And just where do you expect this boat to take you?\""> <OPTION ,BERGON ,
+TELL-TRUTH-COMMAND ,LIE-COMMAND>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+ACCEPT-COMMAND> <PRINT ,VERY-KIND> <CRLF> <CRLF> <CHOOSE-ZEPHYR> <
+RETURN-FROM-WHARF> <END-OPTION>) (<EQUAL? ,ACTION ,CONSIDER-COMMAND> <
+TELL-CONSIDER> <MOVE-TO ,WHARF> <END-OPTION>) (<EQUAL? ,ACTION ,LIE-COMMAND> <
+PRINTI "\"We're heading south, to the Isle of Estril,\" Bergon said. It
+was a lie, of course, but it was roughly in the right direction."> <CRLF> <CRLF
+> <PRINTI "\"Estril? What on earth would send you there?\" the captain scowled. \"No,
+don't tell me. If that's where you're headed, I can take you.\""> <OPTION ,
+BERGON ,ACCEPT-COMMAND ,CONSIDER-COMMAND>) (<EQUAL? ,ACTION ,TELL-TRUTH-COMMAND
+> <FSET ,HERE ,TRUTHFUL> <PRINTI
+"\"We were hoping to sail to the Misty Isle.\""> <CRLF> <CRLF> <PRINTI
+"The old man's eyes widened. \"The Misty Isle,\" he repeated. Then, he sat
+for a long while before speaking again."> <CRLF> <CRLF> <PRINTI
+"\"Lots of legends about the Misty Isle,\" he said, snivelling, \"and ain't
+none of them wouldn't keep you up nights. They say that none's returned
+that's gone there. No, I'm afraid I'm not young enough or drunk enough to
+try it. Tell you what - I can take you as far as Estril. Could be there's
+boats you can hire there that'll take you where you're heading.\""> <OPTION ,
+BERGON ,ACCEPT-COMMAND ,CONSIDER-COMMAND>)>)> 
+<DEFINE-ROUTINE ANONF-353> 
+<DEFINE-ROUTINE ANONF-354> 
+<DEFINE-ROUTINE CHOOSE-ELFENTIDE> 
+<COMMAND CONSIDER> 
+<ROOM ELFENTIDE (TRAVEL-COMMANDS NUL-COMMAND NUL-COMMAND NUL-COMMAND) (SDESC
+"Elfentide") (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <TELL CR CR
+"As we approached him, he turned and looked us over, as if we were the
+catch of the day, and a poor day at that." CR CR> <TELL
+"\"What can I do for you folks? I don't got any work, if that's what you're
+looking for,\" he said." CR CR> <TELL ,NEED-BOAT CR CR> <TELL
+"\"That can be arranged. And where might you be going?\""> <OPTION ,BERGON ,
+TELL-TRUTH-COMMAND ,LIE-COMMAND>>) (GRAPHIC G-ELFENTIDE) (ACTION <ACOND () (<
+EQUAL? ,ACTION ,ACCEPT-COMMAND> <PRINT ,VERY-KIND> <CRLF> <CRLF> <
+CHOOSE-ELFENTIDE> <RETURN-FROM-WHARF> <END-OPTION>) (<EQUAL? ,ACTION ,
+CONSIDER-COMMAND> <TELL-CONSIDER> <MOVE-TO ,WHARF> <END-OPTION>) (<EQUAL? ,
+ACTION ,LIE-COMMAND> <PRINTI
+"\"We're heading south, to the Isle of Estril,\" Bergon said. It
+was a lie, of course, but at least in the right direction."> <CRLF> <CRLF> <
+PRINTI "\"Estril, aye,\" the captain said, \"We can take you there, and
+get in a day's fishing at that.\""> <OPTION ,BERGON ,ACCEPT-COMMAND ,
+CONSIDER-COMMAND>) (<EQUAL? ,ACTION ,TELL-TRUTH-COMMAND> <FSET ,HERE ,TRUTHFUL>
+<PRINTI "\"We are headed toward the Misty Isle.\""> <CRLF> <CRLF> <PRINTI
+"\"The Misty Isle,\" the captain started, \"Is that so?\" He rubbed his
+stubbled face and continued, \"There's nobody fool enough to go there;
+ain't nobody ever returned. I'm sorry, lads, you'll have no luck around
+here. Now, if you don't mind, I've got some serious work to do.\""> <
+REMOVE-TRAVEL-COMMAND ,WHARF ,ELFENTIDE-COMMAND> <FSET ,ELFENTIDE ,DEAD> <
+MOVE-TO ,WHARF> <END-OPTION>)>)> 
+<DEFINE-ROUTINE ANONF-355> 
+<DEFINE-ROUTINE ANONF-356> 
+<GLOBAL CHOSEN-BOAT <>> 
+<GLOBAL CAPTAIN <>> 
+<DEFINE-ROUTINE CHOOSE-SOUTH-SEAS> 
+<GLOBAL CONSIDER-COUNT 0> 
+<DEFINE-ROUTINE TELL-CONSIDER> 
+<CONSTANT CONSIDER-TBL <LTABLE
+"\"You are kind to offer; we need a chance to talk among ourselves,
+and shall return quickly to give our answer,\" Bergon replied. And with
+that, we returned to the wharf."
+"\"We thank you for the offer,\" Bergon said, \"and we shall return
+with a reply as soon as we have had a chance to consider.\" Returning
+to the wharf, we pondered our alternatives."
+"\"You are too kind,\" Bergon said, \"but we must retire to consider
+your offer.\" And, thanking the captain again, we again made our
+way back to the wharf to consider the offers we had received.">> 
+<CONSTANT VERY-KIND
+"\"You are very kind, sir,\" Bergon replied, \"When do you set
+sail?\""> 
+<CONSTANT NEED-BOAT
+"\"We need to charter a boat,\" Bergon replied, \"and we're willing to pay
+whatever you ask.\""> 
+<ROOM SOUTH-SEAS (TRAVEL-COMMANDS NUL-COMMAND NUL-COMMAND NUL-COMMAND) (SDESC
+"South Seas") (GRAPHIC G-SOUTH-SEAS) (FLAGS FORBIDDING) (EXIT RESET-FOREBODING)
+(ENTER <EXECUTE () <FSET ,HERE ,SEEN> <TELL CR CR
+"As we approached, he smiled broadly and welcomed us aboard. \"Name's
+Stegg,\" he said, \"and this here's my boat. Mighty proud of her, I
+am.\"" CR CR> <TELL ,NEED-BOAT CR CR> <TELL
+"\"That's my business,\" Stegg replied. \"Where is it then that you're
+bound?\""> <CHECK-FOREBODING> <OPTION ,BERGON ,TELL-TRUTH-COMMAND ,LIE-COMMAND>
+>) (ACTION <ACOND () (<EQUAL? ,ACTION ,ACCEPT-COMMAND> <PRINT ,VERY-KIND> <CRLF
+> <CRLF> <CHOOSE-SOUTH-SEAS> <RETURN-FROM-WHARF> <END-OPTION>) (<EQUAL? ,ACTION
+,CONSIDER-COMMAND> <TELL-CONSIDER> <MOVE-TO ,WHARF> <END-OPTION>) (<EQUAL? ,
+ACTION ,LIE-COMMAND> <PRINTI
+"\"We're travelling to the Isle of Estril,\" Bergon said."> <CRLF> <CRLF> <
+PRINTI "\"Beautiful spot,\" the captain said, \"I can take you there
+tomorrow, if you like.\""> <OPTION ,BERGON ,ACCEPT-COMMAND ,CONSIDER-COMMAND>)
+(<EQUAL? ,ACTION ,TELL-TRUTH-COMMAND> <FSET ,HERE ,TRUTHFUL> <PRINTI
+"\"We are headed toward the Misty Isle.\""> <CRLF> <CRLF> <PRINTI
+"\"Well, then,\" Stegg replied without the least hesitation, \"the Misty
+Isle it is. We can leave in the morning, if you like.\""> <OPTION ,BERGON ,
+ACCEPT-COMMAND ,CONSIDER-COMMAND>)>)> 
+<DEFINE-ROUTINE ANONF-357> 
+<DEFINE-ROUTINE ANONF-358> 

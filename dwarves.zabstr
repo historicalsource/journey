@@ -1,0 +1,370 @@
+
+<BEGIN-SEGMENT DWARVES> 
+<GLOBAL DWM-HERE 4> 
+<GLOBAL DWM-LOC1 6> 
+<GLOBAL DWM-LOC2 1> 
+<GLOBAL DWM-FACING 1> 
+<ROOM DWARF-MEETING-LOC (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND
+STAND-COMMAND) (FLAGS UNDERGROUND DANGEROUS DONT-SCOUT) (ENTER <EXECUTE () <
+TELL CR CR> <SCENE ,DWARF-MEETING>>) (TEMP 0)> 
+<DEFINE-ROUTINE ANONF-86> 
+<ROOM CAVERN-1 (TRAVEL-COMMANDS PROCEED-COMMAND NUL-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND DONT-SCOUT) (ACTION <ACOND () (<EQUAL? ,ACTION ,PROCEED-COMMAND> <
+UPDATE-MOVE ,STORY-TOWERS ,HURTH-STORIES> <MOVE-TO ,STAIR-BOTTOM #
+ZLOCAL!-IZILCH STR?410>)>)> 
+<DEFINE-ROUTINE ANONF-87> 
+<OBJECT DWARF-MEETING (ACTION <EXECUTE ("AUX" DF (BK <>)) <COND (<EQUAL? ,
+ACTION ,BACK-COMMAND> <SET BK #ZLOCAL!-IZILCH TRUE-VALUE> <SETG DWM-FACING <NOT
+,DWM-FACING>> <SET ACTION ,PROCEED-COMMAND> <PRINTI
+"We turned around and started slowly back in the opposite direction."> <CRLF> <
+CRLF>)> <COND (<EQUAL? ,ACTION ,SCENE-START-COMMAND> <PRINTI
+"As we slowly made our way down the forbidding passageway, Bergon signalled
+us to stop."> <CRLF> <CRLF> <PRINTI
+"\"Do you hear that?\" he asked, indicating some faint sound
+from the gloom that lay before us."> <COND (<AND <EQUAL? ,KIDNAPPED ,MINAR> <
+FSET? ,ESHER ,IN-PARTY> <NOT ,2ND-PASS>> <CRLF> <CRLF> <PRINTI
+"\"Yes, and it's a trap, no doubt set for us by our friend Minar!\" scowled
+Esher.">)> <RTRUE>) (<EQUAL? ,ACTION ,STAND-COMMAND> <SETG DWM-LOC1 <SUB ,
+DWM-LOC1 1>> <SETG DWM-LOC2 <ADD ,DWM-LOC2 1>> <COND (<NOT <EQUAL? ,DWM-HERE ,
+DWM-LOC1 ,DWM-LOC2>> <COND (<NOT <GETP ,HERE ,P?TEMP>> <PRINTI
+"As we stood our ground, it seemed that sounds could be heard behind
+us as well as in front of us."> <DWM-TRAPPED>) (T <SET DWM-LOC1 ,DWM-HERE> <
+DWM-HEAR>)>) (T <DWM-HEAR>)>) (<EQUAL? ,ACTION ,PROCEED-COMMAND> <COND (<NOT .
+BK> <COND (<NOT <QSET? ,HERE ,TRAPPED>> <PRINTI
+"Increasingly apprehensive, we made our way slowly down the passage."> <CRLF> <
+CRLF>) (T <PRINTI
+"Reaching toward our weapons, we moved forward at a snail's pace; the
+sounds grew louder and seemed to come from all around us!"> <CRLF> <CRLF>)>)> <
+COND (,DWM-FACING <SETG DWM-HERE <ADD ,DWM-HERE 1>> <SETG DWM-LOC2 <ADD ,
+DWM-LOC2 1>>) (T <SETG DWM-HERE <SUB ,DWM-HERE 1>> <SETG DWM-LOC1 <SUB ,
+DWM-LOC1 1>>)> <DWM-HEAR>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,
+ACTION-OBJECT ,FAR-VISION-SPELL>> <COND (<ZERO? ,DWM-FACING> <SET DF <DIFF ,
+DWM-LOC2 ,DWM-HERE>>) (T <SET DF <DIFF ,DWM-LOC1 ,DWM-HERE>>)> <CAST-FAR-VISION
+#ZLOCAL!-IZILCH FALSE-VALUE> <CRLF> <CRLF> <PRINTI
+"\"There!\" said Bergon, as the fireball cast its eerie light on
+a group of shadowy figures not "> <COND (<EQUAL? .DF 2> <PRINTI "fifty">) (<
+EQUAL? .DF 1> <PRINTI "twenty">)> <PRINTI " paces away.">) (<EQUAL? ,ACTION ,
+COMBAT-COMMAND> <COND (,2ND-PASS <PRINTI
+"Bergon, surprised by the aggressiveness of the Dwarves, drew
+his sword, but we stayed his hand. \"Astrix said the Dwarves
+were our allies,\" Praxix reminded him."> <REMOVE-PARTY-COMMAND ,COMBAT-COMMAND
+> <REMOVE-PARTY-COMMAND ,RETREAT-COMMAND> <RTRUE>)> <PRINTI
+"At Bergon's signal, we started to fight, but we were surrounded and
+hopelessly outnumbered. We were at the Dwarves mercy, but their leader
+spared our lives. Instead, he ordered us bound and blindfolded, and had
+us marched us back to the gate at which we entered the cavern. The
+heavy stone door closed behind us with a crash."> <HINT ,HINT-DWARVES> <FSET ,
+DWARF-MEETING ,TRIED> <TRAVEL-COMMANDS ,CANYON-GATE ,PROCEED-COMMAND> <DWM-END
+,CANYON-GATE>) (<EQUAL? ,ACTION ,RETREAT-COMMAND> <REMOVE-PARTY-COMMAND ,
+RETREAT-COMMAND> <PRINTI
+"We thought of trying to escape, but were completely surrounded. We
+would either have to fight these Dwarves or parley with them.">) (<EQUAL? ,
+ACTION ,PARLEY-COMMAND> <PRINTI
+"Bergon sheathed his sword, and took a few small steps toward the Dwarf
+leader."> <OPTION ,BERGON ,TELL-TRUTH-COMMAND ,LIE-COMMAND>) (<EQUAL? ,ACTION ,
+TELL-TRUTH-COMMAND> <COND (,2ND-PASS <PRINTI
+"\"We have journeyed here from the Sunrise Tower of Astrix, the Wizard.
+He believes we may benefit in our struggle with the "> <PRINT ,BAD-GUY> <PRINTI
+" by exploring
+these caverns."> <COND (,KIDNAPPED <PRINTI
+" We have faced many dangers on our journey, and just now one
+of our party has disappeared near the gate at Bern i-Lav.">)> <PRINTI "\""> <
+CRLF> <CRLF>) (T <PRINTI
+"\"We journey eastward to the Tower of the Sunrise, in search of the Wizard
+Astrix.\""> <CRLF> <CRLF> <PRINTI "\"You choose a most unusual route....\""> <
+CRLF> <CRLF> <PRINTI
+"\"We chose not this path. One of our party disappeared near the gate by
+which we entered these caverns, and we have followed his trail to this
+spot.\""> <CRLF> <CRLF>)> <COND (,KIDNAPPED <PRINTI
+"There was a murmur in the ranks of the Dwarves, and their leader at
+last held out a bloodied garment that belonged to "> <WPRINTD ,KIDNAPPED> <
+PRINTI ". \"We found this a short while ago. If your friend has been taken by Orcs, your
+best hope is that he is dead!\" He paused for a long moment."> <CRLF> <CRLF>)>
+<DWM-ESCORT-OPTION>) (<EQUAL? ,ACTION ,LIE-COMMAND> <PRINTI
+"\"We travel east to meet our friends at the port of Zan.\""> <CRLF> <CRLF> <
+PRINTI "\"If you have friends in Zan, the worse for you!\" the Dwarves' leader
+spat. \"It is an evil place, a den of thieves and assassins.\" His voice
+had taken on an alarmingly belligerent tone, but he quickly regained his
+composure and now spoke in a quieter, more thoughtful voice. \"Yet,\"
+he said, \"you are not of Orcish blood, and it is possible that you are
+not enemies of the Dwarves."> <CRLF> <CRLF> <PRINTI
+"\"We do not kill in haste, as is now the fashion, but we cannot allow
+you and your party to walk the halls of Reth a-Zar unescorted.\" His eyes
+slowly passed over each of us, then he spoke as a judge passing sentence."> <
+CRLF> <CRLF> <FSET ,DWARF-MEETING ,TRAPPED> <DWM-ESCORT-OPTION #ZLOCAL!-IZILCH
+TRUE-VALUE>) (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <FCLEAR ,HERE ,ADVISE> <COND
+(<FSET? ,DWARF-MEETING ,SEEN> <PRINTI
+"We conferred briefly to consider Agrith's offer. "> <COND (<AND <FSET? ,ESHER
+,IN-PARTY> <EQUAL? ,MINAR ,KIDNAPPED> <NOT ,2ND-PASS>> <PRINTI
+"With the exception of
+Esher, who remained convinced that this was all a part of some sinister plan
+concocted by Minar,">) (T <PRINTI "There was no dissention:">)> <PRINTI
+" the group was united
+in favoring acceptance.">) (<FSET? ,ESHER ,IN-PARTY> <PRINTI
+"Bergon asked the group for advice, but only Esher answered.
+\"If anyone cared about my advice, we wouldn't be on this 'adventure' in
+this first place.\" He was in fine form, clearly demonstrating why nobody
+cared about his advice.">)> <OPTION ,BERGON ,ACCEPT-COMMAND ,DECLINE-COMMAND>)
+(<OR <AND <EQUAL? ,ACTION ,DECLINE-COMMAND> ,2ND-PASS> <EQUAL? ,ACTION ,
+ACCEPT-COMMAND>> <COND (<EQUAL? ,ACTION ,DECLINE-COMMAND> <PRINTI
+"Bergon thought to decline, feeling some distrust toward this unknown
+people. Yet, Astrix felt certain that we should come here, and Bergon
+was loath to disappoint him."> <CRLF> <CRLF>)> <PRINTI
+"Bergon replied, \"You are most gracious, Agrith, and we would
+be foolish indeed to decline your offer.\" Agrith bowed slightly, then
+motioned to one of his men, who stepped forward. \"This is Hurth, one
+of my sons. He shall be your guide through Reth a-Zar!\""> <CRLF> <CRLF> <
+PRINTI "Agrith handed Hurth a flaming torch to help guide our way, and then the
+two Dwarves embraced in their fashion. With a motion of his arm, Agrith
+signalled the others to follow, and quietly he led them away into the
+gloom of the cavern's depths."> <DWM-END ,CAVERN-1> <PARTY-ADD ,HURTH> <REMOVE
+,TALE-DWARVES> <RTRUE>) (<EQUAL? ,ACTION ,DECLINE-COMMAND> <PRINTI
+"Bergon declined Agrith's offer, saying \"Our concerns and yours are not
+yet joined. We shall make our way alone.\""> <CRLF> <CRLF> <PRINTI
+"And with that, Agrith's men escorted us out of the caverns; we never saw
+the Dwarves again."> <TRAVEL-COMMANDS ,CANYON-GATE ,PROCEED-COMMAND> <DWM-END ,
+CANYON-GATE>)>>)> 
+<DEFINE-ROUTINE ANONF-88> 
+<DEFINE-ROUTINE DWM-ESCORT-OPTION> 
+<DEFINE-ROUTINE DWM-END> 
+<DEFINE-ROUTINE DIFF> 
+<DEFINE-ROUTINE DWM-HEAR> 
+<DEFINE-ROUTINE DWM-TRAPPED> 
+<ROOM STAIR-BOTTOM (TRAVEL-COMMANDS PROCEED-COMMAND UP-COMMAND NUL-COMMAND) (
+GRAPHIC G-D-STAIR-BOTTOM) (ENTER FSET-SEEN) (FLAGS UNDERGROUND DONT-SCOUT) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,UP-COMMAND> <PRINTI
+"We climbed for hours as we made our way up the gently winding stair, then
+paused for refreshment. It seemed the stairs would go on forever"> <COND (<
+FSET? ,HURTH ,IN-PARTY> <PRINTI
+", but
+Hurth reassured us, saying, \"We are now at the half-way point to the
+High Gate and the Tower of the Sunset!\"">) (T <PRINTI ".">)> <CRLF> <CRLF> <
+COND (<FSET? ,HERE ,TRAPPED> <REMOVE-TRAVEL-COMMAND ,STAIR-JUNCTION ,
+DOWN-COMMAND>)> <COND (<FSET? ,HURTH ,IN-PARTY> <PRINTI
+"Hurth was right: a few hours later, we arrived at a junction of two
+stairways. \"The stair to the left leads to the Tower of the Sunset;
+the stair to the right leads to the High Gate,\" Hurth said. \"If
+we intend to reach the Tower, we should start now. It is a much
+longer climb.\"">) (T <PRINTI
+"After climbing for a few hours more, we arrived at the junction
+of two stairways; neither was marked.">)> <MOVE-TO ,STAIR-JUNCTION>) (<EQUAL? ,
+ACTION ,PROCEED-COMMAND> <COND (<FSET? ,HURTH ,IN-PARTY> <PRINTI "With Hurth">)
+(T <PRINTI "With "> <WPRINTD ,LEADER>)> <COND (<NOT ,STAIR-TO-PRISON?> <SET
+STAIR-TO-PRISON? #ZLOCAL!-IZILCH TRUE-VALUE>) (T <FSET ,HERE ,TRAPPED> <
+REMOVE-TRAVEL-COMMAND>)> <COND (<NOT <FSET? ,OUTSIDE-PRISON ,SEEN>> <PRINTI
+" in the lead, we continued into the dark caverns. After
+an hour's march, we came to a place in which a single word, in runes, was
+carved into the stone.">) (T <PRINTI
+" leading the way, we again marched to the spot at which runes were
+carved into the stone.">)> <MOVE-TO ,OUTSIDE-PRISON>)>)> 
+<DEFINE-ROUTINE ANONF-89> 
+<BEGIN-SEGMENT ORC-FIGHT> 
+<ROOM ORC-FORK (TRAVEL-COMMANDS LEFT-COMMAND RIGHT-COMMAND NUL-COMMAND) (
+GRAPHIC G-ORC-FORK) (FLAGS UNDERGROUND DANGEROUS) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,LEFT-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"As we moved down the left passage, we could hear sounds ahead. Hurth
+waved for us to stop; then, he continued alone and reported that he
+was certain that a gang of orcs were just beyond our sight."> <CRLF> <CRLF> <
+UPDATE-FSET ,HERE ,DONT-SCOUT> <PRINTI
+"\"The passage narrows ahead,\" he whispered. \"Perhaps one of us
+could get through without being seen, but not more. Perhaps we should
+explore the right-hand passage.\" We agreed, and silently returned to the fork."
+>) (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE
+,SCOUTED> <REMOVE-TRAVEL-COMMAND ,HERE ,LEFT-COMMAND> <WPRINTD ,ACTOR> <PRINTI
+" made his way down both corridors, then
+returned. \"Both passages lead to the same place and the same group of
+orcs,\" he said, \"but the right path is wider and will protect our
+movements longer.\"">) (<EQUAL? ,ACTION ,RIGHT-COMMAND> <COND (<NOT <QSET? ,
+HERE ,BLACK-MIX>> <PRINTI
+"We moved silently down the passage, and found the meaning of the glowing
+cavern wall. Not ten paces away, the cavern opened into a vestibule, in the
+middle of which stood nine grotesque figures huddling around an open fire.
+Bound and gagged on the floor nearby, unmoving, was "> <COND (,KIDNAPPED <
+WPRINTD ,KIDNAPPED> <PRINTI "!"> <CRLF> <CRLF>) (T <PRINTI
+"a badly beaten Dwarf!"> <CRLF> <CRLF>)> <PRINTI
+"\"Cursed orcs!\" Hurth spat. \"Kirth en-Gilan!\"">) (T <PRINTI
+"Again, we made our way to the edge of the orcs' cavern. This time, we
+knew we had no alternative but to fight!"> <REMOVE-TRAVEL-COMMAND ,ORC-ANTE ,
+BACK-COMMAND>)> <MOVE-TO ,ORC-ANTE>)>)> 
+<DEFINE-ROUTINE ANONF-90> 
+<GLOBAL KIDNAPPED <>> 
+<ROOM ORC-VESTIBULE (TRAVEL-COMMANDS RETURN-COMMAND NUL-COMMAND NUL-COMMAND) (
+FLAGS ENCLOSED) (ACTION <ACOND () (<EQUAL? ,ACTION ,RETURN-COMMAND> <
+REMOVE-TRAVEL-COMMAND ,OUTSIDE-PRISON ,ENTER-COMMAND> <COND (,KIDNAPPED <
+WPRINTD ,KIDNAPPED> <PRINTI " was safe">) (T <PRINTI "We had saved the Dwarf">)
+> <PRINTI ", but at what cost? I shuddered at our bad fortune and
+dreaded the trials that were yet to come."> <CRLF> <CRLF> <PRINTI
+"Bergon approached, and laid his hand on my shoulder. \"We must
+put this behind us, "> <WPRINTTAG> <PRINTI
+". Agrith grieves for Hurth and also for
+his besieged people; we must not let either down.\" And taking
+me by the arm, we left the field of battle."> <CRLF> <CRLF> <PRINTI
+"As we passed the fork, Bergon noticed a device of some kind mounted on
+the wall. \"Let's hope this opens the prison door,\" he said, and pressed it.
+Moving quickly, we lowered ourselves back down into the prison, where, indeed,
+the door stood open. And as we left, the door closed silently behind us."> <
+MOVE-TO ,OUTSIDE-PRISON>)>)> 
+<DEFINE-ROUTINE ANONF-91> 
+<ROOM ORC-ANTE (TRAVEL-COMMANDS FIGHT-COMMAND BACK-COMMAND NUL-COMMAND) (
+GRAPHIC G-ORC-ANTE) (FLAGS UNDERGROUND DANGEROUS ADVISE DONT-SCOUT) (ACTION <
+ACOND () (<EQUAL? ,ACTION ,CAST-COMMAND> <UPDATE-FSET ,HERE ,DONT-CAST> <
+UNUSE-ESSENCES> <PRINTI
+"Praxix then got the screwy notion of casting some sort of spell, but Bergon
+held him back."> <CRLF> <CRLF> <PRINTI
+"\"Wait just a moment, Praxix,\" he said. \"We may yet have need for magic
+here, but we have not yet determined how best to handle these orcs. Any premature
+magical display would only serve to lessen our chances of surprising them
+later.\"">) (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <UPDATE-FCLEAR ,HERE ,ADVISE>
+<PRINTI "There was little discussion; we would have to fight these orcs if
+we were to save their captive. Hurth felt the most strongly, and I
+suppose this was only natural."> <CRLF> <CRLF> <PRINTI
+"\"We must fight, but we must be careful; the orcs are fierce fighters
+and we are outnumbered,\" he said.">) (<EQUAL? ,ACTION ,FIGHT-COMMAND> <SET
+OPPONENT ,ORCS> <SCENE ,ORC-FIGHT ,FIGHT-MODE> <NUL-PARTY-COMMAND ,
+PARLEY-COMMAND> <PRINTI "Determined to rescue "> <COND (,KIDNAPPED <WPRINTD ,
+KIDNAPPED>) (T <PRINTI "the Dwarf">)> <PRINTI
+", we huddled to formulate a strategy.">) (<EQUAL? ,ACTION ,BACK-COMMAND> <
+REMOVE-TRAVEL-COMMAND> <COND (<NOT <FSET? ,ORC-FORK ,DONT-SCOUT>> <PRINTI
+"Uncertain of whether to risk attacking the orcs just then, we retreated
+back to the fork."> <MOVE-TO ,ORC-FORK>) (T <PRINTI
+"I suggested trying to save the orcs' captive by other means, but the others
+resisted. \"I fear we must fight these orcs,\" Bergon said, reluctantly. \"There
+is no other way.\"">)>)>)> 
+<DEFINE-ROUTINE ANONF-92> 
+<GLOBAL ORC-FIGHT-SPELL <>> 
+<OBJECT ORCS (LOC ORC-ANTE) (FLAGS DONT-TAKE) (SDESC "orcs") (KBD 79) (ATTACK
+170 80) (STATUS 100) (RETREAT 40) (SPECIAL-ACTION <EXECUTE () <TELL CR
+"The orcs, overwhelmed, now tried to withdraw, but we killed them all save
+two who ran from the area, with Hurth in hot pursuit. We freed "> <COND (,
+KIDNAPPED <WPRINTD ,KIDNAPPED> <PARTY-CHANGE ,HURTH ,KIDNAPPED>) (T <
+PARTY-REMOVE ,HURTH> <PRINTI "the Dwarf">)> <TELL
+" from
+his bonds, and he told us how he was caught at unawares by the orcs who,
+having easily subdued him, brought him here." CR CR> <TELL
+"As we stood, tending to our wounds, a low, rumbling scream issued forth
+from the passage used by the surviving orcs. We rushed down the passage
+and found Hurth, slumped against the cold stone, bleeding from his
+chest and head, surrounded by the bodies of the orcs who had waited
+in ambush." CR CR> <COND (<FSET? ,ESHER ,IN-PARTY> <PRINTI
+"Esher rushed to help, but finding Hurth's wounds beyond his talents,
+he turned away dejectedly. ">)> <TELL
+"From down the cavern, we heard the sounds of running feet; we had barely reached
+for our weapons when Agrith and his party arrived." CR CR> <GRAPHIC ,
+G-HURTH-DIES> <TELL
+"\"The story here speaks for itself,\" he said gravely, and knelt
+beside the broken body of Hurth, raising that proud head into his
+arms. And then, as impossible as it sounds, the two Dwarves seemed to
+speak. For a long moment, Agrith was silent, then he rose from the ground
+and motioned to his men, who carried the lifeless body away." CR CR> <COND (<
+FSET? ,DWARF-MEETING ,TRAPPED> <HINT ,HINT-DWARF-LIE> <PRINTI
+"\"I believe you may be trusted,\" he said, \"but only so far. You are free to
+walk these halls, but I must return to my people and prepare for the onslaught
+that is to come.\"">) (T <UPDATE-MOVE ,DWARF-STONE ,INVENTORY> <PRINTI
+"\"We have suffered enough in Azhur na-Brem. Tell Astrix this when
+you see him, and show him this token. He will know what to do.\"
+Agrith took a brown stone amulet from around his neck, and gave it
+to Praxix. \"I must leave you now. May the earth give you speed.\"">)> <TELL
+" He strode away, and we never saw him again."> <REMOVE-TRAVEL-COMMAND ,
+OUTSIDE-PRISON ,ENTER-COMMAND> <REMOVE ,PRISON-RUNES> <MOVE-TO ,ORC-VESTIBULE>
+<SCENE #ZLOCAL!-IZILCH FALSE-VALUE> <RTRUE>>) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <WPRINTD ,ACTOR> <PRINTI
+" counted nine orcs, each carrying brutal weapons. We were clearly
+outnumbered, though we had the element of surprise.">)>)> 
+<DEFINE-ROUTINE ANONF-93> 
+<DEFINE-ROUTINE ANONF-94> 
+<OBJECT ORC-FIGHT (ACTION <ACOND ("AUX" ACT) (<EQUAL? ,ACTION ,
+SCENE-START-COMMAND> <SET COMBAT-ROUND -1> <REMOVE-PARTY-COMMAND ,
+RETREAT-COMMAND>) (<EQUAL? ,ACTION ,SCENE-END-COMMAND> <CLEAR-BUSY> <COND (<NOT
+<FSET? ,HURTH ,IN-PARTY>> <FSET ,OUTSIDE-PRISON ,TRAPPED>)>) (<EQUAL? ,ACTION ,
+COMBAT-RESULT-COMMAND> <COND (<ZERO? ,COMBAT-ROUND> <COND (<FSET? ,ORC-FIGHT ,
+SEEN> <FSET ,HERE ,BLUE-MIX>)> <COND (<WINNING-OF?> <PRINTI
+"The orcs, badly confused, started to fight in both directions. One
+fell to the ground, head severed by a fierce blow from Bergon's
+sword.">) (T <ADD-PARTY-COMMAND ,RETREAT-COMMAND> <CHANGE-CIT ,BERGON 1 ,
+NUL-COMMAND> <CHECK-ORC-FIGHT-SPELL> <COND (<FSET? ,ORC-FIGHT ,DEAD> <CRLF> <
+CRLF>)> <PRINTI "It was clear from the outset that our chances were not good; the orcs
+were powerful fighters, and utterly fearless. Bergon was hit almost
+at once by the side of a battle axe, but continued to fight in
+spite of his wounds."> <MAKE-BUSY ,BERGON ,ILL-COMMAND> <COND (<OR <FSET? ,
+ORC-FIGHT ,DEAD> <FSET? ,HERE ,BLUE-MIX>> <CRLF> <CRLF> <PRINTI "No doubt, "> <
+COND (<FSET? ,ORC-FIGHT ,DEAD> <PRINTI "the mud had slowed down">) (T <PRINTI
+"our two-pronged attack confused">)> <PRINTI
+" the orcs somewhat, or the result
+would have been even worse than appeared likely."> <COND (<FSET? ,HERE ,
+BLUE-MIX> <PRINTI
+" But the orcs, whose movements were quicker and more agile than we had expected,
+recovered swiftly, and several of them now moved toward our flanking comrade.">
+)>)> <RTRUE>)>) (<EQUAL? ,COMBAT-ROUND 1> <COND (<WINNING-OF?> <PRINTI
+"Try as they might, the orcs could not recover from our two-pronged
+attack, especially considering the sloppy impediment that Praxix had thrown in
+their way.  Another two were down, and except for a few scratches, our party
+was unscathed and greatly emboldened by our success.">) (<AND <FSET? ,ORC-FIGHT
+,SEEN> <NOT <FSET? ,HERE ,BLUE-MIX>>> <MAKE-BUSY ,PRAXIX ,ILL-COMMAND> <PRINTI
+"Our change in tactics turned out only partially successful, for Praxix was
+now slightly wounded, and it became more difficult to take proper advantage of
+the confusion we had caused. One orc was down, slashed in the throat by
+a deadly thrust from Hurth's sword, but the others fought with
+undiminished zeal.">) (T <MAKE-BUSY ,PRAXIX ,ILL-COMMAND> <PRINTI
+"Our attempts to parry the orcs' blows were failing, and soon each
+of us was at least slightly wounded, making the orcs' weapons ever more
+punishing. In our exasperation, we were barely able to do any damage ourselves;
+the fight would soon be lost!">)>) (T <PUTP ,ORCS ,P?RETREAT 100> <PRINTI
+"The victory would soon be ours; the remaining orcs were badly hurt and,
+slowed down by the muck beneath their feet, their confidence was wavering.
+Hurth struck down yet another with a mighty blow of his sword as those remaining
+began to retreat toward the far side of the chamber.">)> <RTRUE>) (<EQUAL? ,
+ACTION ,CAST-COMMAND> <MAKE-BUSY ,PRAXIX> <COND (<GRTR? ,COMBAT-ROUND -1> <
+PRINTI "Praxix, between blows, hoped to prepare a \""> <WPRINTD ,ACTION-OBJECT>
+<PRINTI "\" spell, but it didn't
+appear he would get the chance to complete it.">) (T <SET ORC-FIGHT-SPELL ,
+ACTION-OBJECT> <COND (<FSET? ,ORC-FIGHT ,SEEN> <PRINTI
+"Now that the fight had begun, Praxix hastily grabbed for his pouch and
+started to prepare some sort of spell. As he fumbled with his powders for an
+excruciatingly long moment, I felt sure he would never complete it in time to
+be of any usefulness."> <CHECK-ORC-FIGHT-SPELL #ZLOCAL!-IZILCH TRUE-VALUE> <
+RTRUE>) (T <PRINTI
+"With the thought of using magic in our fight with the orcs, Praxix started
+removing some of his magical powders in the preparation of some sort of spell."
+>)>)>) (<OR <EQUAL? ,ACTION ,RETREAT-COMMAND> <AND <EQUAL? ,ACTION ,
+COMBAT-COMMAND> <EQUAL? ,COMBAT-ROUND 1> <NOT <WINNING-OF?>>>> <COND (,
+KIDNAPPED <HINT ,HINT-ORC-FIGHT>)> <END-COMBAT #ZLOCAL!-IZILCH FALSE-VALUE> <
+PRINTI "We tried to continue the fight, but we were losing badly. Bergon,
+fearing our complete destruction at the hands of the orcs, led us
+into a retreat."> <CRLF> <CRLF> <PRINTI
+"As we passed the fork, Hurth noticed a device of some kind mounted on
+the wall with some runes above it. \"Opens the prison door, but only
+for a brief time,\" he said, and pressed it. Using
+the rope to lower ourselves back down into the prison, we hurried
+through the closing door."> <CRLF> <CRLF> <PRINTI
+"And as the door of cold stone slammed shut behind us, a terrifying scream
+could be heard from inside the prison."> <COND (,KIDNAPPED <PRINTI
+" I turned to Bergon and mouthed
+the name \""> <WPRINTD ,KIDNAPPED> <PRINTI
+"\"; we stood there in silence, but heard no more.">) (T <CRLF> <CRLF> <PRINTI
+"\"The orcs do not keep prisoners,\" Hurth said, \"Let us hurry.\"">)> <FSET ,
+OUTSIDE-PRISON ,TRAPPED> <MOVE-TO ,OUTSIDE-PRISON>) (<AND <EQUAL? ,ACTION ,
+FLANK-COMMAND> <NOT <FSET? ,ORC-FIGHT ,SEEN>>> <COND (<EQUAL? ,ACTOR ,BERGON> <
+SET FLANK-ACTOR ,BERGON> <CHANGE-CIT ,HURTH 1 ,NUL-COMMAND>) (T <SET
+FLANK-ACTOR ,HURTH> <COND (<NOT <FSET? ,BERGON ,BUSY>> <CHANGE-CIT ,BERGON 1 ,
+NUL-COMMAND>)>)> <SET SMART-DEFAULT-FLAG #ZLOCAL!-IZILCH TRUE-VALUE> <MAKE-BUSY
+,FLANK-ACTOR ,GONE-COMMAND> <FSET ,ORC-FIGHT ,SEEN> <COND (<EQUAL? ,
+COMBAT-ROUND -1> <PRINTI "Our best chance was to surprise the orcs, so "> <
+WPRINTD ,FLANK-ACTOR> <PRINTI
+" slipped away
+to find a spot behind their lines. We waited a seeming eternity, and then,
+with a heart-stopping scream, "> <WPRINTD ,FLANK-ACTOR> <PRINTI
+" charged at them; we held back
+long enough to take the orcs entirely by surprise."> <CHECK-ORC-FIGHT-SPELL #
+ZLOCAL!-IZILCH TRUE-VALUE>) (<NOT <QSET? ,ORC-FIGHT ,BUSY>> <PRINTI
+"The fight was not going well, and "> <WPRINTD ,FLANK-ACTOR> <PRINTI
+" decided to try to flank
+the orcs. But in the meantime, we were now fighting outnumbered, outclassed,
+and badly hurt!">)>) (<AND <EQUAL? ,ACTION ,COMBAT-COMMAND> <FSET? ,ORC-FIGHT ,
+BUSY>> <FSET ,ORC-FIGHT ,BLUE-MIX> <FCLEAR ,ORC-FIGHT ,BUSY> <PRINTI
+"With a heart-stopping scream, "> <WPRINTD ,FLANK-ACTOR> <PRINTI
+" charged the orcs from behind,
+momentarily taking them by surprise.">)>)> 
+<DEFINE-ROUTINE ANONF-95> 
+<DEFINE-ROUTINE WINNING-OF?> 
+<DEFINE-ROUTINE CHECK-ORC-FIGHT-SPELL> 
+<GLOBAL FLANK-ACTOR <>> 

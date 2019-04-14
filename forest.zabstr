@@ -1,0 +1,974 @@
+
+<BEGIN-SEGMENT FOREST> 
+<GLOBAL BITE-VICTIM <>> 
+<GLOBAL BITE-VICTIM-OBJECT <>> 
+<DEFINE-ROUTINE MOVE-TO-FOREST-RIDGE> 
+<ROOM BITE-FOREST (TRAVEL-COMMANDS COMB-AREA-COMMAND SPLIT-UP-COMMAND
+NUL-COMMAND) (FLAGS ADVISE DONT-SCOUT DANGEROUS) (ENTER <EXECUTE () <COND (<NOT
+<QSET? ,HERE ,SEEN>> <COND (<FSET? ,MINAR ,IN-PARTY> <SET BITE-VICTIM ,MINAR> <
+SET BITE-VICTIM-OBJECT ,MINAR-OBJECT>) (<FSET? ,ESHER ,IN-PARTY> <SET
+BITE-VICTIM ,ESHER> <SET BITE-VICTIM-OBJECT ,ESHER-OBJECT>) (T <
+SKIP-BITE-FOREST> <RTRUE>)> <GRAPHIC ,G-NIGHTFANG> <CRLF> <CRLF> <PRINTI
+"And then, without warning, a large snake lunged at "> <WPRINTD ,BITE-VICTIM> <
+PRINTI ", grabbing him by the
+leg. "> <COND (<FSET? ,BERGON ,IN-PARTY> <PRINTI "Bergon">) (T <WPRINTD ,
+BITE-VICTIM>)> <PRINTI
+", reacting instinctively, killed the snake with a single blow
+of his sword"> <COND (<FSET? ,BERGON ,IN-PARTY> <PRINTI "; "> <WPRINTD ,
+BITE-VICTIM>) (T <PRINTI " and">)> <PRINTI " collapsed against a tree."> <CRLF>
+<CRLF> <PRINTI "\"The snake,\" he started, grimacing with pain. \"Nightfang....\" His
+voice trailed off, and his eyes took on a glazed, vacant look."> <CRLF> <CRLF>
+<PRINTI "\"But that cannot be! I thought Nightfang were nocturnal, like the
+Starstalker!\" I said, hopefully."> <CRLF> <CRLF> <PRINTI
+"\"And you were right,\" replied Praxix. \"They were nocturnal. "> <COND (<
+FSET? ,BERGON ,IN-PARTY> <PRINTI "Bergon, t">) (T <PRINTI "T">)> <PRINTI
+"his man
+will die unless we can find some westflake root. There is little time!\""> <
+UPDATE-MOVE ,BITE-VICTIM-OBJECT ,HERE> <FSET ,BITE-VICTIM ,INCAPACITATED> <
+MAKE-BUSY ,BITE-VICTIM ,ILL-COMMAND>) (T <COND (<IN? ,WOOD-ELF ,HERE> <
+CHANGE-TRAVEL-COMMAND ,HERE ,TAG-ROUTE-COMMAND ,ELF-HOME-COMMAND>)> <COND (<NOT
+<FSET? ,BERGON ,TRAPPED>> <REMOVE-TRAVEL-COMMAND ,HERE ,BERGON-ROUTE-COMMAND>)>
+<COND (<AND <FSET? ,BITE-VICTIM ,INCAPACITATED> <NOT <FSET? ,BITE-VICTIM ,DEAD>
+>> <COND (<AND <NOT <IN? ,WOOD-ELF ,HERE>> <NOT <IN? ,WESTFLAKE-ROOT ,PRAXIX>>>
+<GRAPHIC ,G-NIGHTFANG>)> <COND (<AND <NOT ,SUBGROUP-MODE> <NOT <FSET? ,
+BITE-VICTIM ,IN-PARTY>>> <PARTY-ADD ,BITE-VICTIM>)> <UPDATE-MOVE ,
+BITE-VICTIM-OBJECT ,HERE> <MAKE-BUSY ,BITE-VICTIM ,ILL-COMMAND>) (<OR <FSET? ,
+WOOD-ELF ,TRAPPED> <FSET? ,BITE-VICTIM ,DEAD>> <GRAPHIC ,G-FOREST>)>)>>) (EXIT
+<EXECUTE () <COND (<AND <NOT ,SUBGROUP-MODE> ,BITE-VICTIM <OR <FSET? ,
+BITE-VICTIM ,INCAPACITATED> <FSET? ,BITE-VICTIM ,DEAD>>> <PARTY-REMOVE ,
+BITE-VICTIM>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,ENTER-TUNNEL-COMMAND> <
+PRINTI "We chose next to explore the tunnel that we had discovered underneath the stump,
+and, descending from our camp, quickly retraced our steps to the point at which
+we had entered it earlier. "> <MOVE-TO ,WARREN #ZLOCAL!-IZILCH STR?412>) (<
+EQUAL? ,ACTION ,ELF-HOME-COMMAND> <COND (<FSET? ,BERGON ,TRAPPED> <FSET ,BERGON
+,DEAD>)> <COND (<FSET? ,WOOD-ELF ,TRAPPED> <PRINTI
+"Doing as V'ren had told us, I retraced my steps to the pool. V'ren
+was waiting there for us, and led us">) (T <PRINTI
+"V'ren led us to the pool at which we had met, then">)> <PRINTI
+" through twisty
+forest paths until we reached a small clearing. \"This is the Elf
+Home,\" she said, without words. \"Home of our Mothers since the
+beginning of all things.\""> <CRLF> <CRLF> <MOVE-TO ,ELF-HOME #ZLOCAL!-IZILCH
+STR?413>) (<EQUAL? ,ACTION ,TAG-ROUTE-COMMAND> <COND (<FSET? ,BERGON ,TRAPPED>
+<FSET ,BERGON ,DEAD>)> <PRINTI "I retraced my earlier steps, "> <COND (<NOT <
+FSET? ,ELFSTREAM-1 ,SEEN>> <PRINTI
+"but this time we decided to follow the stream."> <MOVE-TO ,ELFSTREAM #
+ZLOCAL!-IZILCH STR?414>) (T <MOVE-TO ,ELFSTREAM #ZLOCAL!-IZILCH STR?415>)>) (<
+EQUAL? ,ACTION ,BERGON-ROUTE-COMMAND> <COND (<IN? ,WOOD-ELF ,HERE> <FSET ,
+WOOD-ELF ,TRAPPED> <PRINTI
+"We decided to follow Bergon's route in hopes of discovering his
+fate. V'ren said she could not come with us, but that we were
+welcome at the Elf Home. \"Come to the pool where we met,\" she
+said to me, \"and we shall meet again!\" And with that, she sped into the
+forest."> <CRLF> <CRLF>)> <MOVE-TO ,TANGLEWOOD #ZLOCAL!-IZILCH STR?416>) (<
+EQUAL? ,ACTION ,PRAXIX-ROUTE-COMMAND> <COND (<FSET? ,BERGON ,TRAPPED> <FSET ,
+BERGON ,DEAD>)> <COND (<AND <IN? ,WOOD-ELF ,HERE> <NOT <FSET? ,WOOD-ELF ,
+TRAPPED>>> <PRINTI
+"As we prepared to leave, V'ren explained that
+she must return to the Elf Home, but that we could find her
+anytime by returning to the pool at which we had first met.
+\"Good luck in your travels,\" she said without speech, and
+swiftly disappeared into the forest."> <CRLF> <CRLF>)> <PRINTI
+"Praxix led the way, and we soon arrived at the glade he had found
+nearby."> <COND (<NOT <QSET? ,FOREST-GLADE ,SEEN>> <PRINTI
+" But, just as he was explaining his decision to go no farther, he stumbled
+over a tree stump that had been hidden in the knee-high grass!">) (<NOT <QSET?
+,GLADE-STUMP ,SEEN>> <COND (<FSET? ,FOREST-GLADE ,SEEN> <CRLF> <CRLF> <PRINTI
+"\"Here's the stump that I walked into before,\" he said, giving
+it a"> <COND (<FSET? ,GLADE-STUMP ,EXAMINED> <PRINTI
+"nother rap with his staff.">) (T <PRINTI " rap with his staff.">)>)> <COND (<
+IN? ,WESTFLAKE-ROOT ,PRAXIX> <PRINTI
+" \"Taught it a lesson!\" he added,
+pointing to its broken remains and the passage leading downward.">) (T <PRINTI
+" This, oddly, produced a hollow tone.">)>)> <MOVE-TO ,FOREST-GLADE>) (<AND <
+EQUAL? ,ACTION ,EXAMINE-COMMAND> <EQUAL? ,ACTION-OBJECT ,BITE-VICTIM-OBJECT>> <
+UPDATE-FSET ,BITE-VICTIM-OBJECT ,DONT-EXAMINE> <WPRINTD ,ACTOR> <PRINTI
+" examined "> <WPRINTD ,BITE-VICTIM> <PRINTI
+". \"Unless we find the antidote, he will be
+dead before the sun sets.\""> <COND (<FSET? ,BERGON ,IN-PARTY> <PRINTI
+" Bergon gazed up at the sky and frowned.">)> <RTRUE>) (<AND <EQUAL? ,ACTION ,
+GET-ADVICE-COMMAND> <FSET? ,BITE-VICTIM ,INCAPACITATED>> <UPDATE-FCLEAR ,HERE ,
+ADVISE> <PRINTI "Unsure of how to save "> <WPRINTD ,BITE-VICTIM> <PRINTI
+", Bergon asked for our advice. Praxix
+felt we had no alternative but to split up in search of the lifesaving
+root. I agreed, though I was fearful at the prospect of exploring this
+forest on my own.">) (<EQUAL? ,ACTION ,SPLIT-UP-COMMAND> <PRINTI
+"It was agreed that we split up the group in search of the elusive
+westflake root, and "> <UPDATE-FCLEAR ,HERE ,ADVISE> <COND (<FSET? ,BERGON ,
+IN-PARTY> <PRINTI "Bergon indicated">) (T <PRINTI "we decided on">)> <PRINTI
+" the paths we should follow."> <CRLF> <CRLF> <COND (<AND <FSET? ,BERGON ,
+IN-PARTY> <NOT <FSET? ,DWARF-MEETING ,SEEN>>> <PRINTI
+"\"I shall remain here to tend to "> <WPRINTD ,BITE-VICTIM> <PRINTI
+". Now go,
+and return before sunset! Do not wander far!\" he commanded."> <COND (<AND <
+FSET? ,ESHER ,IN-PARTY> <NOT <EQUAL? ,BITE-VICTIM ,ESHER>>> <PRINTI
+" But Esher would not leave, preferring to do what he could to
+keep Minar comfortable. And thus it was that Praxix and I went our
+separate ways into the forest.">)>) (<FSET? ,BERGON ,IN-PARTY> <PRINTI
+"\"We will meet back here before sunset! Don't wander too far!\" he
+said.">) (T <PRINTI
+"\"We must meet back before sunset. Go quickly!\" Praxix said.">)> <COND (<AND
+<FSET? ,BERGON ,IN-PARTY> <FSET? ,DWARF-MEETING ,SEEN>> <DIVIDER> <PRINTI
+"Choosing for himself the most difficult path, Bergon strode off into
+the thickening forest to our west."> <FSET ,BERGON-SEARCH ,SEEN> <SCENE ,
+BERGON-SEARCH>) (T <SCENE ,PRAXIX-SEARCH>)>) (<EQUAL? ,ACTION ,
+COMB-AREA-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"We spent many frantic minutes searching the area for some westflake
+root, but to no avail. "> <WPRINTD ,BITE-VICTIM> <PRINTI
+" was now seemingly paralyzed; only the
+infrequent blinking of his eyes gave any clue that he remained alive.">)>)> 
+<DEFINE-ROUTINE ANONF-96> 
+<DEFINE-ROUTINE ANONF-97> 
+<DEFINE-ROUTINE ANONF-98> 
+<DEFINE-ROUTINE MOVE-TO-ELF-HOME> 
+<OBJECT PRAXIX-SEARCH (ACTION <ACOND () (<EQUAL? ,ACTION ,SCENE-START-COMMAND>
+<DIVIDER> <COND (<FSET? ,BERGON ,TRAPPED> <PRINTI
+"Praxix fared much better; leaving camp, he entered">) (<NOT <FSET? ,BERGON ,
+IN-PARTY>> <PRINTI "Praxix chose to explore">) (T <PRINTI
+"Bergon sent Praxix off to explore">)> <PRINTI
+" the forest that lay to the east, and
+it was not long before he came to the edge of a grassy glade."> <
+CHANGE-TRAVEL-COMMAND ,BERGON ,EXAMINE-COMMAND ,GET-ADVICE-COMMAND> <
+MAKE-SUBGROUP ,PRAXIX> <REMOVE-TRAVEL-COMMAND ,PRAXIX ,TELL-LEGEND-COMMAND> <
+MOVE-TO ,FOREST-GLADE-EDGE>)>)> 
+<DEFINE-ROUTINE ANONF-99> 
+<ROOM FOREST-GLADE-EDGE (TRAVEL-COMMANDS PROCEED-COMMAND RETURN-COMMAND
+NUL-COMMAND) (GRAPHIC G-FOREST) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+PROCEED-COMMAND> <PRINTI
+"He had entered the glade and was moving swiftly through the knee-high
+grasses and wildflowers, when he walked straight into a tree stump that
+had been hidden in the undergrowth. Stifling a scream, Praxix rubbed his
+injured leg."> <CRLF> <CRLF> <PRINTI
+"\"What an absurd place to leave a stump,\" he said, petulantly."> <MOVE-TO ,
+FOREST-GLADE>) (<EQUAL? ,ACTION ,RETURN-COMMAND> <PRINTI
+"Praxix, unconvinced that westflake would be found here, returned
+to camp."> <SCENE ,TAG-SEARCH>)>)> 
+<DEFINE-ROUTINE ANONF-100> 
+<OBJECT GLADE-STUMP (SDESC "stump") (KBD 83) (LOC FOREST-GLADE) (FLAGS
+DONT-TAKE) (EXBITS PRAXIXBIT) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+EXAMINE-COMMAND> <UPDATE-FSET ,ACTION-OBJECT ,DONT-EXAMINE> <PRINTI
+"Praxix inspected this misplaced piece of tree; then, as if to vent his anger,
+he rapped it with his staff, producing a hollow tone. \"Now, that is odd!\" he
+said, rubbing his still sore foot. Looking more closely now, he was unable to
+find any sign of how it might open.">)>)> 
+<DEFINE-ROUTINE ANONF-101> 
+<ROOM FOREST-GLADE (TRAVEL-COMMANDS PROCEED-COMMAND RETURN-COMMAND NUL-COMMAND)
+(CAST-LIMIT 2) (GRAPHIC G-GLADE) (ENTER <EXECUTE () <HINT ,HINT-STUMP> <PUTP ,
+HERE ,P?CAST-LIMIT 2> <COND (<AND <FSET? ,GLADE-STUMP ,ENCHANTED> <NOT <FSET? ,
+UNDERFOREST-2 ,TRIED>>> <ADD-TRAVEL-COMMAND ,HERE ,DOWN-COMMAND>)> <FSET ,
+FOREST-GLADE ,SEEN>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,PROCEED-COMMAND> <
+REMOVE-TRAVEL-COMMAND> <COND (,SUBGROUP-MODE <PRINTI
+"Limping slightly, Praxix continued on his way; before long, the terrain
+fell into a deep glen. \"Never get back in time!\" he said to
+himself, and returned to the glade."> <FSET ,HERE ,DONT-SCOUT>) (<FSET? ,
+BITE-VICTIM ,INCAPACITATED> <PRINTI
+"We walked to the far end of the glade; the terrain sloped
+down sharply. \"No time to go farther!\" Praxix said, and he
+was right. It was nearly sunset, and "> <WPRINTD ,BITE-VICTIM> <PRINTI
+" was close to death.">) (T <UPDATE-FSET ,HERE ,DONT-SCOUT> <PRINTI
+"The terrain ahead of us appeared unpromising, so we decided
+to take a different route.">)>) (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,
+HERE ,DONT-SCOUT> <FSET ,HERE ,SCOUTED> <REMOVE-TRAVEL-COMMAND ,HERE ,
+PROCEED-COMMAND> <COND (<FSET? ,BITE-VICTIM ,INCAPACITATED> <WPRINTD ,ACTOR> <
+PRINTI " went ahead to the far end of the glade, where the terrain sloped
+down sharply. \"No time to go farther!\" he said, and he
+was right. It was nearly sunset, and "> <WPRINTD ,BITE-VICTIM> <PRINTI
+" was close to death.">) (T <WPRINTD ,ACTOR> <PRINTI
+" checked out the far end of the glade, but returned with the report that the
+terrain appeared unpromising.">)>) (<EQUAL? ,ACTION ,RETURN-COMMAND> <COND (,
+SUBGROUP-MODE <PRINTI
+"Finding no sign of westflake, Praxix returned to our camp."> <SCENE ,
+TAG-SEARCH>) (T <PRINTI "We returned to our camp, having found nothing "> <COND
+(<FSET? ,BITE-VICTIM ,INCAPACITATED> <PRINTI
+"which could help our ailing friend">) (T <PRINTI
+"useful along the route that Praxix had taken">)> <PRINTI "."> <
+REMOVE-TRAVEL-COMMAND ,BITE-FOREST ,PRAXIX-ROUTE-COMMAND> <MOVE-TO ,BITE-FOREST
+>)>) (<EQUAL? ,ACTION ,DOWN-COMMAND> <COND (<NOT ,SUBGROUP-MODE> <COND (<QSET?
+,HERE ,TRIED> <REMOVE-TRAVEL-COMMAND>)> <MOVE-TO ,UNDERFOREST-2 #ZLOCAL!-IZILCH
+STR?419>) (T <MOVE-TO ,UNDERFOREST-2 #ZLOCAL!-IZILCH STR?420>)>) (<AND <EQUAL?
+,ACTION ,CAST-COMMAND> <OR <AND <EQUAL? ,ACTION-OBJECT ,LIGHTNING-SPELL> <
+EQUAL? ,ACTION-PRSI ,GLADE-STUMP>> <AND <EQUAL? ,ACTION-OBJECT ,FIRE-SPELL> <
+EQUAL? ,ACTION-PRSI ,GLADE-STUMP>> <EQUAL? ,ACTION-OBJECT ,TREMOR-SPELL>> <NOT
+<QSET? ,GLADE-STUMP ,ENCHANTED>>> <UPDATE-FSET ,GLADE-STUMP ,DONT-EXAMINE> <
+ADD-TRAVEL-COMMAND ,HERE ,DOWN-COMMAND> <GRAPHIC ,G-STUMP> <COND (<EQUAL? ,
+ACTION-OBJECT ,LIGHTNING-SPELL> <FSET ,LIGHTNING-SPELL ,SEEN> <PRINTI
+"Praxix carefully prepared a mixture of water and fire essences; then, he
+added just the slightest pinch of earth essence. He cast the mixture
+into the air and lifted his staff; from nowhere, clouds gathered and soon the
+sky was twilight-dark. Then, a single bolt of lightning fell from the
+sky, splitting the stump in two, and">) (<EQUAL? ,ACTION-OBJECT ,TREMOR-SPELL>
+<PRINTI "Praxix removed some earth essence from his pouch and cast it at the
+stump; the earth trembled briefly and the stump split in two">) (T <PRINTI
+"Praxix removed a small handful of fire essence from his cloak and
+spread it over the stump. Within moments, the stump was afire;
+it burned itself out a few moments later,">)> <PRINTI
+" revealing a passage below. \"Not bad! Not bad!\" he said, and he peered
+into the darkness below."> <COND (<AND <NOT ,SUBGROUP-MODE> <EQUAL? ,
+ACTION-OBJECT ,LIGHTNING-SPELL> <NOT <QSET? ,LIGHTNING-SPELL ,INCAPACITATED>>>
+<CRLF> <CRLF> <PRINTI
+"Praxix, proud of his accomplishment, turned to me and whispered that it
+was the pinch of earth essence that really gives the lightning spell its
+added punch. But however the magic had been prepared, its effect was
+profound.">)> <PUTP ,HERE ,P?GRAPHIC ,G-STUMP>)>)> 
+<DEFINE-ROUTINE ANONF-102> 
+<DEFINE-ROUTINE ANONF-103> 
+<COMMAND AWAY> 
+<ROOM UNDERFOREST-2 (TRAVEL-COMMANDS UP-COMMAND FEEL-AROUND-COMMAND NUL-COMMAND
+) (FLAGS UNDERGROUND) (CAST-LIMIT INF) (CLOCK <EXECUTE () <COND (<AND <NOT <
+FSET? ,PRAXIX ,LIT>> <NOT <CHECK-ESSENCES ,LIGHT-SPELL>> <NOT <CHECK-ESSENCES ,
+LEVITATE-SPELL>>> <FSET ,HERE ,TRAPPED>)>>) (ENTER <EXECUTE () <COND (<LOC ,
+HINT-STUMP> <UPDATE-REMOVE ,HINT-STUMP>)> <COND (<FSET? ,PRAXIX ,LIT> <GRAPHIC
+,G-WARREN> <CRLF> <CRLF> <PRINTI "With the aid of "> <COND (,SUBGROUP-MODE <
+PRINTI "his enchanted staff, Praxix">) (T <PRINTI "Praxix' enchanted staff, we"
+>)> <PRINTI " could see that the passage led both back toward our camp and away."
+> <ADD-PARTY-COMMAND ,AWAY-COMMAND> <CHANGE-PARTY-COMMAND ,FEEL-AROUND-COMMAND
+,BACK-COMMAND>) (T <UPDATE-FSET ,HERE ,DONT-SCOUT> <CAVERN-GRAPHIC>)> <COND (<
+AND <FSET? ,PRAXIX ,LIT> <NOT ,SUBGROUP-MODE> <NOT <FSET? ,BITE-VICTIM ,
+INCAPACITATED>>> <CHANGE-PARTY-COMMAND ,AWAY-COMMAND ,PROCEED-COMMAND>)>>) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,AWAY-COMMAND> <REMOVE-PARTY-COMMAND ,
+AWAY-COMMAND> <PRINTI
+"Praxix absentmindedly started to head away from our camp, when he
+remembered how little time there was to save "> <WPRINTD ,BITE-VICTIM> <PRINTI
+"."> <CRLF> <CRLF> <PRINTI
+"\"There will be time for this later,\" he said, scolding himself, and
+quickly retraced his steps to his starting point.">) (<EQUAL? ,ACTION ,
+UP-COMMAND> <COND (,SUBGROUP-MODE <REMOVE-PARTY-COMMAND ,UP-COMMAND> <PRINTI
+"Try as he might, Praxix couldn't climb out of this hole
+he had dug for himself.">) (T <FCLEAR ,HERE ,DEAD> <MOVE-TO ,FOREST-GLADE #
+ZLOCAL!-IZILCH STR?423>)>) (<EQUAL? ,ACTION ,PROCEED-COMMAND> <COND (<FSET? ,
+HERE ,TRAPPED> <PRINTI
+"The remainder of the day was spent tediously feeling our way through scores of
+dark, underground chambers until we finally reached an exit. We clambered out "
+> <MOVE-TO-ELFSTREAM>) (<NOT <FSET? ,PRAXIX ,LIT>> <PRINTI
+"We decided to explore this underground tunnel, but without light, the
+prospects were dim.">) (T <MOVE-TO ,WARREN #ZLOCAL!-IZILCH STR?424>)>) (<AND <
+EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,LEVITATE-SPELL>> <COND (,
+SUBGROUP-MODE <PRINTI
+"Then, taking out his air and earth essences, Praxix created an elevation spell
+and used it to raise himself back into the glade.">) (T <PRINTI
+"Praxix then used his elevation spell to lift "> <WPRINTD ,ACTION-PRSI> <PRINTI
+" out of the hole;
+it was then a simple matter for the rest of us to make our way out.">)> <FSET ,
+HERE ,TRIED> <MOVE-TO ,FOREST-GLADE>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <
+EQUAL? ,ACTION-OBJECT ,LIGHT-SPELL> <EQUAL? ,ACTION-PRSI ,STAFF> <NOT <QSET? ,
+PRAXIX ,LIT>>> <COND (<LOC ,HINT-STUMP> <UPDATE-REMOVE ,HINT-STUMP>)> <GRAPHIC
+,G-WARREN> <UPDATE-FCLEAR ,HERE ,DONT-SCOUT> <COND (<AND <NOT ,SUBGROUP-MODE> <
+NOT <FSET? ,BITE-VICTIM ,INCAPACITATED>>> <COND (<FSET? ,HERE ,DEAD> <
+ADD-PARTY-COMMAND ,PROCEED-COMMAND>) (T <CHANGE-PARTY-COMMAND ,
+FEEL-AROUND-COMMAND ,PROCEED-COMMAND>)>) (T <COND (<FSET? ,HERE ,DEAD> <
+ADD-PARTY-COMMAND ,BACK-COMMAND>) (T <CHANGE-PARTY-COMMAND ,FEEL-AROUND-COMMAND
+,BACK-COMMAND>)> <ADD-PARTY-COMMAND ,AWAY-COMMAND>)> <PRINTI
+"It took some doing, but Praxix managed to fumble through his pouch and
+remove some fire and earth essence. He applied it to his staff, causing it
+to glow a dull red. "> <COND (,SUBGROUP-MODE <PRINTI "H">) (T <PRINTI "W">)> <
+PRINTI "e could now see
+that he was in a tunnel, with passages leading in two directions, though
+only one of these would head in the direction of camp.">) (<AND <EQUAL? ,ACTION
+,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,FAR-VISION-SPELL>> <PRINTI
+"Praxix, with his flare spell, lit the walls of the tunnel,
+revealing that it was covered with a mossy, plantlike material, and that it
+spread out far in both directions.">) (<EQUAL? ,ACTION ,BACK-COMMAND> <PRINTI
+"Using his staff for light, "> <COND (,SUBGROUP-MODE <WPRINTD ,PRAXIX>) (T <
+PRINTI "we">)> <PRINTI " continued down the tunnel in the direction of camp.">
+<COND (<FSET? ,BITE-VICTIM ,INCAPACITATED> <PRINTI
+" Casually scanning the walls, "> <COND (,SUBGROUP-MODE <PRINTI "he">) (T <
+PRINTI "we">)> <PRINTI
+" recognized the plant that almost completely surrounded "> <COND (,
+SUBGROUP-MODE <PRINTI "him">) (T <PRINTI "us">)> <PRINTI ": westflake! "> <COND
+(<NOT ,SUBGROUP-MODE> <WPRINTD ,PRAXIX>) (T <PRINTI "He">)> <PRINTI
+" gathered some of the root for "> <WPRINTD ,BITE-VICTIM> <PRINTI
+", placing it in his
+cloak.">)> <COND (<NOT ,SUBGROUP-MODE> <PRINTI " We">) (T <PRINTI " He">)> <
+PRINTI " continued down the tunnel, coming eventually to a ladder carved into the
+earth and rising into a hollowed-out tree stump!"> <COND (,SUBGROUP-MODE <
+PRINTI " The sound of a
+voice (or was it voices) could be heard just above, and Praxix
+eagerly pulled himself up the ladder."> <MOVE ,WESTFLAKE-ROOT ,PRAXIX> <SCENE ,
+TAG-SEARCH>) (T <PRINTI
+" We raised ourselves out of the stump; we were back at our camp."> <COND (<
+FSET? ,BITE-VICTIM ,INCAPACITATED> <MOVE-TO ,BITE-FOREST> <CRLF> <CRLF> <PRINTI
+"Praxix rushed over to "> <WPRINTD ,BITE-VICTIM> <PRINTI
+" and made a terrible discovery. "> <BITE-VICTIM-DIES> <CHANGE-TRAVEL-COMMAND ,
+BITE-FOREST ,PRAXIX-ROUTE-COMMAND ,ENTER-TUNNEL-COMMAND> <MOVE-TO ,BITE-FOREST>
+) (T <CRLF> <CRLF> <PRINTI
+"\"As I suspected, this route leads only back to our camp,\" Praxix said.
+\"Come, let us see what lies at the other end of the tunnel.\""> <CRLF> <CRLF>
+<PRINTI "In a matter of moments, we had climbed back down into the tunnel,
+retracing our steps to our point of entry in the glade. "> <MOVE-TO ,WARREN #
+ZLOCAL!-IZILCH STR?424>)> <RTRUE>)>) (<EQUAL? ,ACTION ,FEEL-AROUND-COMMAND> <
+REMOVE-PARTY-COMMAND ,FEEL-AROUND-COMMAND> <FSET ,HERE ,DEAD> <PRINTI "Though "
+> <COND (,SUBGROUP-MODE <PRINTI "h">) (T <PRINTI "w">)> <PRINTI
+"e could not see, it was clear by feeling around that "> <COND (,SUBGROUP-MODE
+<PRINTI "he was">) (T <PRINTI "we were">)> <PRINTI
+" in some sort of tunnel. Without any light, movement
+would be painfully slow and uncomfortable.">)>)> 
+<DEFINE-ROUTINE ANONF-104> 
+<DEFINE-ROUTINE ANONF-105> 
+<DEFINE-ROUTINE ANONF-106> 
+<OBJECT WESTFLAKE-ROOT (SDESC "westflake") (KBD 87)> 
+<OBJECT TAG-SEARCH (ACTION <ACOND () (<EQUAL? ,ACTION ,SCENE-START-COMMAND> <
+DIVIDER> <GRAPHIC ,G-FOREST> <COND (<AND <FSET? ,BERGON ,IN-PARTY> <NOT <FSET?
+,BERGON ,TRAPPED>>> <PRINTI "\""> <WPRINTTAG> <PRINTI
+", you search the forest to the north,\" Bergon said, and
+that was what I did">) (T <PRINTI
+"I headed out into the forest that lay to the north">)> <PRINTI
+", though I was filled with apprehension at the
+thought of exploring on my own."> <CRLF> <CRLF> <PRINTI
+"But the forest was beautiful, and the air cool and fresh. Up ahead,
+the sound of flowing water could be heard ever more clearly, and I
+followed that sound until I came upon a small stream, which took off at
+an angle to my path."> <ADD-TRAVEL-COMMAND ,PRAXIX ,TELL-LEGEND-COMMAND> <
+MAKE-TAG-SUBGROUP> <MOVE-TO ,ELFWOOD-2>) (<EQUAL? ,ACTION ,SCENE-END-COMMAND> <
+COND (<AND <FSET? ,WOOD-ELF ,SEEN> <NOT <FSET? ,ELFSTREAM-1 ,SOLVED>>> <HINT ,
+HINT-ELF-SPEAK>) (<AND <NOT <FSET? ,ELFSTREAM-1 ,SEEN>> <IN? ,WESTFLAKE-ROOT ,
+PRAXIX>> <HINT ,HINT-BITE-FOREST>) (<AND <NOT <FSET? ,WOOD-ELF ,SEEN>> <IN? ,
+WESTFLAKE-ROOT ,PRAXIX>> <HINT ,HINT-WOOD-ELF>)>)>)> 
+<DEFINE-ROUTINE ANONF-107> 
+<DEFINE-ROUTINE SEARCH-END> 
+<DEFINE-ROUTINE BITE-VICTIM-BITE-HEALED> 
+<DEFINE-ROUTINE PRAXIX-STUMP-APPEARANCE> 
+<ROOM ELFWOOD-2 (TRAVEL-COMMANDS PROCEED-COMMAND STREAM-PATH-COMMAND
+RETURN-COMMAND) (ENTER FSET-SEEN) (GRAPHIC G-FOREST) (ACTION <ACOND () (<EQUAL?
+,ACTION ,PROCEED-COMMAND> <REMOVE-TRAVEL-COMMAND> <FSET ,HERE ,EXAMINED> <
+PRINTI "The path descended into a deep ravine, and I was loath to follow it this
+near to twilight. Across the ravine, the forest was unnaturally dark, as though
+a black curtain had been drawn over it.">) (<EQUAL? ,ACTION ,
+STREAM-PATH-COMMAND> <COND (<FSET? ,HERE ,EXAMINED> <PRINTI
+"Rather than giving up, I chose to follow the stream in search for
+the needed root.">) (T <PRINTI
+"Moving quickly and scanning the ground for any sign of westflake, I
+chose to follow the stream.">)> <MOVE-TO ,ELFSTREAM-1 #ZLOCAL!-IZILCH STR?426>)
+(<EQUAL? ,ACTION ,RETURN-COMMAND> <PRINTI
+"Unable to find any westflake root, I returned to camp."> <SEARCH-END>)>)> 
+<DEFINE-ROUTINE ANONF-108> 
+<DEFINE-ROUTINE MOVE-TO-NO-GFX> 
+<OBJECT WOOD-ELF (SDESC "woman") (KBD 87) (FLAGS DONT-TAKE) (LOC ELFSTREAM-1) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-FSET ,ACTION-OBJECT
+,DONT-EXAMINE> <FSET ,WOOD-ELF ,EXAMINED> <COND (<FSET? ,WOOD-ELF ,SEEN> <
+PRINTI "Having recovered from the shock of that first look, I looked at
+this creature again and I began to feel her age and wisdom, and even
+sense a beauty that lay beneath her tree-like exterior.">) (T <PRINTI
+"The woman was slender, with long flowing hair. I could not see
+her face, yet some warm inner feeling was touched by her gentle
+grace.">)>)>)> 
+<DEFINE-ROUTINE ANONF-109> 
+<COMMAND (TALK-TO-ELF TALK)> 
+<COMMAND (SPEAK-ELVISH SPEAK)> 
+<ROOM ELFSTREAM-1 (TRAVEL-COMMANDS STAY-HIDDEN-COMMAND APPROACH-COMMAND
+RETURN-COMMAND) (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <GRAPHIC ,
+G-WATERFALL-NO-ELF ,G-WATERFALL ,BOTTOM-RIGHT>>) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,TALK-TO-ELF-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINTI
+"\"I am pleased to meet you,\" I began, stumbling over the words. \"My friend is
+badly hurt...\""> <CRLF> <CRLF> <PRINTI
+"But this creature that I assumed to be a Wood Elf appeared confused by my speech.
+I tried other, non-verbal means of communication, and was soon quite frustrated at
+my inability to communicate the desire that she come to the aid of "> <WPRINTD
+,BITE-VICTIM> <PRINTI
+", if indeed that was within her power. And then, just as I was about to return to
+our camp, she spoke in soft, lilting tones in a language that I presumed to be
+Elvish."> <ADD-TRAVEL-COMMAND ,HERE ,SPEAK-ELVISH-COMMAND> <FSET ,HERE ,
+BLUE-MIX>) (<EQUAL? ,ACTION ,SPEAK-ELVISH-COMMAND> <PRINTI
+"Well, what did I know of Elvish? But there was little else to do, so I gave it my
+best try...."> <CRLF> <CRLF> <COND (<READ-ELVISH ,TAG> T) (T <PRINTI
+"At least, I thought I would, but no sound came through my lips and at last, dejected,
+I raced back to camp, eager to tell the others of my discovery."> <SEARCH-END>)
+>) (<EQUAL? ,ACTION ,APPROACH-COMMAND> <COND (<NOT <QSET? ,WOOD-ELF ,SEEN>> <
+PRINTI "I approached cautiously, hoping not to startle her. But as I neared,
+she sensed my presence, stood, and turned toward me...."> <CRLF> <CRLF> <PRINTI
+"I gasped, stumbling backward onto the ground, and twisted my ankle.
+She was grotesque, her face leathery and brown, more like a gnarled tree
+than a person. She stretched her spindled arms toward me, and opened her eyes
+for the first time: clear, large, and fathomless."> <GRAPHIC ,G-ELF> <
+REMOVE-TRAVEL-COMMAND ,HERE ,STAY-HIDDEN-COMMAND> <UPDATE-FCLEAR ,WOOD-ELF ,
+DONT-EXAMINE>) (T <PRINTI
+"As if under some hypnotic spell, I rose and hobbled toward this creature of
+the forest. Her eyes were kind and gentle, yet she backed off as I approached."
+> <CHANGE-TRAVEL-COMMAND ,HERE ,APPROACH-COMMAND ,TALK-TO-ELF-COMMAND>)>) (<
+EQUAL? ,ACTION ,STAY-HIDDEN-COMMAND> <COND (<NOT <QSET? ,WOOD-ELF ,SCOUTED>> <
+PRINTI "I waited there, mesmerized by the beauty of this forest dweller.
+After a few moments, two people came into view from further downstream
+but it was late in the afternoon, and
+the rays of the setting sun made it impossible to see them clearly.
+The woman motioned to the newcomers, who then returned to the forest.">) (T <
+PRINTI "Then the woman rose and followed the stream out of sight into the
+forest."> <REMOVE-TRAVEL-COMMAND ,HERE ,APPROACH-COMMAND> <
+CHANGE-TRAVEL-COMMAND ,HERE ,STAY-HIDDEN-COMMAND ,FOLLOW-COMMAND>)>) (<EQUAL? ,
+ACTION ,FOLLOW-COMMAND> <PRINTI
+"I decided to follow the mysterious woman, but soon lost track of her
+as she sped along the course of the stream. It was now late, and
+I had no choice but to return to camp."> <SEARCH-END>) (<EQUAL? ,ACTION ,
+RETURN-COMMAND> <COND (<FSET? ,WOOD-ELF ,SEEN> <PRINTI
+"Though my ankle was hurt, I stumbled and crawled my way back to camp.">) (T <
+PRINTI "It was getting late, so I returned to camp with the intention of telling
+the others about these forest people.">)> <SEARCH-END>)>)> 
+<DEFINE-ROUTINE ANONF-110> 
+<DEFINE-ROUTINE ANONF-111> 
+<ROOM ELFSTREAM (TRAVEL-COMMANDS PROCEED-COMMAND RETURN-COMMAND NUL-COMMAND) (
+GRAPHIC G-WATERFALL-NO-ELF) (ENTER <EXECUTE () <COND (<IN? ,WOOD-ELF ,
+BITE-FOREST> <TRAVEL-COMMANDS ,HERE ,ELF-HOME-COMMAND>) (<OR <NOT <FSET? ,
+BITE-VICTIM ,INCAPACITATED>> <FSET? ,BITE-VICTIM ,DEAD>> <TRAVEL-COMMANDS ,HERE
+,PROCEED-COMMAND>) (T <TRAVEL-COMMANDS ,HERE ,RETURN-COMMAND>)>>) (ACTION <
+ACOND () (<EQUAL? ,ACTION ,ELF-HOME-COMMAND> <PRINTI
+"We called out for V'ren, who quickly arrived at the side of the pool. "> <
+MOVE-TO-ELF-HOME>) (<EQUAL? ,ACTION ,PROCEED-COMMAND> <PRINTI
+"The pool was refreshingly cool, and we drank from it contentedly."> <COND (<
+FSET? ,ELFSTREAM-1 ,SEEN> <PRINTI
+" But none of the creatures I had seen before were here, and it soon became
+apparent that we had missed our opportunity of meeting them.">)> <COND (<NOT ,
+2ND-PASS> <SKIP-BITE-FOREST>) (T <CRLF> <CRLF> <N-DAY-TREK 1>)>) (<EQUAL? ,
+ACTION ,RETURN-COMMAND> <PRINTI
+"We returned to our camp at nightfall, full of despair and hopelessness.
+Praxix went over to where "> <WPRINTD ,BITE-VICTIM> <PRINTI " lay."> <
+BITE-VICTIM-DIES> <MOVE-TO ,BITE-FOREST>)>)> 
+<DEFINE-ROUTINE ANONF-112> 
+<DEFINE-ROUTINE ANONF-113> 
+<DEFINE-ROUTINE BITE-VICTIM-DIES> 
+<OBJECT ELF-HOME-ELVES (LOC ELF-HOME) (SDESC "Elves") (KBD 69) (FLAGS DONT-TAKE
+) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <PRINTI
+"\"Look,\" "> <WPRINTD ,ACTOR> <PRINTI
+" said, pointing out the Elves that were everywhere -
+climbing down trees, grabbing axes and crude buckets; soon, all would be
+heading north to fight the advancing blaze.">)>)> 
+<DEFINE-ROUTINE ANONF-114> 
+<OBJECT ELF-HOME-FIRE (LOC ELF-HOME) (FLAGS DONT-TAKE) (SDESC "fire") (KBD 70)
+(ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <WPRINTD ,
+ACTOR> <PRINTI " pointed toward the north, where the sky was filled with a dark, billowing
+smoke. Every
+few moments, a flash of red flame could be seen lapping at the tree tops
+in the distance.">)>)> 
+<DEFINE-ROUTINE ANONF-115> 
+<ROOM ELF-HOME (TRAVEL-COMMANDS FOLLOW-ELVES-COMMAND PROCEED-COMMAND
+NUL-COMMAND) (FLAGS ADVISE DANGEROUS) (ENTER <EXECUTE () <GRAPHIC ,G-ELF-HOME>
+<COND (<NOT <FSET? ,FOREST-FIRE ,SEEN>> <CRLF> <CRLF> <PRINTI
+"We talked among ourselves, marvelling at this ancient place, when
+three Elves rushed into the clearing, and their cries filled our ears.
+\"Fire!\" they said. \"The great flame approaches!\""> <CRLF> <CRLF> <PRINTI
+"Across the way, an older Elf clambered down from his tree-hammock.
+\"Awake! Awake!\" he cried, and dozens of Elves were soon marching
+to the north, where smoke could be seen in the treetops."> <COND (<FSET? ,
+ELFWOOD-2 ,EXAMINED> <CRLF> <CRLF> <PRINTI
+"\"That would explain the black forest I observed while searching for the
+westflake root!\" I exclaimed."> <CRLF> <CRLF> <PRINTI
+"\"The fire moves quickly, then,\" Praxix said. \"We are all in danger
+here!\"">)> <RTRUE>) (T <REMOVE-TRAVEL-COMMAND ,HERE ,FOLLOW-ELVES-COMMAND> <
+UPDATE-FCLEAR ,HERE ,ADVISE>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+GET-ADVICE-COMMAND> <UPDATE-FCLEAR ,HERE ,ADVISE> <PRINTI
+"We talked among ourselves, but could reach no consensus."> <COND (<FSET? ,
+BITE-VICTIM ,IN-PARTY> <PRINTI " "> <WPRINTD ,BITE-VICTIM> <PRINTI
+" felt
+strongly that we must help the Elves, if it were at all possible.
+Praxix was unsure; he could sense how near we were to the eastern
+mountains and Astrix, and was wary of the delay.">)> <RTRUE>) (<EQUAL? ,ACTION
+,FOLLOW-ELVES-COMMAND> <COND (<FSET? ,BITE-VICTIM ,IN-PARTY> <WPRINTD ,
+BITE-VICTIM> <PRINTI
+" reacted quickly. \"We must help these Elves, if it is at all within our
+power to do so.\""> <CRLF> <CRLF>)> <MOVE-TO ,FOREST-FIRE #ZLOCAL!-IZILCH
+STR?434>) (<EQUAL? ,ACTION ,PROCEED-COMMAND> <COND (<FSET? ,BERGON ,DEAD> <HINT
+,HINT-TANGLETREES> <PRINTI
+"We prepared to leave the forest, but were soon accosted by V'ren and two
+other Elves. \"I have tragic news for you. One of our scouts has located
+your friend; he had been strangled by the Tangle Trees into whose forest he
+had wandered. We have buried him here, among our bravest brethren. I am
+sorry.\""> <CRLF> <CRLF> <PRINTI
+"This was tragic news indeed, and we were greatly saddened by the loss
+of our leader. \"I feared this when he did not return last evening,\" Praxix
+said, \"He shall be sorely missed.\""> <CRLF> <CRLF>) (T <PRINTI
+"Unsure of how to help, we decided to continue with our quest. ">)> <PRINTI
+"With V'ren guiding us, we soon came to the eastern edge of the forest, at
+the shore of a great river. \"Be well,\" V'ren said. \"I must return
+to help my people.\" And with that, she turned and ran back into
+the forest."> <COND (<NOT <IN? ,ELF-STONE ,INVENTORY>> <HINT ,HINT-ELVES>)> <
+COND (,2ND-PASS <CRLF> <CRLF> <N-DAY-TREK 1> <RTRUE>) (T <MOVE-TO ,RIVER-2>)>)
+(<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE ,
+SCOUTED> <WPRINTD ,ACTOR> <PRINTI
+" rushed ahead with the Elves, and soon returned. \"It is a great fire,
+borne by the north wind,\" he reported. \"It won't be long until we
+are in danger here!\"">)>)> 
+<DEFINE-ROUTINE ANONF-116> 
+<DEFINE-ROUTINE ANONF-117> 
+<OBJECT FOREST-FIRE-FIRE (LOC FOREST-FIRE) (SDESC "fire") (KBD 70) (FLAGS
+DONT-TAKE) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <
+PRINTI "A wall of flame stood before us, consuming everything in its path. As
+if part of a conspiracy, the wind blew harder now, pushing the blaze
+toward the Elves' home a few mere miles downwind."> <COND (<EQUAL? ,ACTOR ,
+PRAXIX> <CRLF> <CRLF> <PRINTI
+"\"These Elves are in great danger,\" Praxix said. \"We must do something
+now or leave, lest we be destroyed with them.\"">) (T <CRLF> <CRLF> <PRINTI
+"\"We must retreat from here,\" "> <WPRINTD ,ACTOR> <PRINTI
+" said. \"It is not safe!\"">)>)>)> 
+<DEFINE-ROUTINE ANONF-118> 
+<OBJECT FOREST-FIRE-ELVES (LOC FOREST-FIRE) (SDESC "Elves") (KBD 69) (FLAGS
+DONT-TAKE) (EXBITS <+ ,ESHERBIT ,PRAXIXBIT>) (ACTION <ACOND () (<EQUAL? ,ACTION
+,EXAMINE-COMMAND> <UPDATE-MOVE> <PRINTI
+"Hundreds of Elves were here, trying desperately to fight the onrushing
+fire with buckets of water. Others were clearing brush and opening a wide
+trench, hoping to stop the flames at the trench line."> <CRLF> <CRLF> <COND (<
+FSET? ,ESHER ,IN-PARTY> <PRINTI
+"\"They'll never hold back the fire,\" Esher said, and it was hard to
+disagree. Praxix stood there in silent thought, eyes fixed on the
+approaching flames.">)> <RTRUE>)>)> 
+<DEFINE-ROUTINE ANONF-119> 
+<CONSTANT FIRE-RAIN-REQUIRED 5> 
+<ROOM FOREST-FIRE (TRAVEL-COMMANDS RETURN-COMMAND NUL-COMMAND NUL-COMMAND) (
+FLAGS DANGEROUS DONT-SCOUT) (CAST-LIMIT 2) (GRAPHIC G-FOREST-FIRE) (ENTER
+FSET-SEEN) (ACTION <ACOND ("AUX" TMP) (<EQUAL? ,ACTION ,RETURN-COMMAND> <
+MOVE-TO ,ELF-HOME #ZLOCAL!-IZILCH STR?435>) (<EQUAL? ,ACTION ,CAST-COMMAND> <
+COND (<EQUAL? ,ACTION-OBJECT ,RAIN-SPELL> <COND (<LESS? #ZLOCAL!-IZILCH TMP ,
+FIRE-RAIN-REQUIRED> <PRINTI
+"\"I don't believe I have enough,\" Praxix said, as he took all of his
+remaining water essence and cast it into the sky. Clouds gathered and a "> <
+COND (<EQUAL? .TMP 3 4> <PRINTI "good soaking rain">) (<EQUAL? .TMP 2> <PRINTI
+"few showers soon">) (T <PRINTI "sprinkle of rain">)> <FSET ,FOREST-FIRE ,TRIED
+> <PRINTI " fell, but it was quickly evident that Praxix' assessment was accurate.
+The rains were too little, too late. The fires had been slowed, but not nearly
+enough."> <CRLF> <CRLF> <UPDATE-REMOVE ,ESSENCE-WATER> <PUT ,ESSENCE-TBL ,
+WATEROFF 0> <SET ACTION ,RETURN-COMMAND> <AGAIN>) (T <GRAPHIC ,G-FIRE-RAINS> <
+PUT ,ESSENCE-TBL ,WATEROFF #ZLOCAL!-IZILCH STACK> <COND (<EQUAL? .TMP ,
+FIRE-RAIN-REQUIRED> <UPDATE-REMOVE ,ESSENCE-WATER>)> <PRINTI
+"Seeing little choice, Praxix removed "> <COND (<NOT <EQUAL? .TMP ,
+FIRE-RAIN-REQUIRED>> <PRINTI "almost ">)> <PRINTI
+"all of his stock of water essence
+and cast it into the sky. The sky was obscured in smoke, yet the
+approaching storm could be felt in the air. Lightning danced through
+the clouds, and the roar of thunder soon filled the sky. All at once,
+the clouds burst, dropping a drenching rain on us. So violent was it,
+that many Elves were carried off by the rushing water. It was as though
+the rains would never end, and Praxix appeared somewhat embarrassed."> <CRLF> <
+CRLF> <PRINTI "\"Perhaps I did not need so much,\" he said, \"but these things are
+quite unpredictable; one must take into account such variables as the
+winds, the temperature, the time of year, the altitude...\""> <CRLF> <CRLF> <
+COND (<FSET? ,ESHER ,IN-PARTY> <PRINTI
+"\"The expertise of the Wizard who cast it?\" Esher added."> <CRLF> <CRLF> <
+PRINTI "\"Harumph!\" was Praxix' reply, and as if to second his rejoinder, ">)
+(T <PRINTI "But happily ">)> <PRINTI
+"the
+rains suddenly stopped, and the sky partially cleared. The fire had
+been extinguished!"> <CRLF> <CRLF> <PRINTI
+"There was much cleaning up to do, and we each did what we could to
+help. And then, tired and dirty, we returned to the Elf Home where
+we bathed, and went off to sleep."> <CRLF> <CRLF> <NEXT-DAY> <REMOVE ,HYE-RIVER
+> <MOVE-TO ,ELF-HOME-2>)> <RTRUE>) (<AND <OR <EQUAL? ,ACTION-OBJECT ,
+LIGHTNING-SPELL> <EQUAL? ,ACTION-OBJECT ,FIRE-SPELL>> <EQUAL? ,ACTION-PRSI ,
+FOREST-FIRE-FIRE>> <REMOVE ,HYE-FIRE> <COND (<EQUAL? ,ACTION-OBJECT ,
+LIGHTNING-SPELL> <FSET ,LIGHTNING-SPELL ,SEEN>)> <PRINTI
+"In the spirit of fairness, I will call it absentmindedness, but Praxix now
+attempted to fight fire with fire as he cast his \""> <WPRINTD ,ACTION-OBJECT>
+<PRINTI "\" spell at the onrushing
+flames. Fortunately, he was unobserved by the others and his spell did little damage,
+but I began to have my doubts as to the stability of our wizardly friend.">) (<
+EQUAL? ,ACTION-OBJECT ,TREMOR-SPELL> <PRINTI
+"Praxix took some earth essence and flung it at the earth before him.
+The earth shook, and the ground opened up before us. But this small
+rift would hold the fire only a short time."> <CRLF> <CRLF> <PRINT ,
+PRAXIX-HASNT-GOT-ENOUGH>) (<EQUAL? ,ACTION-OBJECT ,WIND-SPELL> <PRINTI
+"Praxix took some air essence from his pouch and flung it at the
+approaching flames. A new, southern wind fought with the cold
+north wind, and the Elves were cheered by the slowing progress
+of the fire. But Praxix' magical wind departed within the hour,
+and the fire continued its relentless approach."> <CRLF> <CRLF> <PRINT ,
+PRAXIX-HASNT-GOT-ENOUGH>) (T <UNUSE-ESSENCES> <PRINTI
+"Praxix now thought to cast his \""> <WPRINTD ,ACTION-OBJECT> <PRINTI
+"\" spell, but it didn't occur to
+him how it could possibly help.">)> <COND (<AND <NOT <CHECK-ESSENCES ,
+RAIN-SPELL>> <NOT <QSET? ,HERE ,DEAD>>> <CRLF> <CRLF> <PRINTI
+"\"What I need is water essence,\" the Wizard said mournfully, \"Without it,
+I fear we are of no use to the Elves.\"">)> <RTRUE>)>)> 
+<DEFINE-ROUTINE ANONF-120> 
+<CONSTANT PRAXIX-HASNT-GOT-ENOUGH
+"Reaching back into his pouch, Praxix said, mournfully, \"I haven't enough
+magical essence to last us the afternoon.\""> 
+<ROOM ELF-HOME-2 (TRAVEL-COMMANDS NUL-COMMAND NUL-COMMAND NUL-COMMAND) (ENTER <
+EXECUTE () <TELL
+"When we awoke the next morning, a great feast had been prepared for
+us - breads, berries, fruits, and many foods we had never seen
+before. After eating heartily, the food was taken away, and we were
+led to the Elf leader, who sat upon a tall wooden throne." CR CR> <TELL
+"\"I am N'dar,\" he began, \"and I thank you on behalf of the Elves.
+We have not seen the last of these scourges from the north, and I
+am keenly aware that your quest is our quest also.\"" CR CR> <MOVE ,ELF-STONE ,
+INVENTORY> <COND (<FSET? ,BERGON ,DEAD> <HINT ,HINT-TANGLETREES> <PRINTI
+"\"This is a day for rejoicing, but I am afraid that I have tragic news for
+you. One of our scouts has located your friend; he had been strangled by the
+Snaketrees into whose forest he had wandered. We have buried him here,
+among our bravest brethren. I am indeed sorry.\""> <CRLF> <CRLF>)> <TELL
+"Then, he stood and took a green amulet from around his neck. \"This
+is our most precious possession. It is said that it held great power once;
+perhaps, it shall again.\" And, so saying, he called Praxix forward and
+placed it around the Wizard's neck." CR CR> <TELL
+"Thanking N'dar, we prepared to leave. V'ren was saddened, but
+said nothing as she led us east through the forest and to the edge of a
+great river."> <COND (<NOT <IN? ,ELF-STONE ,INVENTORY>> <HINT ,HINT-ELVES>)> <
+COND (,2ND-PASS <PRINTI " "> <N-DAY-TREK 1> <RTRUE>)> <TELL CR CR
+"\"I must leave now,\" she said, and turning her back, she ran into
+the forest."> <MOVE-TO ,RIVER-2>>)> 
+<DEFINE-ROUTINE ANONF-121> 
+<COMMAND (FOLLOW-ELVES FOLLOW)> 
+<COMMAND STAY> 
+<OBJECT WARREN-WALLS (LOC WARREN) (SDESC "walls") (KBD 87) (FLAGS DONT-TAKE) (
+EXBITS <+ ,ESHERBIT ,PRAXIXBIT>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+EXAMINE-COMMAND> <CLEAR-EXBIT> <COND (<NOT <QSET? ,WARREN-WALLS ,EXAMINED>> <
+PRINTI "The walls here were slimy to the touch, and covered in green
+mosses and lichens.  Life flourished here, though it was not the
+sort of life that was happily endured: spiders, slugs,
+toads, worms, lizards, and maggots. But not all of us were
+disheartened."> <CRLF> <CRLF>)> <COND (<EQUAL? ,ACTOR ,PRAXIX> <PRINTI
+"\"If I were a maker of magic potions,\" Praxix said, wistfully, \"I
+should have a field day here!\""> <COND (<FSET? ,ESHER ,IN-PARTY> <CRLF> <CRLF>
+<PRINTI "Esher shook his head in disbelief. \"Yes,\" he said with indelicate
+sarcasm, \"A lovely spot for a party. Now, why don't you make yourself
+useful and get us out of here? Damned Wizard...\" His voice trailed off to
+a whining whisper.">)>) (T <FSET ,WARREN-WALLS ,SOLVED> <PRINTI
+"\"Hawkbane,\" Esher said, holding up a phosphorescent root that he had
+discovered growing in the walls of this warren, or whatever it was."> <CRLF> <
+CRLF> <PRINTI "\"Hawkbane?\" Praxix echoed, unaware of any such thing."> <CRLF>
+<CRLF> <PRINTI "\"Yes, a remarkable find,\" he replied. \"A very rare medicinal herb, not
+seen much where we come from. It's the most potent inhibitor of allergic
+reactions that exists, but its rarity makes it virtually unknown outside of
+professional circles.\" Getting down on his knees, he pulled a few more of
+the faintly glowing roots and placed them inside his cloak.">)> <RTRUE>)>)> 
+<DEFINE-ROUTINE ANONF-122> 
+<ROOM WARREN (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND UP-COMMAND
+NUL-COMMAND) (FLAGS UNDERGROUND DANGEROUS ADVISE) (CAST-LIMIT INF) (GRAPHIC
+G-WARREN) (TEMP 0) (ENTER FSET-SEEN) (ACTION <ACOND ("AUX" TMP) (<EQUAL? ,
+ACTION ,DROP-COMMAND> <UPDATE-FSET ,HERE ,DONT-DROP> <PRINTI
+"I thought to drop something as an aid in mapping this labyrinth,
+but realized we had too few items to spare in case we got lost.">) (<EQUAL? ,
+ACTION ,CAST-COMMAND> <COND (<AND <EQUAL? ,ACTION-OBJECT ,LIGHT-SPELL> <EQUAL?
+,ACTION-PRSI ,STAFF> <NOT <FSET? ,HERE ,BLUE-MIX>>> <SET TMP <GETP ,HERE ,
+P?TEMP>> <COND (<OR <ZERO? #ZLOCAL!-IZILCH STACK> <ZERO? #ZLOCAL!-IZILCH STACK>
+> <PRINTI "Preferring to see where we were going, Praxix pulled more fire
+and earth essences from his pouch and applied them to his staff, causing it to
+glow more brightly. \"We had best leave this water-logged prison soon, for I shan't
+be able to do this often!\" he said.">) (<ZERO? #ZLOCAL!-IZILCH STACK> <FSET ,
+HERE ,BLUE-MIX> <PRINTI
+"Praxix fumbled for some fire and earth essence, which he applied to the
+end of his staff. Soon it was glowing again with a pale red glow.">) (<GRTR? ,
+WARREN-COUNT 12> <PRINTI
+"\"This,\" Praxix said petulantly, \"is ridiculous. I refuse to
+use more precious essences on this festering sore of a tunnel!\" He
+put his pouch away, and stood there, fuming."> <RTRUE>) (T <PRINTI
+"Fearing that his staff's light was fading in the dampness, Praxix
+applied some additional fire and earth essence, making it brighten
+somewhat.">)> <PUTP ,HERE ,P?TEMP 0>) (<EQUAL? ,ACTION-OBJECT ,FAR-VISION-SPELL
+> <CAST-FAR-VISION #ZLOCAL!-IZILCH FALSE-VALUE> <PRINTI
+" But little was illuminated. "> <COND (<OR <NOT <FSET? ,HERE ,EXAMINED>> <NOT
+<FSET? ,ESHER ,IN-PARTY>>> <PRINTI
+"\"I fear
+we shall have little help in getting ourselves out of this maze!\"
+he said.">) (T <PRINTI
+"\"I think that should put
+your fears to rest, Esher,\" he said."> <CRLF> <CRLF> <PRINTI
+"\"Not really. It gives rise to new ones,\" he replied, leading me to
+wonder whether Esher in fact had a sense of humor after all.">)>) (<EQUAL? ,
+ACTION-OBJECT ,TREMOR-SPELL> <COND (<NOT <QSET? ,HERE ,ENCHANTED>> <PRINTI
+"Thinking perhaps that a good jolt would lead us back into the
+forest, Praxix cast his tremor spell. The results were not spectacular;
+I was covered in a mossy slime, and Bergon's head received a visit from
+a pile of hard-packed mud."> <CRLF> <CRLF> <PRINTI
+"\"Well, well, yes,\" he said proudly. \"Just a little more tremor and I'm
+quite certain we'll be back above ground.\""> <CRLF> <CRLF> <PRINTI
+"\"Or buried alive,\" I replied, thinking not only for my safety but for that
+of our belongings.">) (T <PRINTI
+"\"Well, here goes,\" Praxix said as he cast yet another tremor spell. The effect
+was certainly more pronounced than the last time, and, indeed, the tunnel split
+apart with such force that we were thrown from our feet and nearly buried in the
+mud, moss, and slime. But we had survived, and our possessions all appeared to be
+in place. Sunlight streamed in from above, and we were quickly back on our feet and
+ready to clamber up and out of this underground maze of tunnels."> <COND (<IN?
+,WEBBA-MAP ,INVENTORY> <FSET ,WEBBA-MAP ,INCAPACITATED>)> <FSET ,HERE ,USED-UP>
+<SET ACTION ,UP-COMMAND> <AGAIN>)>)>) (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <
+UPDATE-FCLEAR ,HERE ,ADVISE> <WPRINTD ,ACTOR> <PRINTI
+" looked to each of us, but none had any good ideas on how to escape
+this soggy underground nest of twisting passages."> <CRLF> <CRLF> <PRINTI
+"\"Then we had best continue,\" Bergon said, \"There must be an exit
+somewhere!\" We were beginning to have our doubts.">) (<OR <EQUAL? ,ACTION ,
+PROCEED-COMMAND> <EQUAL? ,ACTION ,BACK-COMMAND> <EQUAL? ,ACTION ,LEFT-COMMAND>
+<EQUAL? ,ACTION ,RIGHT-COMMAND>> <PUTP ,HERE ,P?TEMP #ZLOCAL!-IZILCH TMP> <COND
+(<AND <EQUAL? .TMP 1> <EQUAL? ,ACTION ,BACK-COMMAND>> <PRINTI
+"Hoping to avoid getting lost in what appeared to be an underground
+labyrinth, we turned back and were surprised to find two
+passages behind us, one leading left and the other right."> <CRLF> <CRLF> <COND
+(<NOT <QSET? ,HERE ,DEAD>> <PRINT ,OH-DEAR-MAZE>) (T <PRINT ,OH-DEAR-MAZE-2>)>
+<TRAVEL-COMMANDS ,HERE ,LEFT-COMMAND ,RIGHT-COMMAND ,UP-COMMAND>) (T <
+COBBLE-WARREN-DESC> <COND (<EQUAL? .TMP 1> <COND (<NOT <QSET? ,HERE ,DEAD>> <
+CRLF> <CRLF> <PRINT ,OH-DEAR-MAZE>) (T <CRLF> <CRLF> <PRINT ,OH-DEAR-MAZE-2>)>)
+(<ZERO? #ZLOCAL!-IZILCH STACK> <COND (<LESS? ,WARREN-COUNT 5> <CRLF> <CRLF> <
+PRINTI "\"Blast the dampness,\" growled Praxix, as his staff started
+growing dim. \"Never in my long years have I seen this!
+Soon we shall be growing moss!\""> <CRLF> <CRLF> <PRINTI
+"But then, his anger turned to some measure of excitement as he discovered some
+small stones containing fire essence. \"Just a moment, if you will,\" he implored,
+as he crushed the stones and placed the resulting small pile of essence into his
+pouch. \"Given what the humidity here is doing to my glow spell, we shall be glad
+to have found this!\""> <FIND-ESSENCE ,ESSENCE-FIRE 2>) (T <CRLF> <CRLF> <
+PRINTI "\"Not again!\" Praxix said, wearily, as his staff again started
+to grow dim from the extreme humidity. \"Toads will be soon be leaping
+from our clothes if we don't find our way out of here.\"">)>) (<ZERO? #
+ZLOCAL!-IZILCH STACK> <CRLF> <CRLF> <PRINTI
+"Praxix' staff glowed with an ever fainter light; soon, it would
+be impossible to see the way before us.">) (<ZERO? #ZLOCAL!-IZILCH STACK> <
+GRAPHIC ,G-WARREN-LIGHT> <FCLEAR ,PRAXIX ,LIT> <CRLF> <CRLF> <PRINTI
+"Just then, Praxix' staff went out, and the tunnel went dark.
+Dark, that is, except for the pale light of day faintly peeking
+its way through the cracks in a hole just above us."> <CRLF> <CRLF> <PRINTI
+"\"Well, I'll be!\" said Praxix, with a smile. \"It seems that
+sometimes, darkness is the best light to see by!\""> <UPDATE-FSET ,HERE ,
+DONT-SCOUT> <UPDATE-FCLEAR ,HERE ,ADVISE> <TRAVEL-COMMANDS ,HERE ,UP-COMMAND> <
+RTRUE>)> <TRAVEL-COMMANDS ,HERE ,LEFT-COMMAND ,RIGHT-COMMAND ,BACK-COMMAND ,
+UP-COMMAND>)>) (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT>
+<FSET ,HERE ,SCOUTED> <PRINTI "We thought to send "> <WPRINTD ,ACTOR> <PRINTI
+" ahead, but were fearful of getting lost,
+so we decided to stay together until we could find a way out.">) (<EQUAL? ,
+ACTION ,UP-COMMAND> <COND (<OR <FSET? ,HERE ,USED-UP> <AND <NOT <FSET? ,PRAXIX
+,LIT>> <ZERO? #ZLOCAL!-IZILCH STACK>>> <COND (<IN? ,WOOD-ELF ,BITE-FOREST> <
+TRAVEL-COMMANDS ,ELFSTREAM ,ELF-HOME-COMMAND>)> <PRINTI
+"With an exit in sight, we happily climbed out of the warren "> <
+MOVE-TO-ELFSTREAM>) (T <REMOVE-PARTY-COMMAND ,UP-COMMAND> <PRINTI
+"Hoping to find some way out, we tried feeling our way around the top of
+the tunnel, but the thick growth above us made this all but impossible.
+There might be a way out up there, but it was unlikely we were going
+to find it.">)>)>)> 
+<DEFINE-ROUTINE ANONF-123> 
+<DEFINE-ROUTINE MOVE-TO-ELFSTREAM> 
+<CONSTANT OH-DEAR-MAZE
+"\"Oh, dear,\" said Praxix. \"I hope this isn't one of those underground
+mazes.\""> 
+<CONSTANT OH-DEAR-MAZE-2
+"\"Oh, dear,\" said Praxix. \"This is becoming rather tiresome.\""> 
+<CONSTANT WARREN-TBL-1 <LTABLE 0 "Selecting" "Opting for" "Choosing this time">
+> 
+<CONSTANT WARREN-TBL-2 <LTABLE 0 "the results were discouragingly the same."
+"this brought us to another similar spot."
+"it was no good; it appeared that we were lost in
+an endless maze of mossy sameness.">> 
+<DEFINE-ROUTINE TELL-WARREN-DIR> 
+<GLOBAL WARREN-COUNT 0> 
+<DEFINE-ROUTINE COBBLE-WARREN-DESC> 
+<DEFINE-ROUTINE DIVIDER> 
+<BUZZ TAG BERGON ASTRIX MINAR ESHER HURTH LA BRAN AGRITH VALEN GRAN LOREM STEGG
+CALFON ANDRIL ELEVAR CRIBALD BENDOR SISKA IBARA KELNOR ULMAN ANSAX GILFAN
+VENDOR MEREZI> 
+<DEFINE-ROUTINE PARSE-ELVISH> 
+<GLOBAL VALEN-BRAN-FLAG <>> 
+<GLOBAL FOO-LA-FLAG <>> 
+<GLOBAL BRAN-FOO-FLAG <>> 
+<END-SEGMENT> 
+<BEGIN-SEGMENT TANGLEWOOD> 
+<OBJECT BERGON-SEARCH (GRAPHIC G-TANGLEWOOD) (ACTION <ACOND () (<EQUAL? ,ACTION
+,SCENE-START-COMMAND> <MAKE-SUBGROUP ,BERGON> <CHANGE-TRAVEL-COMMAND ,BERGON ,
+GET-ADVICE-COMMAND ,EXAMINE-COMMAND> <MOVE-TO ,TANGLEWOOD-1>)>)> 
+<DEFINE-ROUTINE ANONF-124> 
+<OBJECT TANGLE-TREES-1 (SDESC "trees") (KBD 84) (LOC TANGLEWOOD-1) (FLAGS
+DONT-TAKE) (EXBITS <+ ,PRAXIXBIT ,ESHERBIT ,BERGONBIT>) (ACTION <ACOND () (<
+EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <WPRINTD ,ACTOR> <PRINTI
+" stopped to admire the surrounding pine and alder. But up ahead, the forest
+appeared darker and more forebidding.">)>)> 
+<DEFINE-ROUTINE ANONF-125> 
+<OBJECT TANGLETREE (LOC TANGLEWOOD) (SDESC "snake tree") (8DESC "snaketree") (
+KBD 83) (FLAGS DONT-TAKE DONT-EXAMINE)> 
+<ROOM TANGLEWOOD (TRAVEL-COMMANDS RETURN-COMMAND NUL-COMMAND NUL-COMMAND) (
+CAST-LIMIT 2) (GRAPHIC G-TANGLEWOOD) (FLAGS DONT-SCOUT) (ENTER <EXECUTE () <
+MOVE ,HYE-TANGLE ,HAVE-YOU-EVER>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+RETURN-COMMAND> <REMOVE-TRAVEL-COMMAND ,BITE-FOREST ,BERGON-ROUTE-COMMAND> <
+MOVE-TO ,BITE-FOREST> <COND (<FSET? ,BERGON ,DEAD> <PRINTI
+"Carrying Bergon's body on our shoulders,">) (<FSET? ,BERGON ,TRAPPED> <PRINTI
+"Unable to help Bergon, and with the snake-trees moving ever closer,">) (T <
+PRINTI "Carrying Bergon on our shoulders,">)> <PRINTI
+" we retreated to the safety of our camp."> <COND (<FSET? ,BERGON ,DEAD> <HINT
+,HINT-TANGLETREES> <CRLF> <CRLF> <PRINTI
+"We buried Bergon there, after a short ritual performed by Praxix.">) (<NOT <
+FSET? ,BERGON ,TRAPPED>> <COND (<FSET? ,BITE-VICTIM ,INCAPACITATED> <CRLF> <
+CRLF> <PRINTI "Bergon regained his strength quickly; he looked at "> <WPRINTD ,
+BITE-VICTIM> <PRINTI
+" and
+frowned. \"We must do something quickly, or he will die!\"">) (T <CRLF> <CRLF>
+<PRINTI "It had been a long and frightening day; the sun had set, and we fell into
+a deep and dreamless sleep."> <NEXT-DAY>)>) (T <FSET ,BERGON ,DEAD>)>) (<AND <
+EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,LEVITATE-SPELL> <EQUAL? ,
+ACTION-PRSI ,BERGON-OBJECT>> <PRINTI
+"Praxix tried using his spell of elevation, but the trees' grip was
+too strong.">) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,
+FIRE-SPELL>> <UNUSE-ESSENCES> <PRINTI
+"Praxix started to reach for his fire and earth essence, but he stopped
+himself. \"Not the best place for a bonfire,\" he said softly.">) (<AND <EQUAL?
+,ACTION ,CAST-COMMAND> <OR <AND <EQUAL? ,ACTION-OBJECT ,LIGHTNING-SPELL> <
+EQUAL? ,ACTION-PRSI ,TANGLETREE>> <EQUAL? ,ACTION-OBJECT ,FAR-VISION-SPELL>>> <
+COND (<EQUAL? ,ACTION-OBJECT ,FAR-VISION-SPELL> <GRAPHIC ,G-TANGLEWOOD-BURNS>)>
+<COND (<IN? ,WESTFLAKE-ROOT ,PRAXIX> <PRINTI "For the second time that day, ">)
+> <PRINTI "Praxix put his magic to good use! "> <COND (<EQUAL? ,ACTION-OBJECT ,
+LIGHTNING-SPELL> <FSET ,LIGHTNING-SPELL ,SEEN> <PRINTI
+"He mixed together the essences of fire and water, then added just a pinch
+of earth essence. Just moments after casting the mixture, clouds gathered
+around him, and the sky turned black. He motioned with his
+staff at the deadly tree and a bolt of white lightning struck it, splitting it
+down the middle. A few branches caught fire, and instinctively withdrew,
+as if in pain."> <COND (<NOT <QSET? ,LIGHTNING-SPELL ,INCAPACITATED>> <CRLF> <
+CRLF> <PRINTI "Praxix, proud of his accomplishment, turned to me and whispered that it
+was the pinch of earth essence that really gives the lightning spell its
+added punch. But however the magic had been prepared, its effect was
+profound.">)>) (T <PRINTI
+"Praxix prepared his flare enchantment, and cast it at the tree before
+us. The ball of flame sped through the forest before us, and the tentacles
+withdrew, as if in pain, clearing a path in its wake.">)> <PRINTI
+" The tentacles loosened, we retrieved Bergon from their deadly
+embrace."> <FCLEAR ,BERGON ,TRAPPED> <COND (<FSET? ,BERGON ,DEAD> <PRINTI
+" But it was too late; Bergon was dead!">) (T <PARTY-ADD ,BERGON> <MAKE-BUSY ,
+BERGON ,ILL-COMMAND> <CRLF> <CRLF> <PRINTI
+"\"They don't much care for fire,\" Praxix mused, \"Let's get away before
+they recover!\"">)> <RTRUE>) (<AND <EQUAL? ,ACTION ,EXAMINE-COMMAND> <EQUAL? ,
+ACTION-OBJECT ,BERGON-OBJECT>> <WPRINTD ,ACTOR> <PRINTI
+" looked Bergon over; he was unconscious. The tentacles were
+slowly, inexorably, squeezing the life out of him!">)>)> 
+<DEFINE-ROUTINE ANONF-126> 
+<DEFINE-ROUTINE ANONF-127> 
+<ROOM TANGLEWOOD-1 (TRAVEL-COMMANDS PROCEED-COMMAND RETURN-COMMAND NUL-COMMAND)
+(FLAGS DANGEROUS DONT-SCOUT DONT-CAST) (GRAPHIC G-TANGLEWOOD) (ACTION <ACOND ()
+(<EQUAL? ,ACTION ,PROCEED-COMMAND> <PRINTI "As "> <COND (<NOT ,SUBGROUP-MODE> <
+PRINTI "w">) (T <PRINTI "h">)> <PRINTI
+"e continued, the forest grew increasingly dark and foreboding.
+The stately stands of pine and alder were gone, replaced by shorter,
+more twisted trees that seemed to choke the very life out of the
+forest. A rustling noise filled "> <COND (<NOT ,SUBGROUP-MODE> <PRINTI "our">)
+(T <PRINTI "his">)> <PRINTI
+" ears, and the trees writhed with a hypnotic motion, though
+the air was still, with no hint of a breeze."> <MOVE-TO ,TANGLEWOOD-2>) (<
+EQUAL? ,ACTION ,RETURN-COMMAND> <COND (<NOT ,SUBGROUP-MODE> <TANGLE-NO-RETURN>)
+(T <START-PRAXIX-SEARCH #ZLOCAL!-IZILCH STR?453>)>)>)> 
+<DEFINE-ROUTINE ANONF-128> 
+<DEFINE-ROUTINE TANGLE-NO-RETURN> 
+<GLOBAL TANGLE-TWO-B <>> 
+<DEFINE-ROUTINE START-PRAXIX-SEARCH> 
+<OBJECT TANGLE-TREES-2 (SDESC "trees") (KBD 84) (LOC TANGLEWOOD-2) (EXBITS <+ ,
+PRAXIXBIT ,ESHERBIT ,BERGONBIT>) (FLAGS DONT-TAKE) (ACTION <ACOND () (<EQUAL? ,
+ACTION ,EXAMINE-COMMAND> <UPDATE-FSET ,ACTION-OBJECT ,DONT-EXAMINE> <COND (<NOT
+,SUBGROUP-MODE> <PRINTI "W">) (T <PRINTI "H">)> <PRINTI
+"e looked around, but could find no source of the rustling noises,
+except for the trees themselves."> <COND (<FSET? ,BERGON ,IN-PARTY> <CRLF> <
+CRLF> <PRINTI "\"Argh!\" Bergon cried, seeing a fox twisted until nearly unrecognizable
+by the strangling branches.">)> <RTRUE>)>)> 
+<DEFINE-ROUTINE ANONF-129> 
+<ROOM TANGLEWOOD-2 (TRAVEL-COMMANDS PROCEED-COMMAND RETURN-COMMAND NUL-COMMAND)
+(FLAGS DANGEROUS DONT-SCOUT) (GRAPHIC G-TANGLEWOOD) (ENTER <EXECUTE () <COND (<
+AND <FSET? ,HERE ,BLACK-MIX> <NOT <QSET? ,HERE ,BLUE-MIX>>> <CRLF> <CRLF> <
+PRINTI "\"These are the same trees that trapped me in the forest where "> <
+WPRINTD ,BITE-VICTIM> <PRINTI " was stricken by the Nightfang,\" Bergon said.">
+<CRLF> <CRLF> <PRINTI
+"\"Yes,\" replied Praxix. \"Let us hope that my magic will work now as it did
+before!\"">) (<AND <FSET? ,HERE ,TRIED> <NOT <QSET? ,HERE ,BLUE-MIX>>> <CRLF> <
+CRLF> <PRINTI "\"I have seen these trees before,\" Bergon said darkly, \"in the forest,
+where "> <WPRINTD ,BITE-VICTIM> <PRINTI
+" was stricken by the Nightfang. We must find some
+other way, for there is no escape for us if we are caught in their grasp!\"">)>
+<COND (,SUBGROUP-MODE <FSET ,HERE ,TRIED>) (<AND ,PART-TWO ,TANGLE-TWO-B> <
+TRAVEL-COMMANDS ,HERE ,PROCEED-COMMAND>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION
+,PROCEED-COMMAND> <PRINTI
+"The gnarled trees were soon too thick to penetrate, and "> <COND (<FSET? ,
+BERGON ,IN-PARTY> <PRINTI "Bergon">) (T <WPRINTD #ZLOCAL!-IZILCH STACK>)> <
+PRINTI " finally
+unsheathed his sword, hacking at the undulating branches. But the branches
+did not break; they sloughed off, falling to the ground in a pool
+of steamy green slime. The air was now steamy, and the wavy branches
+taunted "> <COND (<NOT ,SUBGROUP-MODE> <PRINTI "us">) (T <PRINTI "him">)> <
+PRINTI ", goading "> <COND (<NOT ,SUBGROUP-MODE> <PRINTI "us">) (T <PRINTI
+"him">)> <PRINTI " onward into their unrelenting grasp."> <MOVE-TO ,
+TANGLEWOOD-3>) (<EQUAL? ,ACTION ,RETURN-COMMAND> <COND (<NOT ,SUBGROUP-MODE> <
+REMOVE-TRAVEL-COMMAND ,HERE ,RETURN-COMMAND> <TANGLE-NO-RETURN>) (T <
+START-PRAXIX-SEARCH #ZLOCAL!-IZILCH STR?454>)>)>)> 
+<DEFINE-ROUTINE ANONF-130> 
+<DEFINE-ROUTINE ANONF-131> 
+<OBJECT TANGLE-TREES-3 (SDESC "trees") (KBD 84) (LOC TANGLEWOOD-3) (FLAGS
+DONT-TAKE) (EXBITS <+ ,PRAXIXBIT ,ESHERBIT ,BERGONBIT>) (ACTION <ACOND () (<
+EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-FSET ,ACTION-OBJECT ,DONT-EXAMINE> <
+WPRINTD ,ACTOR> <PRINTI
+" turned, but the choking trees were everywhere. Escape would be difficult,
+if not impossible!">)>)> 
+<DEFINE-ROUTINE ANONF-132> 
+<ROOM TANGLEWOOD-3 (TRAVEL-COMMANDS PROCEED-COMMAND RETURN-COMMAND NUL-COMMAND)
+(CAST-LIMIT INF) (FLAGS DANGEROUS DONT-SCOUT) (GRAPHIC G-TANGLEWOOD) (ENTER <
+EXECUTE () <COND (,SUBGROUP-MODE <FSET ,TANGLEWOOD-2 ,BLACK-MIX>)> <COND (<AND
+,PART-TWO ,TANGLE-TWO-B> <TRAVEL-COMMANDS ,HERE ,PROCEED-COMMAND>)>>) (ACTION <
+ACOND () (<EQUAL? ,ACTION ,PROCEED-COMMAND> <REMOVE-TRAVEL-COMMAND> <COND (<NOT
+,SUBGROUP-MODE> <PRINTI "We">) (T <PRINTI "Bergon">)> <PRINTI
+" tried to move forward, but it was no use. The growth was too thick!">) (<
+EQUAL? ,ACTION ,RETURN-COMMAND> <COND (<NOT ,SUBGROUP-MODE> <PRINTI
+"Sensing our peril, we tried to retreat, but the trees had closed in
+behind us. A branch rested on Bergon's">) (T <PRINTI
+"Bergon, sensing his peril, tried to move back, but the trees had closed in
+behind him. A branch rested on his">)> <PRINTI
+" shoulder, writhing and undulating as it spread itself
+around his arms and chest. The trees were closing in, and "> <COND (<NOT ,
+SUBGROUP-MODE> <PRINTI "we were trapped!"> <REMOVE-TRAVEL-COMMAND ,HERE ,
+RETURN-COMMAND>) (T <PRINTI "Bergon was trapped!"> <FSET ,BERGON ,TRAPPED> <
+PARTY-REMOVE ,BERGON> <SCENE ,PRAXIX-SEARCH>)>)>)> 
+<DEFINE-ROUTINE ANONF-133> 
+<DEFINE-ROUTINE ANONF-134> 
+<OBJECT TANGLESCENE (TIME 0) (CLOCK <EXECUTE () <COND (<AND <EQUAL? ,HERE ,
+TANGLEWOOD-3> <NOT <CHECK-ESSENCES ,FAR-VISION-SPELL>>> <FORCE-TRAVEL-COMMAND ,
+HERE ,PROCEED-COMMAND>)>>) (ACTION <ACOND ("AUX" TMP) (<AND <EQUAL? ,ACTION ,
+PROCEED-COMMAND> <EQUAL? ,HERE ,TANGLEWOOD-3> <NOT <CHECK-ESSENCES ,
+FAR-VISION-SPELL>>> <HINT ,HINT-TANGLESCENE> <SET TMP <FIRST-IN-PARTY ,BERGON ,
+HURTH ,ESHER ,MINAR>> <PARTY-REMOVE .TMP> <SCENE #ZLOCAL!-IZILCH FALSE-VALUE> <
+PRINTI "There appeared to be no alternative to hacking and slashing our way through these
+infernal trees, and for a while no harm came to us. But I am appalled to
+report that one of the trees grabbed "> <WPRINTD .TMP> <PRINTI
+" and crushed him to death before
+our very eyes. And, most eerily, the trees then bothered us no longer, as if
+satisfied at our sacrifice. You can imagine our desolation as, safe at last from
+the accursed forest, we made our camp for the night."> <COND (<LESS? ,PARTY-MAX
+3> <CRLF> <CRLF> <PART-TWO-TOO-FEW> <RTRUE>)> <MOVE-TO ,FOG-CAMP>) (<EQUAL? ,
+ACTION ,CAST-COMMAND> <COND (<AND <EQUAL? ,ACTION-OBJECT ,FIRE-SPELL> <EQUAL? ,
+ACTION-PRSI ,TANGLE-TREES-1 ,TANGLE-TREES-2 ,TANGLE-TREES-3>> <PRINTI
+"\"Perhaps they do not like fire,\" Praxix said, but fearing an uncontrollable
+blaze, he cast only a small amount of magical powders at a nearby tree.
+Sure enough, the tree recoiled as if in pain."> <CRLF> <CRLF> <PRINTI
+"\"The problem is,\" Praxix said, \"that I haven't enough magical powders to
+burn every tree we need to pass through. And if I use too much at one time, I
+may cause a great forest fire, with even less chance of escape than we now
+have! No,\" he said, \"there must be a better way.\"">) (<EQUAL? ,ACTION-OBJECT
+,LIGHTNING-SPELL> <FSET ,LIGHTNING-SPELL ,SEEN> <PRINTI
+"Clouds gathered as Praxix cast his lightning spell, and as he pointed
+his staff at the tree before us, a bolt of white lightning split it in
+two. A few branches caught fire and instinctively withdrew, as if in
+pain."> <CRLF> <CRLF> <COND (<NOT <QSET? ,LIGHTNING-SPELL ,INCAPACITATED>> <
+PRINTI "Praxix, proud of his accomplishment, turned to me and said, \"It's
+that tiny bit of earth essence that gives the lightning spell its
+extra punch!\" Then, he turned to the others and spoke. ">)> <PRINTI
+"\"Effective, but inefficient,\" Praxix declared. \"I don't have nearly
+enough fire essence to strike every tree that lies before us!\"">) (<EQUAL? ,
+ACTION-OBJECT ,RAIN-SPELL> <REMOVE ,HYE-TANGLE> <PRINTI
+"Praxix cast his rain spell, and soon a heavy rain fell over the forest.
+But rather than helping our condition, rather the trees appeared to strengthen
+from the moisture, so much so that we were now more endangered than we
+had been before.">) (<EQUAL? ,ACTION-OBJECT ,FAR-VISION-SPELL> <GRAPHIC
+G-TANGLEWOOD-BURNS> <PRINTI
+"And then Praxix found the solution. Taking out his air and
+fire essences, he cast the flare enchantment in our direction of travel.
+A ball of white-hot flame flew from his fingertips, and the tentacles withdrew
+from the approaching fire, leaving a narrow, but clear, path in its
+wake."> <CRLF> <CRLF> <PRINTI "He wiped the "> <TELL-COLOR ,ESSENCE-FIRE ,
+ESSENCE-AIR> <PRINTI
+" residue from his fingertips and implored us onward.
+\"Come quickly,\" Praxix cried, \"Even hurt, these trees are disquieting,
+and I wish to be long gone when they make their recovery.\""> <CRLF> <CRLF> <
+SCENE #ZLOCAL!-IZILCH FALSE-VALUE> <PRINTI
+"It was a long march through these tangled trees, and it was a few hours
+before  we reached their farthest limits. That night, we made our camp in
+a clearing nearby. To celebrate our escape, "> <WPRINTD #ZLOCAL!-IZILCH STACK>
+<PRINTI " rounded up a few large rabbits, from which we made
+a hearty stew."> <CRLF> <CRLF> <PRINTI
+"Sitting around the campfire, we began to eat our meal. Praxix, though, had
+removed his pouch of magical essences and brought forth a fine, white powder
+which he cast ever so carefully at his portion of supper. We gazed
+intently as Praxix fretted and stared at his food, then cast more of the powder
+and fretted and stared some more. Finally, Praxix returned his pouch to his cloak
+and ate his dinner with relish. Looking up from his fast-emptying bowl, he saw us
+staring at him with a mixture of curiosity and bewilderment. Finally, I asked him
+what magic he had so delicately performed on his dinner."> <CRLF> <CRLF> <
+PRINTI "\"Not magic,\" he said. \"Salt. Can't digest a rabbit stew properly without
+it.\""> <CRLF> <CRLF> <PRINTI
+"After dinner, we slept, but the night was cold and damp, and we rested fitfully,
+awakening to a dark and foggy morning."> <GRAPHIC ,G-FOREST> <MOVE-TO ,FOG-CAMP
+>)>)>)> 
+<DEFINE-ROUTINE ANONF-135> 
+<DEFINE-ROUTINE ANONF-136> 
+<END-SEGMENT> 

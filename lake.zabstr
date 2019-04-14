@@ -1,0 +1,650 @@
+
+<BEGIN-SEGMENT LAKE> 
+<DEFINE-ROUTINE GATE-TO-HIGH-PLAIN> 
+<OBJECT GOLD-STREAM-OBJ (SDESC "stream") (KBD 83) (LOC GOLD-STREAM) (FLAGS
+DONT-TAKE) (EXBITS <+ ,PRAXIXBIT ,ESHERBIT>) (ACTION <ACOND () (<EQUAL? ,ACTION
+,EXAMINE-COMMAND> <CLEAR-EXBIT> <COND (<EQUAL? ,ACTOR ,PRAXIX> <PRINTI
+"Praxix gazed absently at the stream, then picked up a small stone, and skimmed
+it over the rippling surface."> <CRLF> <CRLF> <PRINTI
+"\"A storm is brewing,\" he said as the stone disappeared from sight. \"We should
+move quickly, lest we be caught in it!\"">) (T <CLEAR-EXBIT ,GOLD-STREAM-OBJ ,
+PRAXIX> <ADD-TRAVEL-COMMAND ,HERE ,FIND-GOLD-COMMAND> <FSET ,HERE ,ADVISE> <
+WPRINTD ,ACTOR> <PRINTI
+" bent down and ran his fingers through the icy mountain waters. He was
+just about to stand when his eye caught a glimpse of a shiny golden object
+sitting in the stream bed. Rolling up his sleeve, he reached down for it, but
+failed to come up with anything."> <CRLF> <CRLF> <PRINTI
+"\"I would swear it was gold,\" "> <WPRINTD ,ACTOR> <PRINTI
+" said, as he stared intently into the
+waters. \"Now that would be something of value!\""> <COND (<FSET? ,BERGON ,
+IN-PARTY> <CRLF> <CRLF> <PRINTI
+"\"It is possible,\" Bergon replied, thoughtfully, \"that there is gold in these
+mountain waters, but I should think not.\"">)>)> <CRLF> <CRLF> <PRINTI
+"The dark clouds lowered as they rolled in from the north. The winds
+started to howl; it would not be long before the rains came.">)>)> 
+<DEFINE-ROUTINE ANONF-168> 
+<COMMAND FIND-GOLD> 
+<GLOBAL TORRENT-LOSER <>> 
+<ROOM GOLD-STREAM (TRAVEL-COMMANDS PROCEED-COMMAND NUL-COMMAND NUL-COMMAND) (
+GRAPHIC G-GOLD-STREAM) (FLAGS DONT-SCOUT DANGEROUS) (TEMP 0) (ACTION <ACOND (
+"AUX" TMP) (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <COND (<ZERO? #ZLOCAL!-IZILCH
+STACK> <PRINTI "Unsure of whether to press on or to search for more gold, Bergon
+gathered us together. \"I fear the storm that is to come,\" he said,
+then asked the rest of us for our opinions."> <CRLF> <CRLF> <PRINTI
+"It is true that we had not travelled here in search of gold, but gold is
+a rare and valuable commodity. And thus, it was difficult to know whether
+it would hurt to search just a little longer."> <COND (<FSET? ,ESHER ,IN-PARTY>
+<PRINTI " Esher put it best. \"A little
+rain won't hurt, and neither would a little gold,\" he said.">)> <UPDATE-FCLEAR
+,HERE ,ADVISE>) (<EQUAL? #ZLOCAL!-IZILCH STACK 1> <PRINTI
+"Bergon was becoming increasingly concerned. But, as earlier, the
+group was less inclined to leave this opportunity behind."> <UPDATE-FCLEAR ,
+HERE ,ADVISE>)>) (<EQUAL? ,ACTION ,FIND-GOLD-COMMAND> <PUTP ,HERE ,P?TEMP #
+ZLOCAL!-IZILCH TMP> <COND (<EQUAL? .TMP 1> <UPDATE-FSET ,HERE ,ADVISE> <PRINTI
+"We each scanned the stream for gold, with little luck. The clouds,
+dark and heavy, began to rain down upon us. \"Look!\" said Bergon,
+pointing at the chain lightning off to the north. Seconds later, the
+earth shook with the roar of thunder. \"It is not far now,\" he
+added, as his eyes drifted to the blackening sky.">) (T <PRINTI
+"Runoff from the nearby hills was forming into numerous streams,
+each coursing into the main channel in which we searched in vain
+for gold. Crash! A tree nearby cracked in two by a stroke of
+lightning. Rain was falling now in buckets, and Bergon screamed
+for us to take cover. As I turned upstream, a great torrent of water
+was heading right at me!"> <QUEUE I-TORRENT-HITS 1> <REMOVE-TRAVEL-COMMAND>)>)
+(<AND <EQUAL? ,ACTION ,INVENTORY-COMMAND> <FSET? ,HERE ,DEAD> <NOT <QSET? ,HERE
+,BLUE-MIX>>> <PRINTI "Frantically, I searched my pack. "> <COND (,TORRENT-LOSER
+<PRINTI "Over and over I looked, but it was
+no use. The "> <WPRINTD ,TORRENT-LOSER> <PRINTI " was gone!"> <CRLF> <CRLF> <
+PRINTI "Praxix looked grim. \"This is an evil omen,\" he said. \"We shall
+not be able to replace it!\"">) (T <PRINTI
+"Fortunately, we had lost nothing
+to the storm.">)>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT
+,LEVITATE-SPELL> <GRTR? #ZLOCAL!-IZILCH STACK 0>> <COND (<EQUAL? ,ACTION-PRSI ,
+TAG-OBJECT> <PRINTI
+"Fortunately, Praxix had the presence of mind to cast his levitate spell upon me,
+so that the torrent that approached washed harmlessly beneath me, preventing an
+almost certain loss of our possessions, no less my life. The others fared less well,
+having been knocked quite a ways downstream before they regained their footing. "
+> <FIND-STREAM-ESSENCE> <PRINTI
+" Having had the good fortune to have found some magical essence, we continued alongside
+the stream until we came to the shore of the lake."> <MOVE-TO ,LAKE-SHORE-1>) (
+T <PRINTI "Praxix, taking out his air and earth essences, cast his elevation spell on "
+> <WPRINTD ,ACTION-PRSI> <PRINTI
+", who rose slowly into the air before us. Still, the onrushing
+waters approached, and I tried desparately to get away. "> <TORRENT-HITS> <
+RTRUE>)>) (<EQUAL? ,ACTION ,PROCEED-COMMAND> <COND (<LESS? #ZLOCAL!-IZILCH TMP
+1> <PRINTI "We made our way along the stream down to the shore of the lake, as
+a great downpour was loosed from the sky. The stream rose steadily,
+and lightning filled the northern sky. Soon, the stream became a
+wild torrent, nearly washing us aside as we rushed to take cover.
+And then, as quickly as it came, the storm passed, and a wide
+rainbow filled the brightening sky."> <CRLF> <CRLF> <PRINTI
+"\"That was awfully close!\" I said, checking that the contents
+of my pack were secure."> <CRLF> <CRLF> <MOVE-TO ,LAKE-SHORE-1 #ZLOCAL!-IZILCH
+STR?490>) (<FSET? ,HERE ,DEAD> <MOVE-TO ,LAKE-SHORE-1 #ZLOCAL!-IZILCH STR?491>)
+(T <TORRENT-HITS> <RTRUE>)>)>)> 
+<DEFINE-ROUTINE ANONF-169> 
+<OBJECT I-TORRENT-HITS (TIME 0) (ACTION <EXECUTE () <COND (<AND <NOT <FSET? ,
+HERE ,DEAD>> <EQUAL? ,HERE ,GOLD-STREAM>> <CRLF> <CRLF> <TORRENT-HITS>)>>)> 
+<DEFINE-ROUTINE ANONF-170> 
+<DEFINE-ROUTINE TORRENT-HITS> 
+<DEFINE-ROUTINE FIND-STREAM-ESSENCE> 
+<GLOBAL LAKE-VICTIM <>> 
+<ROOM LAKE-SHORE-1 (TRAVEL-COMMANDS PROCEED-COMMAND NUL-COMMAND NUL-COMMAND) (
+FLAGS ADVISE DANGEROUS) (ENTER <EXECUTE () <COND (<NOT <QSET? ,HERE ,SEEN>> <
+COND (<EQUAL? ,PARTY-MAX 2> <PRINTI
+"After a brief lunch at the lake, we continued around to the far shore."> <
+REMOVE-TRAVEL-COMMAND ,LAKE-SHORE-3 ,BACK-COMMAND> <MOVE-TO ,LAKE-SHORE-3> <
+RTRUE>)> <CRLF> <CRLF> <PRINTI
+"The sun was high in the sky; no sign, not even the rainbow,
+remained as testament to the deluge we had just witnessed.
+It had been a while since our last meal, and talk soon turned to lunch.
+Bergon strode to the shore of the glistening lake and eyed it
+hungrily."> <CRLF> <CRLF> <GRAPHIC ,G-LAKE-SHORE> <PRINTI
+"\"Have I ever told you about my fishing days at Lendros?\" he
+said. Nobody responded to this informal banter, but Bergon
+persisted."> <CRLF> <CRLF> <PRINTI
+"\"How would everyone feel about some fresh lake trout?\" he asked."> <CRLF> <
+CRLF> <PRINTI "\"Oh, my, yes; that would hit the spot!\" he replied, playfully."
+> <CRLF> <CRLF> <PRINTI
+"Then, taking the slightest murmur from the group as a mandate, he dove
+into the icy clear waters."> <CRLF> <CRLF> <PRINTI
+"He surfaced soon thereafter; though out of breath, he gasped
+something about our upcoming feast"> <COND (<AND <NOT ,2ND-PASS> <NOT <FSET? ,
+DWARF-MEETING ,SEEN>>> <SETG LAKE-VICTIM <FIRST-IN-PARTY ,MINAR ,ESHER>> <COND
+(,LAKE-VICTIM <PRINTI ". Seeing how weakened Bergon
+had become, "> <WPRINTD ,LAKE-VICTIM> <PRINTI
+" pulled him from the lake and dove in to
+catch our lunch himself. But he did not surface, and, after a few agonizingly
+long minutes, our concern turned to alarm."> <PARTY-REMOVE ,LAKE-VICTIM>) (T <
+PRINTI ". But Praxix convinced Bergon that,
+having already lost some of our party, he should not attempt such a dive in
+his breathless condition."> <UPDATE-FCLEAR ,HERE ,ADVISE> <RTRUE>)>) (T <PRINTI
+", laughed, then dove again into the
+lake. Only this time, he did not return."> <SET LAKE-VICTIM ,BERGON> <
+PARTY-REMOVE ,BERGON>)> <FSET ,LAKE-VICTIM ,INCAPACITATED> <SET UPDATE-FLAG #
+ZLOCAL!-IZILCH TRUE-VALUE> <ADD-PARTY-COMMAND ,ENTER-LAKE-COMMAND>)>>) (ACTION
+<ACOND () (<EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <
+FSET ,HERE ,SCOUTED> <COND (<EQUAL? ,ACTOR ,ESHER> <PRINTI "Frant">) (T <PRINTI
+"Method">)> <PRINTI "ically, "> <WPRINTD ,ACTOR> <PRINTI
+" scouted the area along the shore looking for any sign
+of "> <WPRINTD ,LAKE-VICTIM> <PRINTI
+". He returned frustrated, having found no sign of our
+missing friend."> <COND (<EQUAL? ,ACTOR ,MINAR> <PRINTI
+" He did, however, find something of interest, and not far
+from where we stood."> <CRLF> <CRLF> <PRINTI
+"\"There's a cave,\" he said, \"just a little farther along the
+shore.\"">)> <RTRUE>) (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <UPDATE-FCLEAR ,
+HERE ,ADVISE> <WPRINTD ,LEADER> <COND (<EQUAL? ,LAKE-VICTIM ,BERGON> <PRINTI
+", taking charge and attempting at the same time
+not to sound overly pessimistic,">)> <PRINTI " said, \"Perhaps "> <WPRINTD ,
+LAKE-VICTIM> <PRINTI
+" has been caught in a current, and
+carried further along the shore.\""> <CRLF> <CRLF> <COND (<EQUAL? ,LEADER ,
+PRAXIX> <PRINTI "Praxix continued. \"">) (T <PRINTI "Praxix concurred. \""> <
+WPRINTD ,LEADER> <PRINTI " is right,\" he
+started, \""> <COND (<EQUAL? ,LEADER ,ESHER> <PRINTI
+"though I am loath to admit it. T">) (T <PRINTI "t">)>)> <PRINTI
+"here is no sign of "> <WPRINTD ,LAKE-VICTIM> <PRINTI
+", and that is very disturbing indeed!
+Perhaps we shall learn more as we progress along the lake shore.\""> <RTRUE>) (
+<EQUAL? ,ACTION ,PROCEED-COMMAND> <COND (,LAKE-VICTIM <MOVE-TO ,LAKE-SHORE-2 #
+ZLOCAL!-IZILCH STR?492>) (T <PRINTI
+"After a restful night at the shore of the lake, we marched around the
+shore until the path ended, continuing instead steeply upward into the
+surrounding hills."> <CRLF> <CRLF> <ICALL!-IZILCH #ZLOCAL!-IZILCH STACK> <RTRUE
+>)>) (<EQUAL? ,ACTION ,ENTER-LAKE-COMMAND> <PRINTI
+"With a sense of urgency, I jumped into the cold waters and dove
+vertically down along a vast rock wall which stretched out of sight
+beneath me. But whereas the wall bounded my movements on one side,
+the vastness of the lake stretched out before me on the other - clear
+and still - and there was no sign of "> <WPRINTD ,LAKE-VICTIM> <PRINTI "!"> <
+MOVE-TO ,UNDERSHORE-1>)>)> 
+<DEFINE-ROUTINE ANONF-171> 
+<DEFINE-ROUTINE ANONF-172> 
+<COMMAND (ENTER-CAVE ENTER)> 
+<ROOM LAKE-SHORE-2 (TRAVEL-COMMANDS PROCEED-COMMAND ENTER-CAVE-COMMAND
+NUL-COMMAND) (GRAPHIC G-LAKE-SHORE-CAVE) (FLAGS NEAR-DARK) (ACTION <ACOND () (<
+EQUAL? ,ACTION ,SCOUT-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <FSET ,HERE ,
+SCOUTED> <WPRINTD ,ACTOR> <PRINTI " went ahead, "> <COND (<NOT <FSET? ,PRAXIX ,
+LIT>> <PRINTI "but returned before long, telling us that the cave was too
+dark to explore without additional light.">) (T <PRINTI
+"taking Praxix' staff with him for light. When he returned, he
+related that the cave continued until it ended at the site of a deep, warm pool."
+>)>) (<EQUAL? ,ACTION ,ENTER-CAVE-COMMAND> <FSET ,HERE ,DONT-SCOUT> <COND (<
+FSET? ,LAKE-CAVE ,SEEN> <REMOVE-TRAVEL-COMMAND> <REMOVE-TRAVEL-COMMAND ,
+LAKE-SHORE-3 ,BACK-COMMAND> <PRINTI
+"Determined not to give up hope, we again entered the cave"> <COND (<FSET? ,
+LAKE-POOL ,SEEN> <PRINTI
+", continuing down the narrow path until we reached the edge of the warm pool">
+<MOVE-TO ,LAKE-POOL>) (T <MOVE-TO ,LAKE-CAVE>)> <PRINTI ".">) (T <PRINTI
+"Following the side of the warm spring into the cave, we passed through
+caverns whose water-polished walls gave testimony to the torrents that
+had flowed through these chambers many long years ago."> <MOVE-TO ,LAKE-CAVE>)>
+<COND (<AND <EQUAL? ,HERE ,LAKE-CAVE> <NOT <FSET? ,PRAXIX ,LIT>>> <PRINTI
+" We were now far enough into the cave that the available light was fading
+quickly. It would be far too dangerous to proceed any further.">)> <RTRUE>) (<
+EQUAL? ,ACTION ,PROCEED-COMMAND> <PRINTI
+"The path along the shore soon ended, continuing instead steeply
+upward into the surrounding hills. Further progress along the shore
+would be impossible."> <COND (<AND <NOT <FSET? ,LAKE-VICTIM ,IN-PARTY>> <NOT <
+QSET? ,HERE ,BLUE-MIX>>> <PRINTI
+" If we continued now, it was almost certain we'd never see "> <WPRINTD ,
+LAKE-VICTIM> <PRINTI " again.">)> <MOVE-TO ,LAKE-SHORE-3>)>)> 
+<DEFINE-ROUTINE ANONF-173> 
+<ROOM LAKE-SHORE-3 (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND NUL-COMMAND) (
+FLAGS DONT-SCOUT) (GRAPHIC G-LAKE-SHORE-3) (ENTER <EXECUTE () <COND (<FSET? ,
+LAKE-VICTIM ,IN-PARTY> <REMOVE-PARTY-COMMAND ,BACK-COMMAND>)>>) (ACTION <ACOND
+() (<EQUAL? ,ACTION ,PROCEED-COMMAND> <COND (<AND ,LAKE-VICTIM <NOT <FSET? ,
+LAKE-VICTIM ,IN-PARTY>>> <HINT ,HINT-LAKE> <PRINTI
+"\"I am afraid we have no alternative,\" "> <WPRINTD ,LEADER> <PRINTI
+" said, \"but
+to go on without "> <WPRINTD ,LAKE-VICTIM> <PRINTI ".\""> <CRLF> <CRLF>) (<AND
+,LAKE-VICTIM <NOT <IN? ,NYMPH-STONE ,INVENTORY>>> <HINT ,HINT-NYMPH-STONE>)> <
+COND (,2ND-PASS <COND (<AND <NOT <FSET? ,BITE-FOREST ,SEEN>> <OR <FSET? ,MINAR
+,IN-PARTY> <FSET? ,ESHER ,IN-PARTY>>> <PRINTI
+"The next morning, we retraced our earlier steps, skirting the edge of the lake,
+and descending back into the forest for our return to Astrix. It was soon midday,
+and we decided to stop in a nearby clearing for some lunch."> <MOVE-TO ,
+BITE-FOREST> <RTRUE>) (T <N-DAY-TREK 3> <RTRUE>)>)> <PRINTI
+"We left the lake, climbing out of the valley and into the northeastern
+hills. Following a narrow path, we marched until, late in the afternoon,
+the path climbed steeply up a high ridge. We arrived as dusk approached
+and stood in awe of the world that surrounded us."> <CRLF> <CRLF> <
+MOVE-TO-FOREST-RIDGE>) (<EQUAL? ,ACTION ,BACK-COMMAND> <REMOVE-TRAVEL-COMMAND>
+<PRINTI "Unwilling to leave the lake without making another attempt at finding "
+> <WPRINTD ,LAKE-VICTIM> <PRINTI
+", we retraced our steps and soon arrived back at the mouth of
+the cave."> <MOVE-TO ,LAKE-SHORE-2>)>)> 
+<DEFINE-ROUTINE ANONF-174> 
+<DEFINE-ROUTINE ANONF-175> 
+<ROOM LAKE-CAVE (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND NUL-COMMAND) (
+FLAGS DONT-SCOUT NEAR-DARK) (ENTER FSET-SEEN) (GRAPHIC G-NARROW-SLIT) (CLOCK <
+EXECUTE () <COND (<FSET? ,PRAXIX ,LIT> <FORCE-TRAVEL-COMMAND ,HERE ,
+PROCEED-COMMAND>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,PROCEED-COMMAND> <COND
+(<NOT <FSET? ,PRAXIX ,LIT>> <PRINTI
+"Despite the darkness, we continued down the narrow path until it became clearly
+futile to do so."> <CRLF> <CRLF> <PRINTI
+"\"It is bad enough that we have lost "> <WPRINTD ,LAKE-VICTIM> <PRINTI
+",\" Praxix said.
+\"It would be folly to risk other lives.\""> <REMOVE-TRAVEL-COMMAND>) (T <
+MOVE-TO ,LAKE-POOL #ZLOCAL!-IZILCH STR?495>)>) (<EQUAL? ,ACTION ,BACK-COMMAND>
+<PRINTI "It appeared "> <COND (<FSET? ,PRAXIX ,LIT> <PRINTI
+"the cave would lead nowhere">) (T <PRINTI
+" we would not learn where the cave led">)> <MOVE-TO ,LAKE-SHORE-2 #
+ZLOCAL!-IZILCH STR?496>)>)> 
+<DEFINE-ROUTINE ANONF-176> 
+<DEFINE-ROUTINE ANONF-177> 
+<ROOM LAKE-POOL (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND
+ENTER-POOL-COMMAND) (GRAPHIC G-LAKE-POOL) (ENTER FSET-SEEN) (FLAGS UNDERGROUND
+ADVISE) (ACTION <ACOND () (<EQUAL? ,ACTION ,GET-ADVICE-COMMAND> <UPDATE-FCLEAR
+,HERE ,ADVISE> <COND (<OR <FSET? ,UNDERPOOL-2 ,SEEN> <NOT <FSET? ,ESHER ,
+IN-PARTY>>> <PRINTI
+"We huddled among ourselves, but few words were spoken. And yet I could see
+in Praxix' eyes the desire that I"> <COND (<FSET? ,UNDERPOOL-2 ,SEEN> <PRINTI
+" once again">)> <PRINTI " attempt the descent.">) (<FSET? ,UNDERPOOL-2 ,SEEN>
+<PRINTI "Esher felt it would be dangerous to explore the pool further, but
+Praxix was more optimistic. \"This pool appears natural, yet it is clearly
+the handiwork of great artisans; the search for knowledge is always
+dangerous, Esher, and yet is it not the purpose of our Journey?\" he said.">) (
+T <WPRINTD ,LEADER> <PRINTI
+" stood a long while in thought, then asked for advice."> <COND (<GRTR? ,
+PARTY-MAX 2> <PRINTI " When none spoke, I made a rare suggestion of my own.">)>
+<PRINTI " \"I
+am happy to have a look underwater, if you think it would help,\" I
+said."> <COND (<NOT <EQUAL? ,LEADER ,PRAXIX>> <CRLF> <CRLF> <PRINTI
+"Praxix said nothing; he turned toward the pool and stared.">)> <RTRUE>)>) (<OR
+<EQUAL? ,ACTION ,SCOUT-COMMAND> <EQUAL? ,ACTION ,PROCEED-COMMAND>> <
+REMOVE-TRAVEL-COMMAND ,HERE ,PROCEED-COMMAND> <UPDATE-FSET ,HERE ,DONT-SCOUT> <
+COND (<EQUAL? ,ACTION ,SCOUT-COMMAND> <WPRINTD ,ACTOR>) (T <PRINTI
+"Praxix, going on ahead,">)> <PRINTI
+" tried to find another path through the cave, but failed. \"This is
+as far as it goes,\" he said.">) (<EQUAL? ,ACTION ,BACK-COMMAND> <COND (<FSET?
+,UNDERPOOL-2 ,SEEN> <PRINTI "W">) (T <PRINTI
+"It appeared the cave would lead nowhere; and so, w">)> <PRINTI
+"ith hope fading for our lost friend, we returned to the mouth of the cave."> <
+MOVE-TO ,LAKE-SHORE-2>) (<EQUAL? ,ACTION ,ENTER-POOL-COMMAND> <FSET ,HERE ,
+ADVISE> <COND (<NOT ,SUBGROUP-MODE> <MAKE-TAG-SUBGROUP #ZLOCAL!-IZILCH
+TRUE-VALUE>)> <COND (<FSET? ,UNDERPOOL-2 ,SEEN> <PRINTI
+"With Praxix' encouragement, I descended again through the warm
+waters, coming finally to the lip of the tube. I had only seconds to
+make a decision.">) (T <PRINTI
+"It was the consensus that we search the depths of the pool in search of
+whatever lay below. I volunteered, giving my pack to Praxix for safe keeping.
+Then, taking a deep breath, I plunged into the warming waters."> <CRLF> <CRLF>
+<PRINTI "I descended along the rock formations which bounded the pool, admiring
+the flowing forms that the water had created through the long ages.
+And then, a knot formed in my stomach. For the walls surrounding
+me were now smooth, like polished glass. I shuddered, thinking of
+what might lie beyond."> <CRLF> <CRLF> <PRINTI
+"I had just about reached the limit of my descent, when I
+came to the end of the tube as it opened out into what I could only
+imagine was the greater part of the lake. I had to think fast: no
+matter which choice I made, I would have to surface at once!">)> <MOVE-TO ,
+UNDERPOOL-2>) (<AND <EQUAL? ,ACTION ,CAST-COMMAND> <EQUAL? ,ACTION-OBJECT ,
+FAR-VISION-SPELL>> <PRINTI
+"Praxix was intrigued by this pool, and decided to see just how deep
+it was. And so he pulled out some fire and air essence, and shot a ball of
+flame into the water; it fizzled out even as it penetrated the surface."> <COND
+(<FSET? ,ESHER ,IN-PARTY> <PRINTI " Esher raised an eyebrow;">)> <PRINTI
+" I stifled a laugh."> <CRLF> <CRLF> <PRINTI
+"Praxix straightened up and, trying his best to sound sincere, said,
+\"As I suspected!\"">)>)> 
+<DEFINE-ROUTINE ANONF-178> 
+<DEFINE-ROUTINE POOL-MOVE> 
+<COMMAND (LEAVE-TUBE LV-TUBE)> 
+<COMMAND (ENTER-LAKE ENTER)> 
+<OBJECT UNDERPOOL-2-TUBE (LOC UNDERPOOL-2) (SDESC "tube") (KBD 84) (FLAGS
+DONT-TAKE) (ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <
+PRINTI "Having little time, I nonetheless examined the tube. It was smooth to
+the touch, and of a material completely foreign to me. Here, at the
+bottom, it was only four feet across, making it difficult to maneuver.">)>)> 
+<DEFINE-ROUTINE ANONF-179> 
+<ROOM UNDERPOOL-2 (TRAVEL-COMMANDS RETURN-COMMAND LEAVE-TUBE-COMMAND
+NUL-COMMAND) (GRAPHIC G-UNDERPOOL-TUBE) (FLAGS UNDERWATER) (ENTER FSET-SEEN) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,LEAVE-TUBE-COMMAND> <PRINTI
+"Now I am not a cowardly person, yet I was sorely tempted to rise back
+to the surface. But some inner reserve of strength guided my actions;
+I pulled myself through the lip of the tube, then rose steadily
+toward the unknown."> <UL-1-MOVE>) (<EQUAL? ,ACTION ,RETURN-COMMAND> <COND (<
+NOT <QSET? ,HERE ,TRIED>> <PRINTI
+"Now I am not a cowardly person, though by returning to the surface
+it may appear otherwise. And yet, how could I know what I might
+find when I rose to the surface outside of the tube? For that matter,
+I could not even be sure there was a surface to reach!">) (T <
+REMOVE-TRAVEL-COMMAND ,LAKE-POOL ,ENTER-POOL-COMMAND> <PRINTI
+"Once again, however, I found myself unable to leave the tube and
+venture forth into the unknown.">)> <CRLF> <CRLF> <POOL-MOVE #ZLOCAL!-IZILCH
+STR?503>)>)> 
+<DEFINE-ROUTINE ANONF-180> 
+<OBJECT WARM-POOL (SDESC "pool") (KBD 80) (LOC LAKE-POOL) (FLAGS DONT-TAKE) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <PRINTI
+"Each of us was mesmerized by this lovely pool, whose depth appeared
+infinite. "> <WPRINTD ,ACTOR> <PRINTI
+" picked up a rock lying nearby and tossed
+it into the water; we watched it as it fell and when it finally
+disappeared from sight, we were watching still.">)>)> 
+<DEFINE-ROUTINE ANONF-181> 
+<COMMAND (ENTER-POOL ENTER)> 
+<ROOM UNDERSHORE-1 (TRAVEL-COMMANDS DIVE-COMMAND SURFACE-COMMAND NUL-COMMAND) (
+FLAGS UNDERWATER) (ENTER <EXECUTE () <MAKE-SUBGROUP ,TAG> <TRAVEL-COMMANDS ,TAG
+,NUL-COMMAND>>) (EXIT <EXECUTE () <CLEAR-SUBGROUP> <RESTORE-TAG-COMMANDS>>) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,DIVE-COMMAND> <PRINTI
+"Mustering my remaining strength, I dove farther along the rock
+wall. Almost out of air, I caught sight of the wall's bottom some fifty
+or more feet below me. \"He could not have gone this way,\" I said to
+myself. \"There is not a person alive strong enough!\" And yet, gazing
+into the expanse of lake before me, I could hardly imagine where else he
+could have gone without leaving the slightest trace."> <CRLF> <CRLF> <MOVE-TO ,
+LAKE-SHORE-1 #ZLOCAL!-IZILCH STR?507>) (<EQUAL? ,ACTION ,SURFACE-COMMAND> <
+TRAVEL-COMMANDS ,LAKE-SHORE-1 ,PROCEED-COMMAND> <PRINTI "With no sign of "> <
+WPRINTD ,LAKE-VICTIM> <PRINTI
+", I returned to the surface and reported
+back to the group."> <MOVE-TO ,LAKE-SHORE-1>)>)> 
+<DEFINE-ROUTINE ANONF-182> 
+<DEFINE-ROUTINE ANONF-183> 
+<DEFINE-ROUTINE ANONF-184> 
+<END-SEGMENT> 
+<BEGIN-SEGMENT NYMPHS> 
+<DEFINE-ROUTINE UL-1-MOVE> 
+<OBJECT UL-2-MINAR (SDESC "Minar") (KBD 77) (FLAGS DONT-TAKE) (ACTION <ACOND ()
+(<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <EXAMINE-LAKE-VICTIM>)>)> 
+<DEFINE-ROUTINE ANONF-185> 
+<OBJECT UL-2-ESHER (SDESC "Esher") (KBD 69) (FLAGS DONT-TAKE) (ACTION <ACOND ()
+(<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <EXAMINE-LAKE-VICTIM>)>)> 
+<DEFINE-ROUTINE ANONF-186> 
+<OBJECT UL-2-BERGON (SDESC "Bergon") (KBD 66) (FLAGS DONT-TAKE) (ACTION <ACOND
+() (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-MOVE> <EXAMINE-LAKE-VICTIM>)>)> 
+<DEFINE-ROUTINE ANONF-187> 
+<DEFINE-ROUTINE EXAMINE-LAKE-VICTIM> 
+<COMMAND TO-CAVE> 
+<COMMAND (RETURN-ALONE RETURN)> 
+<OBJECT I-LAKE-VICTIM-COMES-TO (TIME 0) (ACTION <EXECUTE () <COND (<FSET? ,
+LAKE-VICTIM ,INCAPACITATED> <FCLEAR ,LAKE-VICTIM ,INCAPACITATED> <
+CHANGE-TRAVEL-COMMAND ,UL-2 ,RETURN-ALONE-COMMAND ,TO-CAVE-COMMAND> <COND (<
+EQUAL? ,HERE ,UL-2> <CRLF> <CRLF> <PRINTI "Just then, "> <WPRINTD ,LAKE-VICTIM>
+<PRINTI " stirred and I moved to his side. Within a few minutes,
+he had regained consciousness, but I advised him to remain quiet and calm"> <
+COND (<FSET? ,LAKE-VICTIM ,TRIED> <PRINTI
+" until we were ready to make our escape.">) (T <PRINTI
+". Although short of breath, he told of his underwater capture by the Nymphs. He
+did not know their purpose, nor could he guess, yet he was certain of their evil
+designs."> <CRLF> <CRLF> <PRINTI
+"\"We must leave here at once,\" he said, \"for surely they will return before
+long.\"">)>)>)> <REMOVE ,I-LAKE-VICTIM-COMES-TO>>)> 
+<DEFINE-ROUTINE ANONF-188> 
+<ROOM UL-2 (TRAVEL-COMMANDS TO-CAVE-COMMAND WIDE-PATH-COMMAND
+NARROW-PATH-COMMAND NUL-COMMAND) (GRAPHIC G-NYMPH-CHAMBER) (FLAGS UNDERGROUND
+TORCHBIT LIT) (ENTER <EXECUTE () <TORCH-CHECK ,HERE> <COND (<NOT <QSET? ,HERE ,
+SEEN>> <QUEUE I-LAKE-VICTIM-COMES-TO 8> <COND (<EQUAL? ,LAKE-VICTIM ,MINAR> <
+UPDATE-MOVE ,UL-2-MINAR ,HERE>) (<EQUAL? ,LAKE-VICTIM ,ESHER> <UPDATE-MOVE ,
+UL-2-ESHER ,HERE>) (T <UPDATE-MOVE ,UL-2-BERGON ,HERE>)> <OPTION ,TAG ,
+STAND-COMMAND ,HIDE-COMMAND>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,
+TO-CAVE-COMMAND> <COND (<FSET? ,LAKE-VICTIM ,INCAPACITATED> <PRINTI
+"It was clear that we were in great danger, and my immediate reaction was to
+return to the pool with "> <WPRINTD ,LAKE-VICTIM> <PRINTI
+". But it was painfully obvious that
+he was in no condition to be moved, no less withstand the dive. No, I could
+return, but it would not be with "> <WPRINTD ,LAKE-VICTIM> <PRINTI "."> <
+CHANGE-TRAVEL-COMMAND ,HERE ,TO-CAVE-COMMAND ,RETURN-ALONE-COMMAND>) (T <PRINTI
+"Now conscious and regaining his strength, I managed to help "> <WPRINTD ,
+LAKE-VICTIM> <PRINTI " back
+to the pool"> <COND (<IN? ,TORCH ,INVENTORY> <PRINTI
+". As much as I would have preferred to take
+the torch along, I simply could not handle both it and "> <WPRINTD ,LAKE-VICTIM
+> <PRINTI ". Holding
+my friend firmly, we dove">) (T <PRINTI " and then down">)> <PRINTI
+" into the warm waters, finally reaching the tube which led back to"> <
+END-NYMPH-STORY #ZLOCAL!-IZILCH TRUE-VALUE>)>) (<EQUAL? ,ACTION ,
+RETURN-ALONE-COMMAND> <PRINTI "There was no way that I could help poor "> <
+WPRINTD ,LAKE-VICTIM> <PRINTI
+". In a few moments,
+his captors would no doubt arrive, and then both of us might well be doomed.
+Heavy of heart, I dove back into the pool, and from there back into the tube
+which led back to"> <END-NYMPH-STORY>) (<EQUAL? ,ACTION ,WIDE-PATH-COMMAND> <
+COND (<UL-MOVE-CHECK ,UL-JCN> <PRINTI
+"With a good deal of apprehension, I ventured through the doorway and into
+a hallway which came to a large, empty chamber, with an ornate doorway
+to the right and a simpler one to the left, from which a nasty smell
+emanated. Ahead, another passage led into the distance."> <UL-MOVE ,UL-JCN>)>)
+(<EQUAL? ,ACTION ,NARROW-PATH-COMMAND> <COND (<UL-MOVE-CHECK ,UL-2-PIT> <PRINTI
+"The narrow path snaked through the rock until it ended blindly at a very small,
+rounded chamber, in the middle of which lay a "> <COND (<FSET? ,UL-2-PIT ,
+SCOUTED> <PRINTI "perfectly round pool of water.">) (T <PRINTI
+"large stone cover.">)> <UL-MOVE ,UL-2-PIT>)>) (<EQUAL? ,ACTION ,HIDE-COMMAND>
+<SINGLE-MOVE-GRAPHIC ,G-LIURA> <FSET ,HERE ,TRIED> <QUEUE I-NYMPHS-ARRIVE 40> <
+PRINTI "With some hesitation, I decided to wait outside of the chamber until I could
+see who was coming. And then it came, whatever creature it was that inhabited these
+halls. It moved slowly, but gracefully, to "> <WPRINTD ,LAKE-VICTIM> <PRINTI
+"'s side, as if
+checking on his health. Relieved, I was about to greet this unknown being,
+when I noticed the ropes which bound together "> <WPRINTD ,LAKE-VICTIM> <PRINTI
+"'s hands and
+feet! A moment later, the being glided out of the room, and I again reentered."
+> <END-OPTION>) (<EQUAL? ,ACTION ,WAIT-COMMAND> <PRINTI
+"I did as the creature asked, but this was a tragic mistake. Within minutes"> <
+PRINT ,ARMED-CREATURES> <END-NYMPH-STORY>) (<EQUAL? ,ACTION ,STAND-COMMAND> <
+SINGLE-MOVE-GRAPHIC ,G-LIURA> <QUEUE I-NYMPHS-ARRIVE 24> <PRINTI
+"I stood there as a strange creature entered the chamber, and I cannot honestly say
+which of us was the more surprised. But a moment later, it spoke with an utterly
+foreign accent and a hint of what I could only call nervousness."> <CRLF> <CRLF
+> <PRINTI "\"Your friend is quite ill,\" it said. \"It would be best for you to wait
+by his side until I return. Do not touch or examine him! He clings perilously to
+life!\" And with that, the creature left the chamber."> <ADD-TRAVEL-COMMAND ,
+HERE ,WAIT-COMMAND> <FSET ,HERE ,EXAMINED> <END-OPTION>)>)> 
+<DEFINE-ROUTINE ANONF-189> 
+<DEFINE-ROUTINE ANONF-190> 
+<OBJECT I-NYMPHS-ARRIVE (TIME 0) (ACTION <EXECUTE () <SET NYMPHS-COMING? #
+ZLOCAL!-IZILCH TRUE-VALUE>>)> 
+<DEFINE-ROUTINE ANONF-191> 
+<GLOBAL NYMPHS-COMING? <>> 
+<COMMAND (WIDE-PATH WIDE)> 
+<COMMAND (NARROW-PATH NARROW)> 
+<OBJECT TORCH (SDESC "torch") (FLAGS DONT-EXAMINE DONT-DROP) (KBD 84) (TEMP 0)
+(ACTION <ACOND ("AUX" TMP) (<EQUAL? ,ACTION ,PICK-UP-COMMAND> <COND (<EQUAL? ,
+HERE ,UL-PIT> <FCLEAR ,HERE ,TORCHBIT> <FORCE-TRAVEL-COMMAND ,HERE ,
+DIVE-COMMAND> <UPDATE-MOVE ,TORCH ,INVENTORY> <COND (<NOT <GETP ,TORCH ,P?TEMP>
+> <PRINTI "Not knowing which chambers might be unlighted, I thought it best to take one
+of the torches.">) (T <PRINTI
+"Again, I attempted to take one of the torches, but this time I succeeded.">)>
+<PRINTI " It's light was bright but cold, and its flame gave off little heat.">
+) (T <UPDATE-FSET ,TORCH ,DONT-TAKE> <PUTP ,TORCH ,P?TEMP #ZLOCAL!-IZILCH TMP>
+<COND (<GRTR? .TMP 1> <PRINTI "Again, ">)> <PRINTI
+"I tried to take one of the torches, but failed. They were too firmly attached to
+the wall.">)>) (<EQUAL? ,ACTION ,DROP-COMMAND> <PRINTI
+"I considered putting down the torch but decided against it, believing that it
+might well come in useful later.">)>)> 
+<DEFINE-ROUTINE ANONF-192> 
+<DEFINE-ROUTINE TORCH-CHECK> 
+<DEFINE-ROUTINE UL-MOVE-CHECK> 
+<DEFINE-ROUTINE UL-MOVE> 
+<DEFINE-ROUTINE END-NYMPH-STORY> 
+<OBJECT TALE-NYMPHS (SDESC "Nymphs") (KBD 78) (TEXT <EXECUTE () <TELL
+"Praxix, now in a garrulous mood, told the tale of the Nymphs.
+\"Long ago, at the beginning of things, it is said that the Nymphs took to
+the waters, becoming, well, fish-like: able to remain submerged for extended
+periods, swimming silent and deep, hunting for their meals in the great
+lakes and oceans of the world. That any remain today is indeed a surprise, though
+perhaps not a happy one. It would appear that they are less than friendly now,
+but who is to be the judge in these difficult times?">>)> 
+<DEFINE-ROUTINE ANONF-193> 
+<CONSTANT ARMED-CREATURES
+", a group of armed creatures turned the corner and, catching sight of
+me, let out a horrific scream and raced in my direction. Having no other choice,
+I sprinted back to the pool and dove in, eventually making my way back to"> 
+<ROOM UL-JCN (TRAVEL-COMMANDS BACK-COMMAND LEFT-COMMAND RIGHT-COMMAND
+PROCEED-COMMAND) (FLAGS UNDERGROUND TORCHBIT) (ENTER <EXECUTE () <COND (,
+NYMPHS-COMING? <CRLF> <CRLF> <PRINTI "Just then"> <PRINT ,ARMED-CREATURES> <
+END-NYMPH-STORY>) (T <GRAPHIC ,G-UNDERLAND-JCN>)>>) (ACTION <ACOND () (<EQUAL?
+,ACTION ,BACK-COMMAND> <COND (<UL-MOVE-CHECK ,UL-2> <PRINTI
+"Thinking it best to check on my wounded friend, I returned to "> <WPRINTD ,
+LAKE-VICTIM> <PRINTI
+"'s side. Thankfully, he was now conscious, though confused."> <FCLEAR ,
+LAKE-VICTIM ,INCAPACITATED> <COND (<IN? ,NYMPH-STONE ,INVENTORY> <
+TRAVEL-COMMANDS ,UL-2 ,TO-CAVE-COMMAND>)> <UL-MOVE ,UL-2>)>) (<OR <EQUAL? ,
+ACTION ,LEFT-COMMAND> <EQUAL? ,ACTION ,SMELLY-POOL-COMMAND>> <COND (<
+UL-MOVE-CHECK ,UL-PIT> <COND (<EQUAL? ,ACTION ,LEFT-COMMAND> <PRINTI
+"The lefthand path led to a good-sized chamber in the middle of which sat a
+large pool. A frightful smell emanated from the pool's depths, though I could not
+see just what it was that caused it.">) (T <PRINTI
+"Holding my nose to avoid becoming sick, I moved gingerly toward the smelly pit
+and was soon staring into its murky depths.">)> <CHANGE-TRAVEL-COMMAND ,HERE ,
+LEFT-COMMAND ,SMELLY-POOL-COMMAND> <UL-MOVE ,UL-PIT>)>) (<OR <EQUAL? ,ACTION ,
+RIGHT-COMMAND> <EQUAL? ,ACTION ,TREASURY-COMMAND>> <COND (<UL-MOVE-CHECK ,
+UL-TREASURY> <COND (<NOT <FSET? ,UL-TREASURY ,SEEN>> <PRINTI
+"The ornate path led to a beautifully appointed chamber in which hundreds of jewels
+and other age-old relics were kept. One, however, stood out from among the others.
+It was a simple amulet with a large blue stone which shone with a light of
+another world. I stood transfixed before it, not knowing whether I dare take it for
+my own.">) (T <PRINTI "Again, I entered the treasury "> <COND (<IN? ,
+NYMPH-STONE ,UL-TREASURY> <PRINTI " and found myself facing the blue amulet.">)
+(T <PRINTI " and stared at the empty pedestal from which I had taken the blue amulet."
+>)>)> <CHANGE-TRAVEL-COMMAND ,HERE ,RIGHT-COMMAND ,TREASURY-COMMAND> <UL-MOVE ,
+UL-TREASURY>)>) (<EQUAL? ,ACTION ,PROCEED-COMMAND> <REMOVE-TRAVEL-COMMAND> <
+PRINTI "I continued away from the chamber and soon caught sight of a group of creatures
+conversing. Rather than reveal myself, I returned to the junction.">)>)> 
+<DEFINE-ROUTINE ANONF-194> 
+<DEFINE-ROUTINE ANONF-195> 
+<COMMAND (SMELLY-POOL SMELLY)> 
+<COMMAND TREASURY> 
+<OBJECT UL-2-PIT-GRATE (SDESC "cover") (LOC UL-2-PIT) (KBD 67) (ACTION <ACOND (
+) (<EQUAL? ,ACTION ,PICK-UP-COMMAND> <UPDATE-REMOVE ,ACTION-OBJECT> <FSET ,HERE
+,SCOUTED> <PRINTI
+"The cover was quite heavy, but I did manage to move it aside, revealing a
+dark pool of water, about three feet across."> <SET CURRENT-GRAPHIC #
+ZLOCAL!-IZILCH FALSE-VALUE> <GRAPHIC ,G-UNDERLAND-GRATE ,G-UNDERLAND-PIT ,
+BOTTOM-RIGHT> <ADD-TRAVEL-COMMAND ,HERE ,DIVE-COMMAND> <RTRUE>) (<EQUAL? ,
+ACTION ,EXAMINE-COMMAND> <UPDATE-FSET ,ACTION-OBJECT ,DONT-EXAMINE> <PRINTI
+"The cover itself was made of stone, and appeared quite heavy.">)>)> 
+<DEFINE-ROUTINE ANONF-196> 
+<ROOM UL-2-PIT (TRAVEL-COMMANDS BACK-COMMAND NUL-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND TORCHBIT) (ENTER <EXECUTE () <COND (<IN? ,UL-2-PIT-GRATE ,HERE> <
+GRAPHIC ,G-UNDERLAND-GRATE>) (T <GRAPHIC ,G-UNDERLAND-GRATE ,G-UNDERLAND-PIT ,
+BOTTOM-RIGHT>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,BACK-COMMAND> <COND (<
+QSET? ,HERE ,SEEN> <REMOVE-TRAVEL-COMMAND ,UL-2 ,NARROW-PATH-COMMAND>)> <COND (
+<UL-MOVE-CHECK ,UL-2> <PRINTI
+"I could discern no purpose to this place, so I returned to the chamber outside."
+> <UL-MOVE ,UL-2>)>) (<EQUAL? ,ACTION ,DROP-COMMAND> <UL-PIT-DROP>) (<EQUAL? ,
+ACTION ,DIVE-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINT ,NARROW-POOL>)>)> 
+<DEFINE-ROUTINE ANONF-197> 
+<DEFINE-ROUTINE ANONF-198> 
+<GLOBAL UL-DROPPED 0> 
+<DEFINE-ROUTINE UL-PIT-DROP> 
+<OBJECT UL-TREASURY-PIT-GRATE (SDESC "cover") (LOC UL-TREASURY-PIT) (KBD 67) (
+ACTION <ACOND () (<EQUAL? ,ACTION ,PICK-UP-COMMAND> <UPDATE-REMOVE ,
+ACTION-OBJECT> <FSET ,HERE ,SCOUTED> <PRINTI
+"The cover was indeed heavy, but I did manage to move it aside, revealing a
+dark pool of water, about three feet across. I held my torch up to its surface,
+but nothing was revealed."> <SET CURRENT-GRAPHIC #ZLOCAL!-IZILCH FALSE-VALUE> <
+GRAPHIC ,G-UNDERLAND-GRATE ,G-UNDERLAND-PIT ,BOTTOM-RIGHT> <ADD-TRAVEL-COMMAND
+,HERE ,DIVE-COMMAND> <RTRUE>) (<EQUAL? ,ACTION ,EXAMINE-COMMAND> <UPDATE-FSET ,
+ACTION-OBJECT ,DONT-EXAMINE> <PRINTI
+"The cover itself was made of stone, and appeared quite heavy.">)>)> 
+<DEFINE-ROUTINE ANONF-199> 
+<COMMAND JUNCTION> 
+<ROOM UL-TREASURY-PIT (TRAVEL-COMMANDS BACK-COMMAND JUNCTION-COMMAND
+NUL-COMMAND) (FLAGS UNDERGROUND) (ENTER <EXECUTE () <COND (<IN? ,
+UL-TREASURY-PIT-GRATE ,HERE> <GRAPHIC ,G-UNDERLAND-GRATE>) (T <GRAPHIC ,
+G-UNDERLAND-GRATE ,G-UNDERLAND-PIT ,BOTTOM-RIGHT>)>>) (ACTION <ACOND () (<
+EQUAL? ,ACTION ,BACK-COMMAND> <COND (<UL-MOVE-CHECK ,UL-TREASURY> <PRINTI
+"There was little point of staying here longer, so I returned to the treasury."
+> <UL-MOVE ,UL-TREASURY>)>) (<EQUAL? ,ACTION ,JUNCTION-COMMAND> <COND (<IN? ,
+NYMPH-STONE ,INVENTORY> <TRY-TO-LEAVE-TREASURY>) (T <PRINTI
+"Having nothing further to do here, I passed through the treasury and back out
+into the hallway beyond."> <UL-MOVE ,UL-JCN>)>) (<AND <EQUAL? ,ACTION ,
+DROP-COMMAND> <NOT <IN? ,UL-TREASURY-PIT-GRATE ,HERE>> <EQUAL? ,ACTION-OBJECT ,
+NYMPH-STONE>> <COND (<FSET? ,UL-TREASURY ,TRAPPED> <PRINTI
+"There was no great likelihood of removing the amulet through the usual means,
+so I thought there would be no harm of dropping it into the pool. Sure enough, no
+magic prevented it from making a rapid descent into the dark waters.">) (T <
+PRINTI "On a hunch, I dropped the amulet into the pool and watched it sink rapidly into
+the dark waters.">)> <UPDATE-MOVE ,NYMPH-STONE ,UL-PIT-BOTTOM>) (<EQUAL? ,
+ACTION ,DIVE-COMMAND> <REMOVE-TRAVEL-COMMAND> <PRINT ,NARROW-POOL>)>)> 
+<DEFINE-ROUTINE ANONF-200> 
+<DEFINE-ROUTINE ANONF-201> 
+<CONSTANT NARROW-POOL
+"I dove into the pool, and carefully started to descend. This was no ordinary pool,
+however; it was a tube, and a narrow one at that. After a short while, the tube
+curved and narrowed, so much so that it was soon difficult to proceed. Discouraged,
+I returned to the surface."> 
+<OBJECT I-PIT-SURFACE (TIME 0) (ACTION <EXECUTE () <COND (<EQUAL? ,HERE ,
+UL-PIT-BOTTOM> <CRLF> <CRLF> <PRINTI
+"Having spent as much time underwater as was possible, I swam back to the surface
+to catch my breath."> <MOVE-TO ,UL-PIT>)>>)> 
+<DEFINE-ROUTINE ANONF-202> 
+<ROOM UL-PIT-BOTTOM (TRAVEL-COMMANDS SURFACE-COMMAND NUL-COMMAND NUL-COMMAND) (
+FLAGS UNDERGROUND) (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <QUEUE I-PIT-SURFACE 3
+> <COND (<IN? ,NYMPH-STONE ,HERE> <GRAPHIC ,G-UNDERLAND-PIT-BOTTOM ,
+G-UNDERLAND-PIT-BOTTOM-STONE ,BOTTOM-LEFT>) (T <GRAPHIC ,G-UNDERLAND-PIT-BOTTOM
+>)>>) (ACTION <ACOND () (<EQUAL? ,ACTION ,SURFACE-COMMAND> <COND (<IN? ,
+NYMPH-STONE ,INVENTORY> <PRINTI
+"In just a few moments, I had returned to the surface.">) (T <PRINTI
+"With nothing to show for my diving exploration, I returned to the surface.">)>
+<MOVE-TO ,UL-PIT>) (<EQUAL? ,ACTION ,PICK-UP-COMMAND> <PRINTI
+"Reaching down through the muck, I grabbed onto the "> <WPRINTD ,ACTION-OBJECT>
+<PRINTI " and held it firmly
+in my hand."> <SET CURRENT-GRAPHIC #ZLOCAL!-IZILCH FALSE-VALUE> <GRAPHIC ,
+G-UNDERLAND-PIT-BOTTOM> <UPDATE-MOVE ,ACTION-OBJECT ,INVENTORY>)>)> 
+<DEFINE-ROUTINE ANONF-203> 
+<DEFINE-ROUTINE ANONF-204> 
+<ROOM UL-PIT (TRAVEL-COMMANDS BACK-COMMAND DIVE-COMMAND NUL-COMMAND) (FLAGS
+UNDERGROUND TORCHBIT) (ENTER <EXECUTE () <GRAPHIC ,G-UNDERLAND-GRATE ,
+G-UNDERLAND-PIT ,BOTTOM-RIGHT> <COND (<IN? ,TORCH ,INVENTORY> <FSET ,HERE ,DEAD
+> <FORCE-TRAVEL-COMMAND ,HERE ,DIVE-COMMAND>)>>) (ACTION <ACOND ("AUX" RM) (<
+EQUAL? ,ACTION ,BACK-COMMAND> <COND (<IN? ,NYMPH-STONE ,INVENTORY> <SET RM ,
+UL-2>) (T <SET RM ,UL-JCN>)> <COND (<UL-MOVE-CHECK .RM> <COND (<IN? ,
+NYMPH-STONE ,INVENTORY> <TRAVEL-COMMANDS .RM ,TO-CAVE-COMMAND> <PRINTI
+"With the amulet in hand, I made a hasty return to the chamber in which I had left "
+> <WPRINTD ,LAKE-VICTIM> <PRINTI ". Thankfully, he was conscious.">) (T <COND (
+<AND <IN? ,TORCH ,INVENTORY> <NOT <FSET? ,HERE ,DEAD>>> <PRINTI
+"With the torch now in my possession">) (T <PRINTI
+"Having nothing to show from this excursion">)> <PRINTI
+", I returned to the chamber outside.">)> <UL-MOVE .RM>)>) (<EQUAL? ,ACTION ,
+DIVE-COMMAND> <COND (<IN? ,TORCH ,INVENTORY> <COND (<NOT <QSET? ,HERE ,BLUE-MIX
+>> <PRINTI "As I dove into the water, I was filled with amazement that the torch I was carrying
+had not been extinguished. If anything, it appeared to glow more brightly, and the flame
+became warmer. Soon, I had reached the bottom of the pool, which was covered with
+every sort of putrifying debris you can imagine, and some that you probably couldn't.
+Decaying debris lowered the visibility considerably, making it difficult to gauge
+anything much about the pool itself.">) (T <PRINTI
+"Again, I took the torch down into the miserable pit and descended to the bottom,
+peering with difficulty through the cloudy waters"> <COND (<NOT <FIRST? ,
+UL-PIT-BOTTOM>> <PRINTI ", yet finding nothing of import">)> <PRINTI ".">)> <
+COND (<IN? ,NYMPH-STONE ,UL-PIT-BOTTOM> <PRINTI
+" But then, at the bottom of the pool, in the midst of the unspeakable filth,
+I caught a glimpse of the the amulet I had taken from the treasury"> <COND (<
+GRTR? ,UL-DROPPED 0> <PRINTI ", but nothing else">)> <PRINTI ".">) (<FIRST? ,
+UL-PIT-BOTTOM> <PRINTI " Imagine my surprise when there, at the bottom, lay ">
+<LIST-CONTENTS ,UL-PIT-BOTTOM #ZLOCAL!-IZILCH FALSE-VALUE> <PRINTI
+" I had dropped into the
+pit earlier.">)> <MOVE-TO ,UL-PIT-BOTTOM>) (T <REMOVE-TRAVEL-COMMAND> <PRINTI
+"I dove down into the foul-smelling pool and swam into its dismal depths. By
+the time I reached the bottom, it was too dark to see anything at all. Unable
+to learn anything new, I returned to the surface.">)>)>)> 
+<DEFINE-ROUTINE ANONF-205> 
+<DEFINE-ROUTINE ANONF-206> 
+<DEFINE-ROUTINE TREASURY-GRAPHIC> 
+<ROOM UL-TREASURY (TRAVEL-COMMANDS PROCEED-COMMAND BACK-COMMAND NUL-COMMAND) (
+FLAGS UNDERGROUND TORCHBIT) (ENTER <EXECUTE () <FSET ,HERE ,SEEN> <
+TREASURY-GRAPHIC> <FORCE-TRAVEL-COMMAND ,HERE ,BACK-COMMAND> <COND (<AND <FSET?
+,HERE ,TRAPPED> <NOT <IN? ,NYMPH-STONE ,INVENTORY>>> <FCLEAR ,HERE ,TRAPPED>)>>
+) (ACTION <ACOND () (<EQUAL? ,ACTION ,PROCEED-COMMAND> <COND (<UL-MOVE-CHECK ,
+UL-TREASURY-PIT> <PRINTI
+"At the far end of the treasury, a narrow path led a short way, ending at a simple,
+rounded chamber, in the middle of which lay a "> <COND (<FSET? ,UL-TREASURY-PIT
+,SCOUTED> <PRINTI "perfectly round pool of water">) (T <PRINTI
+"large stone cover">)> <PRINTI
+". It was odd that such a nondescript chamber would be placed adjacent to the
+rather opulent treasury, and I could only guess at its purpose."> <UL-MOVE ,
+UL-TREASURY-PIT>)>) (<AND <EQUAL? ,ACTION ,DROP-COMMAND> <EQUAL? ,ACTION-OBJECT
+,NYMPH-STONE>> <COND (<FSET? ,HERE ,TRAPPED> <PRINTI
+"It was clear that I wasn't leaving this treasury with the amulet, so I replaced it
+on its pedestal and pondered my next move."> <FCLEAR ,HERE ,TRAPPED> <
+ADD-TRAVEL-COMMAND ,HERE ,BACK-COMMAND>) (T <PRINTI
+"Thinking it was perhaps ill-advised to take the amulet, I gingerly returned it to its
+pedestal.">)> <UPDATE-MOVE ,NYMPH-STONE ,HERE> <TREASURY-GRAPHIC> <RTRUE>) (<
+EQUAL? ,ACTION ,BACK-COMMAND> <TRY-TO-LEAVE-TREASURY>)>)> 
+<DEFINE-ROUTINE ANONF-207> 
+<DEFINE-ROUTINE ANONF-208> 
+<DEFINE-ROUTINE TRY-TO-LEAVE-TREASURY> 
